@@ -1,23 +1,16 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-// const App: JSX.Element = () => {
-const App = () => {
+const App = (): JSX.Element => {
   return (
-    <SafeAreaView style={styles.bg}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.bg2}></ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.bg}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.bg2}></ScrollView>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
