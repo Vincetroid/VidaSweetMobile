@@ -1,3 +1,87 @@
+// prettier-ignore
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  // Visit https://aka.ms/tsconfig.json to read more about this file
+  "compilerOptions": {
+    // Basic Options
+    "target": "esnext", // Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'.
+    "module": "commonjs",  // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "lib": [
+      "es2017"
+    ],
+    "allowJs": true, // Allow javascript files to be compiled.
+    "jsx": "react-native", // Specify JSX code generation: 'preserve', 'react-native', or 'react'.
+    "noEmit": true, // Do not emit outputs.
+    "isolatedModules": true, // Transpile each file as a separate module (similar to 'ts.transpileModule').
+    // Strict Type-Checking Options
+    "strict": true, // Enable all strict type-checking options.
+    /* Module Resolution Options */
+    "moduleResolution": "node", // Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6).
+    "typeRoots": [
+      "./",
+      "./node_modules/@types",
+      "./src/types",
+    ], // List of folders to include type definitions from.
+    "types": ["@types/jest"], // Specify list of subfolders (related to typeRoots) to include type definitions from
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+    "esModuleInterop": true, // Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'.
+    "skipLibCheck": true, // Skip type checking of declaration files.
+    "resolveJsonModule": true, // Allows importing modules with a ‘.json’ extension, which is a common practice in node projects.
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    }, // This lets VSCode recognize the absolute path aliases used in the project
+  },
+  "include": [
+    "./src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
+  // see https://palantir.github.io/tslint/rules/
+  "rules": {
+    "arrow-return-shorthand": true,
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "curly": true,
+    "deprecation": {
+      "severity": "none"
+    },
+    "eofline": true,
+    "import-spacing": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "interface-over-type-literal": true,
+    "max-line-length": [
+      true,
+      200
+    ],
+    "member-access": true,
+    "new-parens": true,
+    "no-any": {
+      "severity": "warning"
+    },
+    "no-trailing-whitespace": [
+      true,
+      "ignore-comments"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-module",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
+  }
 }
