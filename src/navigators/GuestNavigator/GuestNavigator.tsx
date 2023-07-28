@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 export const GuestNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={GuestScreen} />
+      <Stack.Screen name="Guest" component={GuestScreen} />
     </Stack.Navigator>
   );
 };

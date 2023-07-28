@@ -1,21 +1,23 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
-export default function Splash() {
+export const Splash = () => {
   return (
     <View style={styles.wrapper}>
       <Image
         style={styles.img}
-        source={require('@expo/snack-static/react-native-logo.png')}
+        source={require('@/assets/vida-sweet-logo-black.png')}
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'blue',
+    backgroundColor: 'ghostwhite',
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   img: {
     width: 200,
