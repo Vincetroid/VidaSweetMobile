@@ -2,28 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
-import { Splash } from './src/components/Splash';
+import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);
-  const authenticatedUser = false;
+  const authenticatedUser = true;
 
-  // useEffect(() => {
-  //   if (loadingApp) {
-
-  //   }
-
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingApp(false);
+    }, 3000);
+  }, []);
 
   if (loadingApp) {
-    return <Splash />;
+    return <SplashScreen />;
   }
 
-  // return (
-  //   <NavigationContainer>
-  //     {authenticatedUser ? <UserNavigator /> : <GuestNavigator />}
-  //   </NavigationContainer>
-  // );
+  return (
+    <NavigationContainer>
+      {authenticatedUser ? <UserNavigator /> : <GuestNavigator />}
+    </NavigationContainer>
+  );
 };
 
 export default App;
