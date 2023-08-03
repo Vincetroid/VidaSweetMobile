@@ -6,7 +6,7 @@ export const Splash = () => {
     <View style={styles.wrapper}>
       <Image
         style={styles.img}
-        source={require('@/assets/vida-sweet-logo-black.png')}
+        source={require('@/assets/logos/vida-sweet-logo-black.png')}
       />
     </View>
   );
