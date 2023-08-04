@@ -15,6 +15,7 @@ module.exports = {
           '@/utils': './src/utils',
           '@/interfaces': './src/types',
           '@/api': './src/api',
+          '@/global-styles': './src/global-styles',
         },
       },
     ],

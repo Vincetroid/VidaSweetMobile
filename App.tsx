@@ -4,6 +4,7 @@ import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
+import { theme } from './src/themes/Theme';
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);

@@ -18,7 +18,7 @@ export const UserNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Vida Sweet',
+          title: 'Home',
           headerShown: false,
           tabBarIcon: () => <FontAwesomeIcon icon="home" size={24} />,
         }}
