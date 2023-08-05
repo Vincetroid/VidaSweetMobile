@@ -1,6 +1,6 @@
 import { Colors } from './Colors';
 
-const gS = Object.freeze({
+const themes = Object.freeze({
   light: {
     primary: Colors.white,
     secondary: Colors.boldPink,
@@ -35,4 +35,4 @@ const gS = Object.freeze({
 
 export const themeName = 'light';
 
-export const themeStyles = gS[themeName];
+export const themeStyles = themes[themeName];

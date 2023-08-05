@@ -1,26 +1,52 @@
-import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { gStyles, themeStyles } from '@/global-styles';
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export const ProductCard = () => {
   return (
-    <View style={styles.wrapper}>
+    <View style={[gStyles.gralMargin, gStyles.gralContainer, styles.wrapper]}>
+      <TouchableOpacity style={styles.heartWrapper}>
+        <FontAwesomeIcon icon="heart" size={24} />
+      </TouchableOpacity>
       <Image
         style={styles.img}
-        source={require('@/assets/logos/vida-sweet-logo-black.png')}
+        source={require('@/assets/products/ice-cream-liter.jpeg')}
+        resizeMode="contain"
       />
+      <TouchableOpacity style={styles.addBtn}>
+        <FontAwesomeIcon icon="cart-shopping" size={24} />
+        <Text style={styles.addText}>Agregar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: 'ghostwhite',
-    flex: 1,
+    backgroundColor: 'green',
+    width: '40%',
+  },
+  heartWrapper: {
+    position: 'absolute',
+    zIndex: 1,
+    top: 3,
+    right: 3,
+  },
+  addBtn: {
+    marginTop: 10,
+    backgroundColor: themeStyles.tertiary,
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  addText: {
+    marginLeft: 10,
+  },
   img: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 'auto',
+    aspectRatio: 1,
   },
 });
