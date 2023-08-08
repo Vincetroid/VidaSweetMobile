@@ -5,6 +5,7 @@ import { SliderBox } from 'react-native-image-slider-box';
 import { gStyles, themeStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { RowTitle } from '@/components';
+import { ProductItem } from '@/types';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -14,6 +15,17 @@ const images = [
 ];
 
 export const HomeScreen = () => {
+  const product1 = {
+    img: require('@/assets/products/ice-cream-liter.jpeg'),
+    title: 'Helado 1l',
+    price: 150.0,
+  } as ProductItem;
+  const product2 = {
+    img: require('@/assets/products/ice-cream-single.jpeg'),
+    title: 'Helado sencillo',
+    price: 60.5,
+  } as ProductItem;
+
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
@@ -25,8 +37,8 @@ export const HomeScreen = () => {
         <RowTitle title="Más vendidos" />
 
         <View style={[gStyles.gralMargin, styles.container]}>
-          <ProductCard />
-          <ProductCard />
+          <ProductCard product={product1} />
+          <ProductCard product={product2} />
         </View>
       </ScrollView>
     </SafeAreaView>
