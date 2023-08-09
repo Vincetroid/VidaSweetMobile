@@ -6,11 +6,9 @@ export const Splash = () => {
   // TAKE A LOOK TO DECIDE: https://react.dev/learn/you-might-not-need-an-effect
   let splashImage;
   if (themeName === 'light') {
-    console.log('light');
     splashImage =
       require('@/assets/logos/vida-sweet-logo-black.png') as ImageSourcePropType;
   } else {
-    console.log('dark');
     splashImage =
       require('@/assets/logos/vida-sweet-logo-gold.png') as ImageSourcePropType;
   }

@@ -11,7 +11,7 @@ export const Colors = {
   orange: 'orange',
   green: 'green',
   gray: 'gray',
-  grayLight: '#EDEDED',
+  grayLight: 'lightgray',
   grayBold: '#1D1D1D',
   grayOutline: '#CDCDCD',
 };

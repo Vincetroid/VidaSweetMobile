@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SliderBox } from 'react-native-image-slider-box';
-import { gStyles, themeStyles } from '@/global-styles';
+import { Colors, gStyles, themeStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { RowTitle } from '@/components';
 import { ProductItem } from '@/types';
@@ -19,11 +19,13 @@ export const HomeScreen = () => {
     img: require('@/assets/products/ice-cream-liter.jpeg'),
     title: 'Helado 1l',
     price: 150.0,
+    isFavorite: false,
   } as ProductItem;
   const product2 = {
     img: require('@/assets/products/ice-cream-single.jpeg'),
     title: 'Helado sencillo',
     price: 60.5,
+    isFavorite: true,
   } as ProductItem;
 
   return (
@@ -39,6 +41,8 @@ export const HomeScreen = () => {
         <View style={[gStyles.gralMargin, styles.container]}>
           <ProductCard product={product1} />
           <ProductCard product={product2} />
+          <ProductCard product={product1} />
+          <ProductCard product={product2} />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -47,9 +51,13 @@ export const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   bg2: {
-    backgroundColor: 'aqua',
+    // backgroundColor: themeStyles.white,
+    // backgroundColor: 'ghostwhite'
   },
   container: {
-    backgroundColor: themeStyles.secondary,
+    // backgroundColor: themeStyles.secondary,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 });
