@@ -12,8 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { ProductItem } from '@/types';
 import { formatCurrency } from '@/utils';
+import { useTranslation } from 'react-i18next';
 
 export const ProductCard = ({ product }: { product: ProductItem }) => {
+  const { t } = useTranslation();
   const { img, title, price, isFavorite = false } = product;
 
   const [favorite, setfavorite] = useState(isFavorite);
@@ -45,7 +47,7 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
       <Text style={styles.productData}>{formatCurrency(price)}</Text>
       <TouchableOpacity style={styles.addBtn}>
         <FontAwesomeIcon icon="cart-shopping" size={24} style={styles.icon} />
-        <Text style={styles.addText}>Agregar</Text>
+        <Text style={styles.addText}>{t('Add')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,10 +58,8 @@ const cardWidth = (Dimensions.get('window').width - cardGap * 3) / 2;
 
 const styles = StyleSheet.create({
   wrapper: {
-    // backgroundColor: themeStyles.primary,
     width: cardWidth,
     marginBottom: cardGap,
-    // alignItems: 'center',
   },
   heartWrapper: {
     position: 'absolute',
@@ -97,8 +97,6 @@ const styles = StyleSheet.create({
     color: themeStyles.secondary,
   },
   heartIconNotSelected: {
-    // color: themeStyles.secondary,
-    // color: 'lightgrey',
     color: Colors.grayLight,
   },
 });

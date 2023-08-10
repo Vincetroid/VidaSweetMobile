@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SliderBox } from 'react-native-image-slider-box';
-import { Colors, gStyles, themeStyles } from '@/global-styles';
+import { gStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { RowTitle } from '@/components';
 import { ProductItem } from '@/types';
+import { useTranslation } from 'react-i18next';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -15,6 +16,8 @@ const images = [
 ];
 
 export const HomeScreen = () => {
+  const { t } = useTranslation();
+
   const product1 = {
     img: require('@/assets/products/ice-cream-liter.jpeg'),
     title: 'Helado 1l',
@@ -36,7 +39,7 @@ export const HomeScreen = () => {
         </View>
         <SliderBox images={images} />
 
-        <RowTitle title="Más vendidos" />
+        <RowTitle title={t('TopSellers')} />
 
         <View style={[gStyles.gralMargin, styles.container]}>
           <ProductCard product={product1} />
