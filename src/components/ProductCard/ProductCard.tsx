@@ -43,8 +43,8 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
         )}
       </TouchableOpacity>
       <Image style={styles.img} source={img} resizeMode="contain" />
-      <Text style={styles.productData}>{title}</Text>
-      <Text style={styles.productData}>{formatCurrency(price)}</Text>
+      <Text style={styles.productTitle}>{title}</Text>
+      <Text style={styles.productPrice}>{formatCurrency(price)}</Text>
       <TouchableOpacity style={styles.addBtn}>
         <FontAwesomeIcon icon="cart-shopping" size={24} style={styles.icon} />
         <Text style={styles.addText}>{t('Add')}</Text>
@@ -82,8 +82,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: themeStyles.primary,
   },
-  productData: {
+  productTitle: {
     textAlign: 'center',
+    fontFamily: 'Lato',
+    fontSize: 16,
+    marginVertical: 2,
+  },
+  productPrice: {
+    textAlign: 'center',
+    fontFamily: 'Lato',
+    fontWeight: 'bold',
+    fontSize: 14,
+    marginVertical: 2,
   },
   icon: {
     color: themeStyles.primary,

@@ -8,7 +8,7 @@ interface RowTitleItem {
 export const RowTitle = ({ title }: RowTitleItem): JSX.Element => {
   return (
     <View style={[styles.wrapper]}>
-      <Text style={styles.addText}>{title}</Text>
+      <Text style={styles.title}>{title}</Text>
     </View>
   );
 };
@@ -17,7 +17,9 @@ const styles = StyleSheet.create({
   wrapper: {
     marginTop: 16,
   },
-  addText: {
+  title: {
     paddingLeft: 16,
+    fontFamily: 'Bartleen Script',
+    fontSize: 16,
   },
 });
