@@ -5,6 +5,7 @@ const themes = Object.freeze({
     primary: Colors.white,
     secondary: Colors.boldPink,
     tertiary: Colors.gold,
+    quaternary: Colors.lightPink,
     text: Colors.black,
     black: Colors.black,
     white: Colors.white,

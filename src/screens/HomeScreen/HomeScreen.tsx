@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SliderBox } from 'react-native-image-slider-box';
 import { gStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
-import { RowTitle } from '@/components';
-import { ProductItem } from '@/types';
+import { MenuElement, RowTitle } from '@/components';
+import { MenuElementItem, ProductItem } from '@/types';
 import { useTranslation } from 'react-i18next';
 
 const images = [
@@ -17,6 +17,23 @@ const images = [
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
+
+  const menuItem1 = {
+    img: require('@/assets/products/ice-cream-single3.jpeg'),
+    title: 'Helados',
+  } as MenuElementItem;
+  const menuItem2 = {
+    img: require('@/assets/products/cake-menu1.jpeg'),
+    title: 'Pasteles',
+  } as MenuElementItem;
+  const menuItem3 = {
+    img: require('@/assets/products/cupcakes-menu.jpeg'),
+    title: 'Cupcakes',
+  } as MenuElementItem;
+  const menuItem4 = {
+    img: require('@/assets/products/cookies-menu1.jpeg'),
+    title: 'Galletas',
+  } as MenuElementItem;
 
   const product1 = {
     img: require('@/assets/products/ice-cream-liter.jpeg'),
@@ -34,10 +51,19 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
-        <View style={gStyles.gralContainer}>
+        {/* <View style={gStyles.gralContainer}>
           <Text>Home Screen</Text>
-        </View>
+        </View> */}
         <SliderBox images={images} />
+
+        <RowTitle title={t('Menu')} centered />
+
+        <View style={[gStyles.gralMargin, styles.container]}>
+          <MenuElement element={menuItem1} />
+          <MenuElement element={menuItem2} />
+          <MenuElement element={menuItem3} />
+          <MenuElement element={menuItem4} />
+        </View>
 
         <RowTitle title={t('TopSellers')} />
 
@@ -58,7 +84,6 @@ const styles = StyleSheet.create({
     // backgroundColor: 'ghostwhite'
   },
   container: {
-    // backgroundColor: themeStyles.secondary,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

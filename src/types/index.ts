@@ -4,3 +4,8 @@ export interface ProductItem {
   price: number;
   isFavorite: boolean;
 }
+
+export interface MenuElementItem {
+  img: number;
+  title: string;
+}
