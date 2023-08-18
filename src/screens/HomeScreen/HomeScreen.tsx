@@ -20,19 +20,19 @@ export const HomeScreen = () => {
 
   const menuItem1 = {
     img: require('@/assets/products/ice-cream-single3.jpeg'),
-    title: 'Helados',
+    title: t('IceCreams'),
   } as MenuElementItem;
   const menuItem2 = {
     img: require('@/assets/products/cake-menu1.jpeg'),
-    title: 'Pasteles',
+    title: t('Cakes'),
   } as MenuElementItem;
   const menuItem3 = {
     img: require('@/assets/products/cupcakes-menu.jpeg'),
-    title: 'Cupcakes',
+    title: t('Cupcakes'),
   } as MenuElementItem;
   const menuItem4 = {
     img: require('@/assets/products/cookies-menu1.jpeg'),
-    title: 'Galletas',
+    title: t('Cookies'),
   } as MenuElementItem;
 
   const product1 = {
