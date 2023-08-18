@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import { gStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
@@ -51,9 +50,6 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
-        {/* <View style={gStyles.gralContainer}>
-          <Text>Home Screen</Text>
-        </View> */}
         <SliderBox images={images} />
 
         <RowTitle title={t('Menu')} centered />

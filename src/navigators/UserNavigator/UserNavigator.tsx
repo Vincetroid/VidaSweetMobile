@@ -7,6 +7,8 @@ import {
   SettingsScreen,
 } from '@/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Colors, FontSizes } from '@/global-styles';
+import { ShoppingCartButton } from '@/components';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -18,9 +20,20 @@ export const UserNavigator = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Home',
-          headerShown: false,
+          title: 'Vida Sweet',
+          // headerShown: false,
           tabBarIcon: () => <FontAwesomeIcon icon="home" size={24} />,
+          headerStyle: {
+            // backgroundColor: '#f4511e',
+          },
+          headerTintColor: Colors.black,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontFamily: 'Bartleen Script',
+            fontSize: FontSizes.largeBigTitle,
+          },
+          headerTitleAlign: 'left',
+          headerRight: () => <ShoppingCartButton />,
         }}
       />
       <Tab.Screen
