@@ -6,6 +6,7 @@ import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import './i18n.config';
 // import { theme } from './src/themes/Theme';
+import { ChatWrapper } from './src/components/ChatWrapper/ChatWrapper';
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);
@@ -25,7 +26,13 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {authenticatedUser ? <UserNavigator /> : <GuestNavigator />}
+      {authenticatedUser ? (
+        <ChatWrapper>
+          <UserNavigator />
+        </ChatWrapper>
+      ) : (
+        <GuestNavigator />
+      )}
       {/* Common modal screens just below */}
     </NavigationContainer>
   );
