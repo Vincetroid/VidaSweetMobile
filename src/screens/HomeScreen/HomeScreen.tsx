@@ -3,9 +3,10 @@ import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import { gStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
-import { MenuElement, RowTitle } from '@/components';
-import { MenuElementItem, ProductItem } from '@/types';
+import { RowTitle, Menu } from '@/components';
+import { ProductItem } from '@/types';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -16,23 +17,6 @@ const images = [
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
-
-  const menuItem1 = {
-    img: require('@/assets/products/ice-cream-single3.jpeg'),
-    title: t('IceCreams'),
-  } as MenuElementItem;
-  const menuItem2 = {
-    img: require('@/assets/products/cake-menu1.jpeg'),
-    title: t('Cakes'),
-  } as MenuElementItem;
-  const menuItem3 = {
-    img: require('@/assets/products/cupcakes-menu.jpeg'),
-    title: t('Cupcakes'),
-  } as MenuElementItem;
-  const menuItem4 = {
-    img: require('@/assets/products/cookies-menu1.jpeg'),
-    title: t('Cookies'),
-  } as MenuElementItem;
 
   const product1 = {
     img: require('@/assets/products/ice-cream-liter.jpeg'),
@@ -47,6 +31,8 @@ export const HomeScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
@@ -54,12 +40,7 @@ export const HomeScreen = () => {
 
         <RowTitle title={t('Menu')} centered />
 
-        <View style={[gStyles.gralMargin, styles.container]}>
-          <MenuElement element={menuItem1} />
-          <MenuElement element={menuItem2} />
-          <MenuElement element={menuItem3} />
-          <MenuElement element={menuItem4} />
-        </View>
+        <Menu />
 
         <RowTitle title={t('TopSellers')} />
 

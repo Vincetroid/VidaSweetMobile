@@ -1,3 +1,4 @@
 import { HomeScreen } from './HomeScreen';
+import { HomeNavigationOptions } from './HomeNavigationOptions';
 
-export { HomeScreen };
+export { HomeScreen, HomeNavigationOptions };

@@ -2,38 +2,66 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   CakeryScreen,
+  DeliveryAddressScreen,
+  HomeNavigationOptions,
   HomeScreen,
   IceCreamScreen,
   SettingsScreen,
+  ShoppingCartScreen,
 } from '@/screens';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Colors, FontSizes } from '@/global-styles';
 import { ShoppingCartButton } from '@/components';
+import { CommonNavigationOptions } from './CommonNavigationOptions';
+import {
+  faCakeCandles,
+  faGear,
+  faHome,
+  faIceCream,
+} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator();
+
+function MainStackNavigator() {
+  const { t } = useTranslation();
+
+  return (
+    <MainStack.Navigator screenOptions={CommonNavigationOptions}>
+      <MainStack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={HomeNavigationOptions}
+      />
+      <MainStack.Screen
+        name="ShoppingCart"
+        component={ShoppingCartScreen}
+        options={{
+          title: t('Cart'),
+        }}
+      />
+      <MainStack.Screen
+        name="DeliveryAddress"
+        component={DeliveryAddressScreen}
+        options={{
+          title: t('DeliveryAddress'),
+        }}
+      />
+    </MainStack.Navigator>
+  );
+}
 
 export const UserNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="MainRoot"
+        component={MainStackNavigator}
         options={{
-          title: 'Vida Sweet',
-          // headerShown: false,
-          tabBarIcon: () => <FontAwesomeIcon icon="home" size={24} />,
-          headerStyle: {
-            // backgroundColor: '#f4511e',
-          },
-          headerTintColor: Colors.black,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            fontFamily: 'Bartleen Script',
-            fontSize: FontSizes.largeBigTitle,
-          },
-          headerTitleAlign: 'left',
-          headerRight: () => <ShoppingCartButton />,
+          title: 'Home',
+          headerShown: false,
+          tabBarIcon: () => <FontAwesomeIcon icon={faHome} size={24} />,
         }}
       />
       <Tab.Screen
@@ -42,7 +70,7 @@ export const UserNavigator = () => {
         options={{
           title: 'Heladería',
           headerShown: false,
-          tabBarIcon: () => <FontAwesomeIcon icon="ice-cream" size={24} />,
+          tabBarIcon: () => <FontAwesomeIcon icon={faIceCream} size={24} />,
         }}
       />
       <Tab.Screen
@@ -51,7 +79,7 @@ export const UserNavigator = () => {
         options={{
           title: 'Repostería',
           headerShown: false,
-          tabBarIcon: () => <FontAwesomeIcon icon="cake-candles" size={24} />,
+          tabBarIcon: () => <FontAwesomeIcon icon={faCakeCandles} size={24} />,
         }}
       />
       <Tab.Screen
@@ -60,12 +88,9 @@ export const UserNavigator = () => {
         options={{
           title: 'Opciones',
           headerShown: false,
-          tabBarIcon: () => <FontAwesomeIcon icon="gear" size={24} />,
+          tabBarIcon: () => <FontAwesomeIcon icon={faGear} size={24} />,
         }}
       />
     </Tab.Navigator>
-    // <Stack.Navigator>
-    //   <Stack.Screen name="Home" component={HomeScreen} />
-    // </Stack.Navigator>
   );
 };

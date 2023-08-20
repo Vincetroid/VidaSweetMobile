@@ -84,14 +84,13 @@ const styles = StyleSheet.create({
   },
   productTitle: {
     textAlign: 'center',
-    fontFamily: 'Lato',
+    fontFamily: 'Lato Bold',
     fontSize: 16,
     marginVertical: 2,
   },
   productPrice: {
     textAlign: 'center',
-    fontFamily: 'Lato',
-    fontWeight: 'bold',
+    fontFamily: 'Lato Light',
     fontSize: 14,
     marginVertical: 2,
   },

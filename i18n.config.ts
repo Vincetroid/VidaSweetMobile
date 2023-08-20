@@ -12,9 +12,6 @@ if (Platform.OS === 'ios') {
   locale = NativeModules.I18nManager.localeIdentifier;
 }
 
-console.log('english');
-console.log(english, spanish);
-
 const resources = {
   en: {
     translation: english,

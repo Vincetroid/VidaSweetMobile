@@ -1,10 +1,14 @@
 {
   "Add": "Agregar",
-  "TopSellers": "Más vendidos",
-  "Menu": "Menú",
+  "Cakes": "Pasteles",
+  "Cart": "Carrito",
+  "Cupcakes": "Cupcakes",
+  "Cookies": "Galletas",
+  "DeliveryAddress": "Dirección de entrega",
+  "EmptyCartTitle": "Tu carrito está vacío",
+  "EmptyCartMessage": "Agrega por lo menos un producto al carrito de compras",
   "IceCreams": "Helados",
   "IceCream": "Helados",
-  "Cakes": "Pasteles",
-  "Cupcakes": "Cupcakes",
-  "Cookies": "Galletas"
+  "Menu": "Menú",
+  "TopSellers": "Más vendidos"
 }

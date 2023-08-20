@@ -1,4 +1,4 @@
-import { FontSizes, gStyles } from '@/global-styles';
+import { FontSizes, gStyles, themeStyles } from '@/global-styles';
 import React from 'react';
 import { View, StyleSheet, Text, StyleProp, ViewStyle } from 'react-native';
 
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     fontFamily: 'Bartleen Script',
     fontSize: FontSizes.bigTitle,
+    color: themeStyles.black,
   },
   textCenter: {
     textAlign: 'center',
-    color: 'blue',
     alignSelf: 'center',
   },
 });
