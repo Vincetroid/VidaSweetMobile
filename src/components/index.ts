@@ -6,6 +6,8 @@ import { Menu } from './Menu';
 import { ChatWrapper } from './ChatWrapper';
 import { ShoppingCartButton } from './ShoppingCartButton';
 import { BackButton } from './BackButton';
+import { ProductRow } from './ProductRow';
+import { AddRemoveProduct } from './AddRemoveProduct';
 
 export {
   ProductCard,
@@ -16,4 +18,6 @@ export {
   ChatWrapper,
   ShoppingCartButton,
   BackButton,
+  ProductRow,
+  AddRemoveProduct,
 };

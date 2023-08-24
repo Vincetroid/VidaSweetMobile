@@ -1,0 +1,34 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { styles } from './AddRemoveProduct.styles';
+
+export const AddRemoveProduct = () => {
+  const [counter, setCounter] = useState(0);
+
+  const decrementCounter = () => {
+    if (counter > 0) {
+      setCounter(counter - 1);
+    }
+  };
+
+  const incrementCounter = () => {
+    //por ahora 20, ya veremos despues
+    if (counter <= 20) {
+      setCounter(counter + 1);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.leftSide} onPress={decrementCounter}>
+        <Text style={styles.text}>-</Text>
+      </TouchableOpacity>
+      <View style={styles.centerSide}>
+        <Text style={styles.text}>{counter}</Text>
+      </View>
+      <TouchableOpacity style={styles.rightSide} onPress={incrementCounter}>
+        <Text style={styles.text}>+</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
