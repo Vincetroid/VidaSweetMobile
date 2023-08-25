@@ -10,7 +10,7 @@ module.exports = {
           '@/navigators': './src/navigation',
           '@/assets': './src/assets',
           '@/components': './src/components',
-          '@/redux': './src/redux',
+          '@/redux-content': './src/redux-content',
           '@/hooks': './src/hooks',
           '@/utils': './src/utils',
           '@/types': './src/types',

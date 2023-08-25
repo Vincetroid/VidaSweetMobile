@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { store } from './src/redux-content';
 import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
@@ -35,9 +37,11 @@ const App = () => {
   return (
     <NavigationContainer theme={ReactNavigationThemeJustDefaultBgColor}>
       {authenticatedUser ? (
-        <ChatWrapper>
-          <UserNavigator />
-        </ChatWrapper>
+        <Provider store={store}>
+          <ChatWrapper>
+            <UserNavigator />
+          </ChatWrapper>
+        </Provider>
       ) : (
         <GuestNavigator />
       )}

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { decrement, increment, store } from '@/redux-content';
+import { useDispatch } from 'react-redux';
 import { styles } from './AddRemoveProduct.styles';
 
 export const AddRemoveProduct = () => {
+  const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
 
   const decrementCounter = () => {
     if (counter > 0) {
       setCounter(counter - 1);
+      // store.dispatch(decrement());
+      dispatch(decrement());
     }
   };
 
@@ -15,6 +20,8 @@ export const AddRemoveProduct = () => {
     //por ahora 20, ya veremos despues
     if (counter <= 20) {
       setCounter(counter + 1);
+      // store.dispatch(increment());
+      dispatch(increment());
     }
   };
 
