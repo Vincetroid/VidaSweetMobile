@@ -8,6 +8,7 @@ import { ShoppingCartButton } from './ShoppingCartButton';
 import { BackButton } from './BackButton';
 import { ProductRow } from './ProductRow';
 import { AddRemoveProduct } from './AddRemoveProduct';
+import { AddRemoveToFavorites } from './AddRemoveToFavorites';
 
 export {
   ProductCard,
@@ -20,4 +21,5 @@ export {
   BackButton,
   ProductRow,
   AddRemoveProduct,
+  AddRemoveToFavorites,
 };

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { addProduct, removeProduct } from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
 import { ProductItem } from '@/types';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 interface AddRemoveProductProps {
   product: ProductItem;
@@ -12,6 +12,17 @@ interface AddRemoveProductProps {
 export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   const dispatch = useAppDispatch();
   const [counter, setCounter] = useState(0);
+  const { cartProducts } = useAppSelector(state => state.cart);
+
+  // Tratar de optimizar esto:
+  // Tal vez llamar productsFiltered en utils
+  // Tal vez no usar cartProducts sino pasarlo por parametro
+  useEffect(() => {
+    const productsFiltered = cartProducts.filter(
+      prodItem => prodItem.id === product.id,
+    );
+    setCounter(productsFiltered.length);
+  }, [cartProducts.length]);
 
   const decrementCounter = () => {
     if (counter > 0) {

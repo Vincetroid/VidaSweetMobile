@@ -1,9 +1,8 @@
 import { View, Image, Text } from 'react-native';
 import { ProductItem } from '@/types';
 import { formatCurrency } from '@/utils';
-import { AddRemoveProduct } from '@/components';
+import { AddRemoveProduct, AddRemoveToFavorites } from '@/components';
 import { styles } from './ProductRow.styles';
-import { AddRemoveToFavorites } from '../AddRemoveToFavorites/AddRemoveToFavorites';
 import { useAppSelector } from '@/hooks';
 
 export const ProductRow = ({ product }: { product: ProductItem }) => {
