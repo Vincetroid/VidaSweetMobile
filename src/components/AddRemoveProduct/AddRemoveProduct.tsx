@@ -1,18 +1,39 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { decrement, increment, store } from '@/redux-content';
-import { useDispatch } from 'react-redux';
+import {
+  addProduct,
+  decrement,
+  increment,
+  removeProduct,
+} from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
+import { useAppDispatch } from '@/hooks/hooks';
+import { ProductItem } from '@/types';
 
 export const AddRemoveProduct = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [counter, setCounter] = useState(0);
+
+  const product1 = {
+    id: 'd20b5a7c-ac35-4438-a66b-26c28cf19c27',
+    img: require('@/assets/products/ice-cream-liter.jpeg'),
+    title: 'Helado 1l',
+    price: 150.0,
+    isFavorite: false,
+  } as ProductItem;
+  const product2 = {
+    id: '98aa8776-5bfb-4e73-a116-e02a596b212d',
+    img: require('@/assets/products/ice-cream-single.jpeg'),
+    title: 'Helado sencillo',
+    price: 60.5,
+    isFavorite: true,
+  } as ProductItem;
 
   const decrementCounter = () => {
     if (counter > 0) {
       setCounter(counter - 1);
-      // store.dispatch(decrement());
       dispatch(decrement());
+      dispatch(removeProduct(product1));
     }
   };
 
@@ -22,6 +43,7 @@ export const AddRemoveProduct = () => {
       setCounter(counter + 1);
       // store.dispatch(increment());
       dispatch(increment());
+      dispatch(addProduct(product1));
     }
   };
 

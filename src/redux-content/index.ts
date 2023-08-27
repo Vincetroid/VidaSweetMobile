@@ -2,7 +2,8 @@ import { store } from './store';
 import cartSlice, {
   increment,
   decrement,
-  incrementByAmount,
+  addProduct,
+  removeProduct,
 } from './cart/Cart.slice';
 
-export { store, cartSlice, increment, decrement, incrementByAmount };
+export { store, cartSlice, increment, decrement, addProduct, removeProduct };

@@ -1,8 +1,9 @@
+import { ProductItem } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface CartState {
-  cartProducts: [];
+export interface CartState {
+  cartProducts: ProductItem[];
   cartProductsLength: number;
 }
 
@@ -18,11 +19,16 @@ const cartSlice = createSlice({
     decrement(state) {
       state.cartProductsLength--;
     },
-    incrementByAmount(state, action: PayloadAction<number>) {
-      state.cartProductsLength += action.payload;
+    addProduct(state, action: PayloadAction<ProductItem>) {
+      state.cartProducts.push(action.payload);
+    },
+    removeProduct(state, action: PayloadAction<ProductItem>) {
+      // delete state.cartProducts[action.payload]
+      state.cartProducts.pop();
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount } = cartSlice.actions;
+export const { increment, decrement, addProduct, removeProduct } =
+  cartSlice.actions;
 export default cartSlice.reducer;

@@ -3,15 +3,14 @@ import { TouchableOpacity, View, Text } from 'react-native';
 import { styles } from './ShoppingCartButton.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@/hooks/hooks';
 
 interface ShoppingCartButtonProps {}
 
 export const ShoppingCartButton = () => {
   const ICON_SIZE = 26;
-  const productsAdded = 3;
   const navigation = useNavigation();
-  const { cartProductsLength } = useSelector(state => state.cart);
+  const { cartProductsLength } = useAppSelector(state => state.cart);
 
   return (
     <TouchableOpacity
