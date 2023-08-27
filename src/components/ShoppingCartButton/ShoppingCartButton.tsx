@@ -10,14 +10,14 @@ interface ShoppingCartButtonProps {}
 export const ShoppingCartButton = () => {
   const ICON_SIZE = 26;
   const navigation = useNavigation();
-  const { cartProductsLength } = useAppSelector(state => state.cart);
+  const { cartProducts } = useAppSelector(state => state.cart);
 
   return (
     <TouchableOpacity
       style={styles.shoppingCartViewWrapper}
       onPress={() => navigation.navigate('ShoppingCart')}>
       <View style={styles.badgeProductsAddedView}>
-        <Text style={styles.badgeProductsAddedText}>{cartProductsLength}</Text>
+        <Text style={styles.badgeProductsAddedText}>{cartProducts.length}</Text>
       </View>
       <FontAwesomeIcon icon="shopping-cart" size={ICON_SIZE} />
     </TouchableOpacity>

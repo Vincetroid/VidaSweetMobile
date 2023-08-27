@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import {
-  addProduct,
-  decrement,
-  increment,
-  removeProduct,
-} from '@/redux-content';
+import { addProduct, removeProduct } from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
 import { useAppDispatch } from '@/hooks/hooks';
 import { ProductItem } from '@/types';
@@ -32,7 +27,6 @@ export const AddRemoveProduct = () => {
   const decrementCounter = () => {
     if (counter > 0) {
       setCounter(counter - 1);
-      dispatch(decrement());
       dispatch(removeProduct(product1));
     }
   };
@@ -42,7 +36,6 @@ export const AddRemoveProduct = () => {
     if (counter <= 20) {
       setCounter(counter + 1);
       // store.dispatch(increment());
-      dispatch(increment());
       dispatch(addProduct(product1));
     }
   };
