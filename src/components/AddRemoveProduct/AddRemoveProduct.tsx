@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { addProduct, removeProduct } from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
-import { useAppDispatch } from '@/hooks/hooks';
 import { ProductItem } from '@/types';
+import { useAppDispatch } from '@/hooks';
 
 export const AddRemoveProduct = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,6 @@ export const AddRemoveProduct = () => {
     //por ahora 20, ya veremos despues
     if (counter <= 20) {
       setCounter(counter + 1);
-      // store.dispatch(increment());
       dispatch(addProduct(product1));
     }
   };

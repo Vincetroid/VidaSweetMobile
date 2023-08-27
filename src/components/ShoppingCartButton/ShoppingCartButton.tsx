@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text } from 'react-native';
 import { styles } from './ShoppingCartButton.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useNavigation } from '@react-navigation/native';
-import { useAppSelector } from '@/hooks/hooks';
+import { useAppSelector } from '@/hooks';
 
 interface ShoppingCartButtonProps {}
 
