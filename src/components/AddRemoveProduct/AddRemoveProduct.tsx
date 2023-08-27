@@ -5,29 +5,18 @@ import { styles } from './AddRemoveProduct.styles';
 import { ProductItem } from '@/types';
 import { useAppDispatch } from '@/hooks';
 
-export const AddRemoveProduct = () => {
+interface AddRemoveProductProps {
+  product: ProductItem;
+}
+
+export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   const dispatch = useAppDispatch();
   const [counter, setCounter] = useState(0);
-
-  const product1 = {
-    id: 'd20b5a7c-ac35-4438-a66b-26c28cf19c27',
-    img: require('@/assets/products/ice-cream-liter.jpeg'),
-    title: 'Helado 1l',
-    price: 150.0,
-    isFavorite: false,
-  } as ProductItem;
-  const product2 = {
-    id: '98aa8776-5bfb-4e73-a116-e02a596b212d',
-    img: require('@/assets/products/ice-cream-single.jpeg'),
-    title: 'Helado sencillo',
-    price: 60.5,
-    isFavorite: true,
-  } as ProductItem;
 
   const decrementCounter = () => {
     if (counter > 0) {
       setCounter(counter - 1);
-      dispatch(removeProduct(product1));
+      dispatch(removeProduct(product));
     }
   };
 
@@ -35,7 +24,7 @@ export const AddRemoveProduct = () => {
     //por ahora 20, ya veremos despues
     if (counter <= 20) {
       setCounter(counter + 1);
-      dispatch(addProduct(product1));
+      dispatch(addProduct(product));
     }
   };
 

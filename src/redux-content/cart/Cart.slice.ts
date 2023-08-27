@@ -6,7 +6,7 @@ export interface CartState {
   cartProducts: ProductItem[];
 }
 
-const initialState = { cartProducts: [], cartProductsLength: 0 } as CartState;
+const initialState = { cartProducts: [] } as CartState;
 
 const cartSlice = createSlice({
   name: 'cart',

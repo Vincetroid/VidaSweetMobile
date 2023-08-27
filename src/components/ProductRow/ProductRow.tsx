@@ -1,14 +1,20 @@
 import { View, Image, Text } from 'react-native';
 import { ProductItem } from '@/types';
 import { formatCurrency } from '@/utils';
-import { useTranslation } from 'react-i18next';
 import { AddRemoveProduct } from '@/components';
 import { styles } from './ProductRow.styles';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites/AddRemoveToFavorites';
+import { useAppSelector } from '@/hooks';
 
 export const ProductRow = ({ product }: { product: ProductItem }) => {
-  const { t } = useTranslation();
-  const { img, title, price, isFavorite = false } = product;
+  const { id, img, title, price, isFavorite = false } = product;
+  const { cartProducts } = useAppSelector(state => state.cart);
+
+  const getProductPrice = (id: string, price: number) => {
+    const productsFiltered = cartProducts.filter(product => product.id === id);
+    const sum = productsFiltered.reduce((acc, cur) => acc + cur.price, 0);
+    return formatCurrency(sum);
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -22,14 +28,11 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
       </View>
       <View style={styles.centerZone}>
         <Text style={styles.productTitle}>{title}</Text>
-        <AddRemoveProduct />
+        <AddRemoveProduct product={product} />
       </View>
       <View style={styles.rightZone}>
-        <Text style={styles.productPrice}>{formatCurrency(price)}</Text>
+        <Text style={styles.productPrice}>{getProductPrice(id, price)}</Text>
       </View>
     </View>
   );
 };
-
-const cardGap = 30;
-// const cardWidth = (Dimensions.get('window').width - cardGap * 3) / 2;

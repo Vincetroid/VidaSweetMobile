@@ -16,12 +16,14 @@ export const ShoppingCartScreen = () => {
   const productsLength = true;
 
   const product1 = {
+    id: '49302897-4fd7-42cb-914c-629f358672b3',
     img: require('@/assets/products/ice-cream-liter.jpeg'),
     title: 'Helado 1l',
     price: 150.0,
     isFavorite: false,
   } as ProductItem;
   const product2 = {
+    id: 'd90e703e-7cb9-4a28-86c5-c2921d170a55',
     img: require('@/assets/products/ice-cream-single.jpeg'),
     title: 'Helado sencillo',
     price: 60.5,
