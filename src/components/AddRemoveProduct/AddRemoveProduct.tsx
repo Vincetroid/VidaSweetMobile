@@ -17,12 +17,12 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   // Tratar de optimizar esto:
   // Tal vez llamar productsFiltered en utils
   // Tal vez no usar cartProducts sino pasarlo por parametro
-  useEffect(() => {
-    const productsFiltered = cartProducts.filter(
-      prodItem => prodItem.id === product.id,
-    );
-    setCounter(productsFiltered.length);
-  }, [cartProducts.length]);
+  // useEffect(() => {
+  //   const productsFiltered = cartProducts.filter(
+  //     prodItem => prodItem.id === product.id,
+  //   );
+  //   setCounter(productsFiltered.length);
+  // }, [cartProducts.length]);
 
   const decrementCounter = () => {
     if (counter > 0) {

@@ -10,9 +10,10 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
   const { cartProducts } = useAppSelector(state => state.cart);
 
   const getProductPrice = (id: string, price: number) => {
-    const productsFiltered = cartProducts.filter(product => product.id === id);
-    const sum = productsFiltered.reduce((acc, cur) => acc + cur.price, 0);
-    return formatCurrency(sum);
+    // const productsFiltered = cartProducts.filter(product => product.id === id);
+    // const sum = productsFiltered.reduce((acc, cur) => acc + cur.price, 0);
+    // return formatCurrency(sum);
+    return 8;
   };
 
   return (
