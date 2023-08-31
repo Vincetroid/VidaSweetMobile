@@ -2,11 +2,15 @@ import { ProductCart } from '@/interfaces';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface CartSliceProps {
+export interface CartSliceState {
   cartProducts: ProductCart[];
+  cartProductsCounter: number | undefined;
 }
 
-const initialState = { cartProducts: {} } as CartSliceProps;
+const initialState = {
+  cartProducts: {},
+  cartProductsCounter: 0,
+} as CartSliceState;
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -28,6 +32,8 @@ const cartSlice = createSlice({
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
       }
+      // TO CHECK: https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
+      // dispaaddGlobalProductCounter(); looks like an antipattern
     },
     removeProduct(state, action: PayloadAction<ProductCart>) {
       const productId = action.payload.id;
@@ -38,8 +44,19 @@ const cartSlice = createSlice({
           state.cartProducts[productId].quantity * action.payload.price;
       }
     },
+    addGlobalProductCounter(state) {
+      state.cartProductsCounter++;
+    },
+    removeGlobalProductCounter(state) {
+      state.cartProductsCounter--;
+    },
   },
 });
 
-export const { addProduct, removeProduct } = cartSlice.actions;
+export const {
+  addProduct,
+  removeProduct,
+  addGlobalProductCounter,
+  removeGlobalProductCounter,
+} = cartSlice.actions;
 export default cartSlice.reducer;

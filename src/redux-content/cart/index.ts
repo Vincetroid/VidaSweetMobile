@@ -1,3 +1,14 @@
-import cartSlice, { addProduct, removeProduct } from './Cart.slice';
+import cartSlice, {
+  addProduct,
+  removeProduct,
+  addGlobalProductCounter,
+  removeGlobalProductCounter,
+} from './Cart.slice';
 
-export { cartSlice, addProduct, removeProduct };
+export {
+  cartSlice,
+  addProduct,
+  removeProduct,
+  addGlobalProductCounter,
+  removeGlobalProductCounter,
+};

@@ -7,10 +7,10 @@ import {
 } from '@reduxjs/toolkit';
 import { PersistPartial } from 'redux-persist/es/persistReducer';
 import { TypedUseSelectorHook } from 'react-redux';
-import { CartState } from '@/redux-content/cart/Cart.slice';
+import { CartSliceState } from '@/redux-content/cart/Cart.slice';
 
 export type SliceStates = {
-  cart: CartState;
+  cart: CartSliceState;
 };
 
 export interface AsyncThunkConfig {

@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { addProduct, removeProduct } from '@/redux-content';
+import {
+  addProduct,
+  removeProduct,
+  addGlobalProductCounter,
+  removeGlobalProductCounter,
+} from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
 import { ProductItem } from '@/interfaces';
 import { useAppDispatch, useAppSelector } from '@/hooks';
@@ -12,7 +17,7 @@ interface AddRemoveProductProps {
 export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   const dispatch = useAppDispatch();
   const [counter, setCounter] = useState(0);
-  const { cartProducts } = useAppSelector(state => state.cart);
+  // const { cartProductsCounter } = useAppSelector(state => state.cart);
 
   // Tratar de optimizar esto:
   // Tal vez llamar productsFiltered en utils
@@ -28,6 +33,8 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
     if (counter > 0) {
       setCounter(counter - 1);
       dispatch(removeProduct(product));
+      // Probably will be removed next line https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
+      dispatch(removeGlobalProductCounter());
     }
   };
 
@@ -36,6 +43,8 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
     if (counter <= 20) {
       setCounter(counter + 1);
       dispatch(addProduct(product));
+      // Probably will be removed next line https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
+      dispatch(addGlobalProductCounter());
     }
   };
 
