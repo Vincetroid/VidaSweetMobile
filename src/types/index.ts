@@ -4,6 +4,7 @@ export interface ProductItem {
   title: string;
   price: number;
   isFavorite: boolean;
+  quantity?: number | undefined;
 }
 
 export interface MenuElementItem {

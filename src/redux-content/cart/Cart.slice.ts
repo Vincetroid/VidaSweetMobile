@@ -1,56 +1,38 @@
 import { ProductItem } from '@/types';
-import { generateRandomString } from '@/utils';
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface ShoppingCartProductItem {
+export interface CartSliceProps {
   cartProducts: ProductItem[];
 }
 
-const initialState = { cartProducts: {} } as ShoppingCartProductItem;
+const initialState = { cartProducts: {} } as CartSliceProps;
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct(state, action: PayloadAction<ShoppingCartProductItem>) {
-      //
-      // console.log('!state.cartProducts');
-      // console.log(state.cartProducts);
-
-      // if (state.cartProducts[action.payload.id]) {
-      //   state.cartProducts[action.payload.id].quantity++;
-      // }
-
-      // if (state.cartProducts[action.payload.id].quantity <= 20) {
-      //   state.cartProducts[action.payload.id].quantity++;
-      // }
-      if (
-        // Object.keys(state.cartProducts).length === 0 ||
-        state.cartProducts[action.payload.id] === undefined
-      ) {
-        console.log('state.cartProducts length');
-        console.log(state.cartProducts.length);
-
+    addProduct(state, action: PayloadAction<ProductItem>) {
+      console.log('action.payload');
+      console.log(typeof action.payload.id);
+      const productId = action.payload.id as any; // TODO: Fix any: Element implicitly has an 'any' type because index expression is not of type 'number'
+      if (!state.cartProducts[productId]) {
         state.cartProducts = {
           ...state.cartProducts,
           [action.payload.id]: {
             price: action.payload.price,
             quantity: 1,
-            // state.cartProducts.length === 0 ||
-            // state.cartProducts.length === undefined
-            //   ? 1
-            //   : state.cartProducts[action.payload.id].quantity++,
           },
         };
       } else {
-        console.log('going to');
-        state.cartProducts[action.payload.id].quantity++;
+        state.cartProducts[productId].quantity + 1;
       }
     },
     removeProduct(state, action: PayloadAction<ProductItem>) {
-      if (state.cartProducts[action.payload.id].quantity > 0) {
-        state.cartProducts[action.payload.id].quantity--;
+      const productId = action.payload.id;
+
+      if (state.cartProducts[productId].quantity > 0) {
+        state.cartProducts[productId].quantity - 1;
       }
     },
   },
