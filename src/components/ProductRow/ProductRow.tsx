@@ -9,11 +9,11 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
   const { id, img, title, price, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
-  const getProductPrice = (id: string, price: number) => {
-    // const productsFiltered = cartProducts.filter(product => product.id === id);
-    // const sum = productsFiltered.reduce((acc, cur) => acc + cur.price, 0);
-    // return formatCurrency(sum);
-    return 8;
+  const getProductPrice = (id: string) => {
+    if (cartProducts[id] && cartProducts[id].subtotal) {
+      return formatCurrency(cartProducts[id].subtotal);
+    }
+    return 0;
   };
 
   return (
@@ -31,7 +31,7 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
         <AddRemoveProduct product={product} />
       </View>
       <View style={styles.rightZone}>
-        <Text style={styles.productPrice}>{getProductPrice(id, price)}</Text>
+        <Text style={styles.productPrice}>{getProductPrice(product.id)}</Text>
       </View>
     </View>
   );

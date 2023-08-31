@@ -20,10 +20,13 @@ const cartSlice = createSlice({
           [action.payload.id]: {
             price: action.payload.price,
             quantity: 1,
+            subtotal: action.payload.price,
           },
         };
       } else {
         state.cartProducts[productId].quantity++;
+        state.cartProducts[productId].subtotal =
+          state.cartProducts[productId].quantity * action.payload.price;
       }
     },
     removeProduct(state, action: PayloadAction<ProductCart>) {
@@ -31,6 +34,8 @@ const cartSlice = createSlice({
 
       if (state.cartProducts[productId].quantity > 0) {
         state.cartProducts[productId].quantity--;
+        state.cartProducts[productId].subtotal =
+          state.cartProducts[productId].quantity * action.payload.price;
       }
     },
   },
