@@ -13,7 +13,7 @@ module.exports = {
           '@/redux-content': './src/redux-content',
           '@/hooks': './src/hooks',
           '@/utils': './src/utils',
-          '@/types': './src/types',
+          '@/interfaces': './src/interfaces',
           '@/api': './src/api',
           '@/global-styles': './src/global-styles',
         },
