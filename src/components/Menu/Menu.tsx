@@ -3,7 +3,7 @@ import { Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './Menu.styles';
 import { gStyles } from '@/global-styles';
-import { MenuElementItem } from '@/types';
+import { MenuElementItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
 import { MenuElement } from '@/components';
 

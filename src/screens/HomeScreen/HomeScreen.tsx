@@ -4,7 +4,7 @@ import { SliderBox } from 'react-native-image-slider-box';
 import { gStyles } from '@/global-styles';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { RowTitle, Menu } from '@/components';
-import { ProductItem } from '@/types';
+import { ProductItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 

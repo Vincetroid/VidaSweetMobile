@@ -8,7 +8,7 @@ import {
   Dimensions,
   ImageBackground,
 } from 'react-native';
-import { MenuElementItem } from '@/types';
+import { MenuElementItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
 
 export const MenuElement = ({ element }: { element: MenuElementItem }) => {

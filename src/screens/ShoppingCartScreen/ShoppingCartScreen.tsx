@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { gStyles } from '@/global-styles';
 import { Menu, ProductRow, RowTitle } from '@/components';
-import { ProductItem } from '@/types';
+import { ProductItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';

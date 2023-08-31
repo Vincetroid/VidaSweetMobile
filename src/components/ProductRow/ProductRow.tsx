@@ -1,5 +1,5 @@
 import { View, Image, Text } from 'react-native';
-import { ProductItem } from '@/types';
+import { ProductItem } from '@/interfaces';
 import { formatCurrency } from '@/utils';
 import { AddRemoveProduct, AddRemoveToFavorites } from '@/components';
 import { styles } from './ProductRow.styles';

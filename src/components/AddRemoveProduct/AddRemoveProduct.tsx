@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { addProduct, removeProduct } from '@/redux-content';
 import { styles } from './AddRemoveProduct.styles';
-import { ProductItem } from '@/types';
+import { ProductItem } from '@/interfaces';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 
 interface AddRemoveProductProps {

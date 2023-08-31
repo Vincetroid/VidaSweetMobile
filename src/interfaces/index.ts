@@ -4,7 +4,11 @@ export interface ProductItem {
   title: string;
   price: number;
   isFavorite: boolean;
+}
+
+export interface ProductCart extends ProductItem {
   quantity?: number | undefined;
+  subtotal?: number | undefined;
 }
 
 export interface MenuElementItem {
