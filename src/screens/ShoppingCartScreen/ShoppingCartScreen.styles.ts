@@ -13,4 +13,8 @@ export const styles = StyleSheet.create({
     marginTop: 24,
     textAlign: 'center',
   },
+  icon: {
+    color: '#25D366',
+    alignSelf: 'center',
+  },
 });

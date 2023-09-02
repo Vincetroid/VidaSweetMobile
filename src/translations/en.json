@@ -2,6 +2,7 @@
   "Add": "Add",
   "Cakes": "Cakes",
   "Cart": "Cart",
+  "CartSummary": "Cart Summary",
   "Cupcakes": "Cupcakes",
   "Cookies": "Cookies",
   "DeliveryAddress": "Delivery Address",
@@ -10,5 +11,10 @@
   "IceCreams": "Ice Creams",
   "IceCream": "Ice Cream",
   "Menu": "Menu",
-  "TopSellers": "Top Sellers"
+  "NArticles": "{{quantity}} items",
+  "SecurePaymentsWithText": "Secure Purchases by {{vendor}}",
+  "Subtotal": "Subtotal",
+  "TopSellers": "Top Sellers",
+  "Total": "Total",
+  "YouForgotSomethingMsg": "Anything else?"
 }

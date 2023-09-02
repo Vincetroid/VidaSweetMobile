@@ -1,15 +1,19 @@
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
-import { gStyles } from '@/global-styles';
-import { Menu, ProductRow, RowTitle } from '@/components';
+import { FontSizes, gStyles } from '@/global-styles';
+import { Divider, Menu, ProductCard, ProductRow, RowTitle } from '@/components';
 import { ProductItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { styles } from './ShoppingCartScreen.styles';
+import { useAppSelector } from '@/hooks';
+import { MercadoPagoIcon } from '@/assets/icons';
 
 export const ShoppingCartScreen = () => {
+  const ICON_SIZE = 28;
   const { t } = useTranslation();
+  const { cartProductsCounter } = useAppSelector(state => state.cart);
 
   const navigation = useNavigation();
 
@@ -36,6 +40,93 @@ export const ShoppingCartScreen = () => {
         <ScrollView contentContainerStyle={[gStyles.gralMargin]}>
           <ProductRow product={product1} />
           <ProductRow product={product2} />
+          <RowTitle
+            title={t('CartSummary')}
+            styleTextTitle={{
+              // fontFamily: 'Lato Regular',
+              paddingLeft: 0,
+              fontSize: FontSizes.large,
+              marginTop: 10,
+            }}
+            styleSecondaryTextTitle={{
+              fontSize: FontSizes.productPrice,
+            }}
+            secondaryText={t('NArticles', { quantity: cartProductsCounter })}
+          />
+          <RowTitle
+            title={t('Subtotal')}
+            styleTextTitle={{
+              fontFamily: 'Lato Light',
+              paddingLeft: 16,
+              fontSize: FontSizes.title,
+              marginTop: 20,
+            }}
+            styleSecondaryTextTitle={{
+              fontFamily: 'Lato Regular',
+              fontSize: FontSizes.productPrice,
+              alignSelf: 'flex-end',
+            }}
+            secondaryText="$1,553.00 MXN"
+          />
+          <View style={{ paddingLeft: 16 }}>
+            <Divider customStyle={{ marginTop: 16 }} />
+          </View>
+          <RowTitle
+            title={t('Total')}
+            styleTextTitle={{
+              fontFamily: 'Lato Light',
+              paddingLeft: 16,
+              fontSize: FontSizes.title,
+              marginTop: 20,
+            }}
+            styleSecondaryTextTitle={{
+              fontFamily: 'Lato Regular',
+              fontSize: FontSizes.productPrice,
+              alignSelf: 'flex-end',
+            }}
+            secondaryText="$1,553.00 MXN"
+          />
+          <RowTitle
+            title={t('SecurePaymentsWithText', { vendor: 'Mercado Pago' })}
+            centered
+            styleTextTitle={{
+              fontFamily: 'Lato Light',
+              fontSize: FontSizes.productPrice,
+              marginTop: 20,
+            }}
+          />
+          <MercadoPagoIcon
+            width={ICON_SIZE}
+            height={ICON_SIZE}
+            style={styles.icon}
+          />
+
+          <RowTitle
+            title={t('YouForgotSomethingMsg')}
+            styleTextTitle={{
+              paddingLeft: 0,
+              fontSize: FontSizes.title,
+              marginTop: 20,
+            }}
+            styleSecondaryTextTitle={{
+              fontSize: FontSizes.productPrice,
+            }}
+          />
+
+          <View
+            style={[
+              gStyles.gralMargin,
+              {
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'space-around',
+              },
+            ]}>
+            <ProductCard product={product1} />
+            <ProductCard product={product2} />
+            <ProductCard product={product1} />
+            <ProductCard product={product2} />
+          </View>
         </ScrollView>
       ) : (
         <ScrollView contentInsetAdjustmentBehavior="automatic">

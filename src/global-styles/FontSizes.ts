@@ -4,6 +4,7 @@ export const FontSizes = {
   large: 18,
   title: 16,
   productPrice: 14,
+  productPrice12: 12,
   productTitle: 16,
   badge: 10,
 };

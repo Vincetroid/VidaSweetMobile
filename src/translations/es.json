@@ -2,6 +2,7 @@
   "Add": "Agregar",
   "Cakes": "Pasteles",
   "Cart": "Carrito",
+  "CartSummary": "Resumen de Compra",
   "Cupcakes": "Cupcakes",
   "Cookies": "Galletas",
   "DeliveryAddress": "Dirección de entrega",
@@ -10,5 +11,10 @@
   "IceCreams": "Helados",
   "IceCream": "Helados",
   "Menu": "Menú",
-  "TopSellers": "Más vendidos"
+  "NArticles": "{{quantity}} piezas",
+  "SecurePaymentsWithText": "Compras protegidas con {{vendor}}",
+  "Subtotal": "Subtotal",
+  "TopSellers": "Más vendidos",
+  "Total": "Total",
+  "YouForgotSomethingMsg": "¿Olvidaste algo?"
 }

@@ -4,8 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    // backgroundColor: Colors.grayLightBg,
-    marginBottom: 30,
+    marginBottom: 20,
     flex: 1,
     flexDirection: 'row',
     padding: 10,

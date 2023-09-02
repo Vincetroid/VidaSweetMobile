@@ -9,6 +9,7 @@ import { BackButton } from './BackButton';
 import { ProductRow } from './ProductRow';
 import { AddRemoveProduct } from './AddRemoveProduct';
 import { AddRemoveToFavorites } from './AddRemoveToFavorites';
+import { Divider } from './Divider';
 
 export {
   ProductCard,
@@ -22,4 +23,5 @@ export {
   ProductRow,
   AddRemoveProduct,
   AddRemoveToFavorites,
+  Divider,
 };
