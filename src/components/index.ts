@@ -10,6 +10,7 @@ import { ProductRow } from './ProductRow';
 import { AddRemoveProduct } from './AddRemoveProduct';
 import { AddRemoveToFavorites } from './AddRemoveToFavorites';
 import { Divider } from './Divider';
+import { Button } from './Button';
 
 export {
   ProductCard,
@@ -24,4 +25,5 @@ export {
   AddRemoveProduct,
   AddRemoveToFavorites,
   Divider,
+  Button,
 };
