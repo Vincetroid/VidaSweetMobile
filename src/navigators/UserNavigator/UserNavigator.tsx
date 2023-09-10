@@ -22,42 +22,42 @@ import {
 import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
-const MainStack = createNativeStackNavigator();
+const UserStack = createNativeStackNavigator();
 
-function MainStackNavigator() {
+export function UserNavigator() {
   const { t } = useTranslation();
 
   return (
-    <MainStack.Navigator screenOptions={CommonNavigationOptions}>
-      <MainStack.Screen
-        name="Home"
-        component={HomeScreen}
+    <UserStack.Navigator screenOptions={CommonNavigationOptions}>
+      <UserStack.Screen
+        name="MainRoot"
+        component={TabsUserNavigator}
         options={HomeNavigationOptions}
       />
-      <MainStack.Screen
+      <UserStack.Screen
         name="ShoppingCart"
         component={ShoppingCartScreen}
         options={{
           title: t('Cart'),
         }}
       />
-      <MainStack.Screen
+      <UserStack.Screen
         name="DeliveryAddress"
         component={DeliveryAddressScreen}
         options={{
           title: t('DeliveryAddress'),
         }}
       />
-    </MainStack.Navigator>
+    </UserStack.Navigator>
   );
 }
 
-export const UserNavigator = () => {
+const TabsUserNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="MainRoot"
-        component={MainStackNavigator}
+        name="Home"
+        component={HomeScreen}
         options={{
           title: 'Home',
           headerShown: false,
@@ -82,7 +82,7 @@ export const UserNavigator = () => {
           tabBarIcon: () => <FontAwesomeIcon icon={faCakeCandles} size={24} />,
         }}
       />
-      <Tab.Screen
+      <UserStack.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
