@@ -1,4 +1,4 @@
-import { FontSizes, themeStyles } from '@/global-styles';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -10,6 +10,6 @@ export const styles = StyleSheet.create({
     fontSize: FontSizes.x_big,
     fontFamily: 'Bartleen Script',
     textAlign: 'center',
-    color: 'white',
+    color: Colors.gold,
   },
 });
