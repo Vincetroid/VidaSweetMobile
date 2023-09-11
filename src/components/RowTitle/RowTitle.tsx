@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
   title: {
     paddingLeft: 16,
     fontFamily: 'Bartleen Script',
-    fontSize: FontSizes.bigTitle,
+    fontSize: FontSizes.large,
     color: themeStyles.black,
   },
   secondaryTitle: {
     fontFamily: 'Lato Light',
-    fontSize: FontSizes.productPrice,
+    fontSize: FontSizes.x_medium,
     color: themeStyles.black,
   },
   textCenter: {

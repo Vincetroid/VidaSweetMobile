@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   productTitle: {
     fontFamily: 'Lato Black',
-    fontSize: FontSizes.large,
+    fontSize: FontSizes.x_big,
     color: themeStyles.primary,
     fontWeight: 'bold',
     backgroundColor: '#1d1d1d55',

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors, themeStyles } from '@/global-styles';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   heartWrapper: {
@@ -26,13 +26,13 @@ export const styles = StyleSheet.create({
   productTitle: {
     textAlign: 'center',
     fontFamily: 'Lato Bold',
-    fontSize: 16,
+    fontSize: FontSizes.xx_medium,
     marginVertical: 2,
   },
   productPrice: {
     textAlign: 'center',
     fontFamily: 'Lato Light',
-    fontSize: 14,
+    fontSize: FontSizes.x_medium,
     marginVertical: 2,
   },
   icon: {

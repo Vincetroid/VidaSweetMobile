@@ -24,6 +24,6 @@ export const styles = StyleSheet.create({
   badgeProductsAddedText: {
     color: themeStyles.primary,
     alignSelf: 'center',
-    fontSize: FontSizes.badge,
+    fontSize: FontSizes.x_small,
   },
 });

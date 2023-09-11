@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   btnText: {
-    fontSize: FontSizes.large,
+    fontSize: FontSizes.x_big,
     fontFamily: 'Bartleen Script',
     textAlign: 'center',
     color: 'white',

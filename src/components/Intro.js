@@ -1,3 +1,4 @@
+import { FontSizes } from '@/global-styles';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: FontSizes.large,
     margin: 10,
     textAlign: 'center',
   },

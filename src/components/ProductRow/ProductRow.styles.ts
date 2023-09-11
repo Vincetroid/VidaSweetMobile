@@ -1,4 +1,4 @@
-import { Colors, themeStyles } from '@/global-styles';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -40,13 +40,13 @@ export const styles = StyleSheet.create({
   productTitle: {
     textAlign: 'center',
     fontFamily: 'Lato Bold Italic',
-    fontSize: 16,
+    fontSize: FontSizes.xx_medium,
     marginVertical: 2,
   },
   productPrice: {
     textAlign: 'center',
     fontFamily: 'Lato Black',
-    fontSize: 16,
+    fontSize: FontSizes.xx_medium,
     paddingRight: 4,
     paddingBottom: 4,
     color: themeStyles.secondary,

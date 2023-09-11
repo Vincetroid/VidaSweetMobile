@@ -20,7 +20,7 @@ export const CommonNavigationOptions = Object.freeze({
   headerTintColor: themeStyles.black,
   headerTitleStyle: {
     flex: 1,
-    fontSize: FontSizes.largeBigTitle,
+    fontSize: FontSizes.x_large,
     fontFamily: 'Bartleen Script', // This font causes on Android to be a bit upper on header
   },
   headerTitleAlign: 'center',

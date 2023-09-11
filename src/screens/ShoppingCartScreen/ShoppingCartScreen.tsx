@@ -58,11 +58,11 @@ export const ShoppingCartScreen = () => {
               styleTextTitle={{
                 // fontFamily: 'Lato Regular',
                 paddingLeft: 0,
-                fontSize: FontSizes.large,
+                fontSize: FontSizes.x_big,
                 marginTop: 10,
               }}
               styleSecondaryTextTitle={{
-                fontSize: FontSizes.productPrice,
+                fontSize: FontSizes.x_medium,
               }}
               secondaryText={t('NArticles', { quantity: cartProductsCounter })}
             />
@@ -71,12 +71,12 @@ export const ShoppingCartScreen = () => {
               styleTextTitle={{
                 fontFamily: 'Lato Light',
                 paddingLeft: 16,
-                fontSize: FontSizes.title,
+                fontSize: FontSizes.xx_medium,
                 marginTop: 20,
               }}
               styleSecondaryTextTitle={{
                 fontFamily: 'Lato Regular',
-                fontSize: FontSizes.productPrice,
+                fontSize: FontSizes.x_medium,
                 alignSelf: 'flex-end',
               }}
               secondaryText="$1,553.00 MXN"
@@ -91,12 +91,12 @@ export const ShoppingCartScreen = () => {
               styleTextTitle={{
                 fontFamily: 'Lato Light',
                 paddingLeft: 16,
-                fontSize: FontSizes.title,
+                fontSize: FontSizes.xx_medium,
                 marginTop: 20,
               }}
               styleSecondaryTextTitle={{
                 fontFamily: 'Lato Regular',
-                fontSize: FontSizes.productPrice,
+                fontSize: FontSizes.x_medium,
                 alignSelf: 'flex-end',
               }}
               secondaryText="$1,553.00 MXN"
@@ -106,7 +106,7 @@ export const ShoppingCartScreen = () => {
               centered
               styleTextTitle={{
                 fontFamily: 'Lato Light',
-                fontSize: FontSizes.productPrice,
+                fontSize: FontSizes.x_medium,
                 marginTop: 20,
               }}
             />
@@ -120,11 +120,11 @@ export const ShoppingCartScreen = () => {
               title={t('YouForgotSomethingMsg')}
               styleTextTitle={{
                 paddingLeft: 0,
-                fontSize: FontSizes.title,
+                fontSize: FontSizes.xx_medium,
                 marginTop: 20,
               }}
               styleSecondaryTextTitle={{
-                fontSize: FontSizes.productPrice,
+                fontSize: FontSizes.x_medium,
               }}
             />
             <View
