@@ -10,6 +10,7 @@ import { ProductRow } from './ProductRow';
 import { AddRemoveProduct } from './AddRemoveProduct';
 import { AddRemoveToFavorites } from './AddRemoveToFavorites';
 import { Divider } from './Divider';
+import { TemplateSplitedViewScrollAndButtonFixedAtTheBottom } from './TemplateSplitedViewScrollAndButtonFixedAtTheBottom';
 import { Button } from './Button';
 
 export {
@@ -25,5 +26,6 @@ export {
   AddRemoveProduct,
   AddRemoveToFavorites,
   Divider,
+  TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
   Button,
 };

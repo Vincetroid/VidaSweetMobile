@@ -12,7 +12,4 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
   },
-  icon: {
-    color: themeStyles.black,
-  },
 });

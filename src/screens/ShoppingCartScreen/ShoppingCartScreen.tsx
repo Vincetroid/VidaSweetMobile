@@ -1,19 +1,14 @@
 import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { Colors, FontSizes, gStyles } from '@/global-styles';
 import {
-  Colors,
-  FontSizes,
-  gStyles,
-  themeName,
-  themeStyles,
-} from '@/global-styles';
-import {
-  Button,
+  TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
   Divider,
   Menu,
   ProductCard,
   ProductRow,
   RowTitle,
+  Button,
 } from '@/components';
 import { ProductItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
@@ -54,8 +49,8 @@ export const ShoppingCartScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {productsLength ? (
-        <>
-          <ScrollView contentContainerStyle={[gStyles.gralMargin]}>
+        <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
+          <>
             <ProductRow product={product1} />
             <ProductRow product={product2} />
             <RowTitle
@@ -132,7 +127,6 @@ export const ShoppingCartScreen = () => {
                 fontSize: FontSizes.productPrice,
               }}
             />
-
             <View
               style={[
                 gStyles.gralMargin,
@@ -147,16 +141,9 @@ export const ShoppingCartScreen = () => {
               <ProductCard product={product1} />
               <ProductCard product={product2} />
             </View>
-          </ScrollView>
-          <View
-            style={{
-              backgroundColor: Colors.black,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Button title={t('Continue')} onPress={onPressContinue} />
-          </View>
-        </>
+          </>
+          <Button title={t('Continue')} onPress={onPressContinue} />
+        </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
       ) : (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           {/* <ScrollView contentContainerStyle={[gStyles.gralContainer]}> */}
