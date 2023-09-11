@@ -1,4 +1,3 @@
-import { store } from './store';
 import cartSlice, {
   addProduct,
   removeProduct,
@@ -7,7 +6,6 @@ import cartSlice, {
 } from './cart/Cart.slice';
 
 export {
-  store,
   cartSlice,
   addProduct,
   removeProduct,

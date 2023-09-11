@@ -1,7 +1,8 @@
 import { View, Image, Text } from 'react-native';
 import { ProductItem } from '@/interfaces';
 import { formatCurrency } from '@/utils';
-import { AddRemoveProduct, AddRemoveToFavorites } from '@/components';
+import { AddRemoveProduct } from '@/components/AddRemoveProduct';
+import { AddRemoveToFavorites } from '@/components/AddRemoveToFavorites';
 import { styles } from './ProductRow.styles';
 import { useAppSelector } from '@/hooks';
 

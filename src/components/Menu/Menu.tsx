@@ -5,7 +5,7 @@ import { styles } from './Menu.styles';
 import { gStyles } from '@/global-styles';
 import { MenuElementItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
-import { MenuElement } from '@/components';
+import { MenuElement } from '@/components/MenuElement';
 
 export const Menu = () => {
   const navigation = useNavigation();
