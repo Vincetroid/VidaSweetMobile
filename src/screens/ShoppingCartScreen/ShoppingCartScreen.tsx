@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { Colors, FontSizes, gStyles } from '@/global-styles';
 import {
@@ -17,11 +17,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { styles } from './ShoppingCartScreen.styles';
 import { useAppSelector } from '@/hooks';
 import { MercadoPagoIcon } from '@/assets/icons';
+import { formatCurrency } from '@/utils';
 
 export const ShoppingCartScreen = () => {
   const ICON_SIZE = 28;
   const { t } = useTranslation();
-  const { cartProductsCounter } = useAppSelector(state => state.cart);
+  const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
+    useAppSelector(state => state.cart);
 
   const navigation = useNavigation();
 
@@ -45,6 +47,10 @@ export const ShoppingCartScreen = () => {
   const onPressContinue = () => {
     console.log('onPressContinue');
   };
+
+  // const globalSubTotal = useMemo(() => {
+  //   return `${formatCurrency(10)} MXN`;
+  // }, [cartProductsCounter]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -79,7 +85,22 @@ export const ShoppingCartScreen = () => {
                 fontSize: FontSizes.x_medium,
                 alignSelf: 'flex-end',
               }}
-              secondaryText="$1,553.00 MXN"
+              secondaryText={`${formatCurrency(cartProductsSubtotal)} MXN`}
+            />
+            <RowTitle
+              title={t('IVA')}
+              styleTextTitle={{
+                fontFamily: 'Lato Light',
+                paddingLeft: 16,
+                fontSize: FontSizes.xx_medium,
+                marginTop: 20,
+              }}
+              styleSecondaryTextTitle={{
+                fontFamily: 'Lato Regular',
+                fontSize: FontSizes.x_medium,
+                alignSelf: 'flex-end',
+              }}
+              secondaryText={`${formatCurrency(cartProductsIva)} MXN`}
             />
             <View style={{ paddingLeft: 16 }}>
               <Divider
@@ -99,7 +120,7 @@ export const ShoppingCartScreen = () => {
                 fontSize: FontSizes.x_medium,
                 alignSelf: 'flex-end',
               }}
-              secondaryText="$1,553.00 MXN"
+              secondaryText={`${formatCurrency(cartProductsSubtotal)} MXN`}
             />
             <RowTitle
               title={t('SecurePaymentsWithText', { vendor: 'Mercado Pago' })}

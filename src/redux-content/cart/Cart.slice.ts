@@ -5,11 +5,15 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export interface CartSliceState {
   cartProducts: ProductCart[];
   cartProductsCounter: number | undefined;
+  cartProductsSubtotal: number;
+  cartProductsIva: number;
 }
 
 const initialState = {
   cartProducts: {},
   cartProductsCounter: 0,
+  cartProductsSubtotal: 0,
+  cartProductsIva: 0,
 } as CartSliceState;
 
 const cartSlice = createSlice({
@@ -32,8 +36,9 @@ const cartSlice = createSlice({
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
       }
-      // TO CHECK: https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
-      // dispaaddGlobalProductCounter(); looks like an antipattern
+      // TO CHECK: https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer. Looks like an antipattern
+      state.cartProductsSubtotal += state.cartProducts[productId].price;
+      state.cartProductsIva += state.cartProducts[productId].price * 0.16;
     },
     removeProduct(state, action: PayloadAction<ProductCart>) {
       const productId = action.payload.id;
@@ -43,6 +48,8 @@ const cartSlice = createSlice({
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
       }
+      state.cartProductsSubtotal -= state.cartProducts[productId].price;
+      state.cartProductsIva -= state.cartProducts[productId].price * 0.16;
     },
     addGlobalProductCounter(state) {
       state.cartProductsCounter++;
@@ -52,6 +59,8 @@ const cartSlice = createSlice({
     },
   },
 });
+
+//Donde tendría que poner la accion de cartProductsSubtotal
 
 export const {
   addProduct,
