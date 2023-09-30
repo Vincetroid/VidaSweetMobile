@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { View, Text, ScrollView, SafeAreaView } from 'react-native';
 import { Colors, FontSizes, gStyles } from '@/global-styles';
 import {
@@ -12,7 +12,6 @@ import {
 } from '@/components';
 import { ProductItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { styles } from './ShoppingCartScreen.styles';
 import { useAppSelector } from '@/hooks';
@@ -24,8 +23,6 @@ export const ShoppingCartScreen = () => {
   const { t } = useTranslation();
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
-
-  const navigation = useNavigation();
 
   const productsLength = true;
 
@@ -44,16 +41,14 @@ export const ShoppingCartScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
-  const onPressContinue = () => {
-    console.log('onPressContinue');
-  };
+  const onPressContinue = () => {};
 
   // const globalSubTotal = useMemo(() => {
   //   return `${formatCurrency(10)} MXN`;
   // }, [cartProductsCounter]);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeAreaView}>
       {productsLength ? (
         <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
           <>
@@ -61,25 +56,13 @@ export const ShoppingCartScreen = () => {
             <ProductRow product={product2} />
             <RowTitle
               title={t('CartSummary')}
-              styleTextTitle={{
-                // fontFamily: 'Lato Regular',
-                paddingLeft: 0,
-                fontSize: FontSizes.x_big,
-                marginTop: 10,
-              }}
-              styleSecondaryTextTitle={{
-                fontSize: FontSizes.x_medium,
-              }}
+              styleTextTitle={styles.cartSummaryTitle}
+              styleSecondaryTextTitle={styles.cartSummarySecondaryTitle}
               secondaryText={t('NArticles', { quantity: cartProductsCounter })}
             />
             <RowTitle
               title={t('Subtotal')}
-              styleTextTitle={{
-                fontFamily: 'Lato Light',
-                paddingLeft: 16,
-                fontSize: FontSizes.xx_medium,
-                marginTop: 20,
-              }}
+              styleTextTitle={styles.subtotalTitle}
               styleSecondaryTextTitle={{
                 fontFamily: 'Lato Regular',
                 fontSize: FontSizes.x_medium,
@@ -89,17 +72,8 @@ export const ShoppingCartScreen = () => {
             />
             <RowTitle
               title={t('IVA')}
-              styleTextTitle={{
-                fontFamily: 'Lato Light',
-                paddingLeft: 16,
-                fontSize: FontSizes.xx_medium,
-                marginTop: 20,
-              }}
-              styleSecondaryTextTitle={{
-                fontFamily: 'Lato Regular',
-                fontSize: FontSizes.x_medium,
-                alignSelf: 'flex-end',
-              }}
+              styleTextTitle={styles.ivaTitle}
+              styleSecondaryTextTitle={styles.ivaSecondaryTitle}
               secondaryText={`${formatCurrency(cartProductsIva)} MXN`}
             />
             <View style={{ paddingLeft: 16 }}>
@@ -109,27 +83,16 @@ export const ShoppingCartScreen = () => {
             </View>
             <RowTitle
               title={t('Total')}
-              styleTextTitle={{
-                fontFamily: 'Lato Light',
-                paddingLeft: 16,
-                fontSize: FontSizes.xx_medium,
-                marginTop: 20,
-              }}
-              styleSecondaryTextTitle={{
-                fontFamily: 'Lato Regular',
-                fontSize: FontSizes.x_medium,
-                alignSelf: 'flex-end',
-              }}
-              secondaryText={`${formatCurrency(cartProductsSubtotal)} MXN`}
+              styleTextTitle={styles.totalTitle}
+              styleSecondaryTextTitle={styles.totalSecondaryTitle}
+              secondaryText={`${formatCurrency(
+                cartProductsSubtotal + cartProductsIva,
+              )} MXN`}
             />
             <RowTitle
               title={t('SecurePaymentsWithText', { vendor: 'Mercado Pago' })}
               centered
-              styleTextTitle={{
-                fontFamily: 'Lato Light',
-                fontSize: FontSizes.x_medium,
-                marginTop: 20,
-              }}
+              styleTextTitle={styles.securePaymentTitle}
             />
             <MercadoPagoIcon
               width={ICON_SIZE}
@@ -139,24 +102,10 @@ export const ShoppingCartScreen = () => {
 
             <RowTitle
               title={t('YouForgotSomethingMsg')}
-              styleTextTitle={{
-                paddingLeft: 0,
-                fontSize: FontSizes.xx_medium,
-                marginTop: 20,
-              }}
-              styleSecondaryTextTitle={{
-                fontSize: FontSizes.x_medium,
-              }}
+              styleTextTitle={styles.youForgotSomethingTitle}
+              styleSecondaryTextTitle={styles.youForgotSomethingSecondaryTitle}
             />
-            <View
-              style={[
-                gStyles.gralMargin,
-                {
-                  flexDirection: 'row',
-                  flexWrap: 'wrap',
-                  justifyContent: 'space-around',
-                },
-              ]}>
+            <View style={[gStyles.gralMargin, styles.productCardsContainer]}>
               <ProductCard product={product1} />
               <ProductCard product={product2} />
               <ProductCard product={product1} />
