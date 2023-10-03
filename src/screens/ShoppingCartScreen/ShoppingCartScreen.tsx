@@ -1,22 +1,22 @@
 import React from 'react';
-import { View, Text, ScrollView, SafeAreaView } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Colors, FontSizes, gStyles } from '@/global-styles';
+import { ProductItem } from '@/interfaces';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
-  TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
+  Button,
   Divider,
   Menu,
   ProductCard,
   ProductRow,
   RowTitle,
-  Button,
+  TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { ProductItem } from '@/interfaces';
-import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { styles } from './ShoppingCartScreen.styles';
 import { useAppSelector } from '@/hooks';
-import { MercadoPagoIcon } from '@/assets/icons';
 import { formatCurrency } from '@/utils';
+import { MercadoPagoIcon } from '@/assets/icons';
+import { styles } from './ShoppingCartScreen.styles';
 
 export const ShoppingCartScreen = () => {
   const ICON_SIZE = 28;
@@ -42,10 +42,6 @@ export const ShoppingCartScreen = () => {
   } as ProductItem;
 
   const onPressContinue = () => {};
-
-  // const globalSubTotal = useMemo(() => {
-  //   return `${formatCurrency(10)} MXN`;
-  // }, [cartProductsCounter]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
