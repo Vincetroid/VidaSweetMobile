@@ -1,14 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import {
   FLUSH,
   PAUSE,
   PERSIST,
+  persistReducer,
   PURGE,
   REGISTER,
   REHYDRATE,
-  persistReducer,
 } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { cartSlice } from '@/redux-content';
 
 const combinedReducer = combineReducers({

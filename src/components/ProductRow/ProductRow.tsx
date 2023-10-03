@@ -1,10 +1,10 @@
-import { View, Image, Text } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { ProductItem } from '@/interfaces';
-import { formatCurrency } from '@/utils';
 import { AddRemoveProduct } from '@/components/AddRemoveProduct';
 import { AddRemoveToFavorites } from '@/components/AddRemoveToFavorites';
-import { styles } from './ProductRow.styles';
 import { useAppSelector } from '@/hooks';
+import { formatCurrency } from '@/utils';
+import { styles } from './ProductRow.styles';
 
 export const ProductRow = ({ product }: { product: ProductItem }) => {
   const { id, img, title, price, isFavorite = false } = product;

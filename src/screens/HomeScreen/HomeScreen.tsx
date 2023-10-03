@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
-import { SliderBox } from 'react-native-image-slider-box';
-import { gStyles } from '@/global-styles';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
-import { RowTitle, Menu } from '@/components';
-import { ProductItem } from '@/interfaces';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { SliderBox } from 'react-native-image-slider-box';
 import { useNavigation } from '@react-navigation/native';
+import { gStyles } from '@/global-styles';
+import { ProductItem } from '@/interfaces';
+import { Menu, RowTitle } from '@/components';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',

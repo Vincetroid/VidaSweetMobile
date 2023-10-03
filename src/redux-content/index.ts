@@ -1,14 +1,14 @@
 import cartSlice, {
-  addProduct,
-  removeProduct,
   addGlobalProductCounter,
+  addProduct,
   removeGlobalProductCounter,
+  removeProduct,
 } from './cart/Cart.slice';
 
 export {
-  cartSlice,
-  addProduct,
-  removeProduct,
   addGlobalProductCounter,
+  addProduct,
+  cartSlice,
   removeGlobalProductCounter,
+  removeProduct,
 };

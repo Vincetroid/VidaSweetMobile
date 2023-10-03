@@ -1,5 +1,5 @@
-import { FontSizes } from '@/global-styles';
 import { StyleSheet } from 'react-native';
+import { FontSizes } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   safeAreaView: {

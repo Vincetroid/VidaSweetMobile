@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React, { useState } from 'react';
 import { TouchableOpacity, ViewStyle } from 'react-native';
-import { styles } from './AddRemoveToFavorites.styles';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { styles } from './AddRemoveToFavorites.styles';
 
 interface AddRemoveToFavoritesProps {
   wrapperStyle?: ViewStyle;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
-import { styles } from './ShoppingCartButton.styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useAppSelector } from '@/hooks';
+import { styles } from './ShoppingCartButton.styles';
 
 interface ShoppingCartButtonProps {}
 

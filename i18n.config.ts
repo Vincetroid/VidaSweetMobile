@@ -1,6 +1,6 @@
+import { NativeModules, Platform } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { NativeModules, Platform } from 'react-native';
 import { english, spanish } from './src/translations';
 
 let locale = '';

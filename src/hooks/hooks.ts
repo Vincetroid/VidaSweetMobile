@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { TypedUseSelectorHook } from 'react-redux';
+import { PersistPartial } from 'redux-persist/es/persistReducer';
 import {
   AnyAction,
   Dispatch,
   EmptyObject,
   ThunkDispatch,
 } from '@reduxjs/toolkit';
-import { PersistPartial } from 'redux-persist/es/persistReducer';
-import { TypedUseSelectorHook } from 'react-redux';
 import { CartSliceState } from '@/redux-content/cart/Cart.slice';
 
 export type SliceStates = {

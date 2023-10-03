@@ -1,11 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { styles } from './Menu.styles';
 import { gStyles } from '@/global-styles';
 import { MenuElementItem } from '@/interfaces';
-import { useTranslation } from 'react-i18next';
 import { MenuElement } from '@/components/MenuElement';
+import { styles } from './Menu.styles';
 
 export const Menu = () => {
   const navigation = useNavigation();

@@ -1,4 +1,4 @@
-import { UserNavigator } from './UserNavigator';
 import { CommonNavigationOptions } from './CommonNavigationOptions';
+import { UserNavigator } from './UserNavigator';
 
-export { UserNavigator, CommonNavigationOptions };
+export { CommonNavigationOptions, UserNavigator };

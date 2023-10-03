@@ -1,13 +1,13 @@
-import { FontSizes, gStyles, themeStyles } from '@/global-styles';
 import React from 'react';
 import {
-  View,
+  StyleProp,
   StyleSheet,
   Text,
-  StyleProp,
-  ViewStyle,
   TextStyle,
+  View,
+  ViewStyle,
 } from 'react-native';
+import { FontSizes, gStyles, themeStyles } from '@/global-styles';
 
 interface RowTitleItem {
   title: string;

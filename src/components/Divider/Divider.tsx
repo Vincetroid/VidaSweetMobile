@@ -1,5 +1,5 @@
-import { View, ViewStyle } from 'react-native';
 import React, { FunctionComponent } from 'react';
+import { View, ViewStyle } from 'react-native';
 import { styles } from './Divider.styles';
 
 interface DividerItem {

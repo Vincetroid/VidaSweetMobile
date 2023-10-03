@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Provider } from 'react-redux';
-import { store } from './src/redux-content/store';
-import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
-import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
-import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
-import './i18n.config';
 import { ChatWrapper } from './src/components/ChatWrapper/ChatWrapper';
 import { themeStyles } from './src/global-styles/Theme';
+import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
+import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
+import { store } from './src/redux-content/store';
+import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
+import './i18n.config';
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);

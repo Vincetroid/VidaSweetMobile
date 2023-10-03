@@ -1,6 +1,6 @@
-import { themeName, themeStyles } from '@/global-styles';
 import React from 'react';
-import { View, StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
+import { themeName, themeStyles } from '@/global-styles';
 
 export const Splash = () => {
   // TAKE A LOOK TO DECIDE: https://react.dev/learn/you-might-not-need-an-effect

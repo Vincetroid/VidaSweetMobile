@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import {
-  addProduct,
-  removeProduct,
-  addGlobalProductCounter,
-  removeGlobalProductCounter,
-} from '@/redux-content';
-import { styles } from './AddRemoveProduct.styles';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { ProductItem } from '@/interfaces';
+import {
+  addGlobalProductCounter,
+  addProduct,
+  removeGlobalProductCounter,
+  removeProduct,
+} from '@/redux-content';
 import { useAppDispatch, useAppSelector } from '@/hooks';
+import { styles } from './AddRemoveProduct.styles';
 
 interface AddRemoveProductProps {
   product: ProductItem;

@@ -1,19 +1,19 @@
+import { CakeryScreen } from './CakeryScreen';
+import { DeliveryAddressScreen } from './DeliveryAddressScreen';
 import { HomeScreen } from './HomeScreen';
 import { HomeNavigationOptions } from './HomeScreen';
-import { SettingsScreen } from './SettingsScreen';
-import { SplashScreen } from './SplashScreen';
-import { CakeryScreen } from './CakeryScreen';
 import { IceCreamScreen } from './IceCreamScreen';
-import { DeliveryAddressScreen } from './DeliveryAddressScreen';
+import { SettingsScreen } from './SettingsScreen';
 import { ShoppingCartScreen } from './ShoppingCartScreen';
+import { SplashScreen } from './SplashScreen';
 
 export {
-  HomeScreen,
-  SettingsScreen,
-  SplashScreen,
   CakeryScreen,
-  IceCreamScreen,
-  HomeNavigationOptions,
   DeliveryAddressScreen,
+  HomeNavigationOptions,
+  HomeScreen,
+  IceCreamScreen,
+  SettingsScreen,
   ShoppingCartScreen,
+  SplashScreen,
 };

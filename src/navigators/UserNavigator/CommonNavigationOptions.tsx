@@ -1,6 +1,6 @@
 import React from 'react';
-import { BackButton, ShoppingCartButton } from '@/components';
 import { FontSizes, themeStyles } from '@/global-styles';
+import { BackButton, ShoppingCartButton } from '@/components';
 
 export const CommonNavigationOptions = Object.freeze({
   headerLeft: () => <BackButton />,

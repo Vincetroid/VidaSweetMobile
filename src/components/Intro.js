@@ -1,6 +1,7 @@
-import { FontSizes } from '@/global-styles';
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+import { FontSizes } from '@/global-styles';
 
 class Intro extends Component {
   render() {

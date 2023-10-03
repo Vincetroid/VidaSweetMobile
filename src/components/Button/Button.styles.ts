@@ -1,5 +1,5 @@
-import { Colors, FontSizes, themeStyles } from '@/global-styles';
 import { StyleSheet } from 'react-native';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   btn: {

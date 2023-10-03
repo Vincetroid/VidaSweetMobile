@@ -1,6 +1,6 @@
-import { themeStyles, themeName } from './Theme';
 import { Colors } from './Colors';
 import { FontSizes } from './FontSizes';
 import { gStyles } from './GlobalStyles';
+import { themeName, themeStyles } from './Theme';
 
-export { themeStyles, themeName, Colors, gStyles, FontSizes };
+export { Colors, FontSizes, gStyles, themeName, themeStyles };

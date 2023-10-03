@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { View, Text } from 'react-native';
-import { styles } from './ChatWrapper.styles';
+import { Text, View } from 'react-native';
 import { WhatsAppIcon } from '@/assets/icons';
+import { styles } from './ChatWrapper.styles';
 
 interface ChatWrapperProps {
   children: ReactNode;

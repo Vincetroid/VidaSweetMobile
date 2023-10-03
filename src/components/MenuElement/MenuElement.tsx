@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Colors, FontSizes, themeStyles } from '@/global-styles';
 import {
-  View,
+  Dimensions,
+  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
-  Dimensions,
-  ImageBackground,
+  View,
 } from 'react-native';
-import { MenuElementItem } from '@/interfaces';
 import { useTranslation } from 'react-i18next';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
+import { MenuElementItem } from '@/interfaces';
 
 export const MenuElement = ({ element }: { element: MenuElementItem }) => {
   const { t } = useTranslation();

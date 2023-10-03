@@ -1,9 +1,9 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { styles } from './BackButton.styles';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 export const BackButton = () => {
   // TODO: Hide BackButton while loading sign in/up

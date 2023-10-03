@@ -1,18 +1,18 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
-  faGear,
-  faIceCream,
   faCake,
   faCakeCandles,
   faCartShopping,
-  faTrash,
   faChevronCircleLeft,
-  faHome,
-  faPlus,
-  faHeart,
   faChevronLeft,
+  faGear,
+  faHeart,
+  faHome,
+  faIceCream,
+  faPlus,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
 
 const addFontAwesomeIcons = () => {
   library.add(

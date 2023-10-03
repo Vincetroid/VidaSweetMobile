@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { View, Image, Text, TouchableOpacity, Dimensions } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { ProductItem } from '@/interfaces';
-import { formatCurrency } from '@/utils';
+import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { ProductItem } from '@/interfaces';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { formatCurrency } from '@/utils';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites';
 import { styles } from './ProductCard.styles';
 
