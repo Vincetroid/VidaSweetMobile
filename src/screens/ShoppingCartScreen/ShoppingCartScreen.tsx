@@ -17,12 +17,14 @@ import { useAppSelector } from '@/hooks';
 import { formatCurrency } from '@/utils';
 import { MercadoPagoIcon } from '@/assets/icons';
 import { styles } from './ShoppingCartScreen.styles';
+import { useNavigation } from '@react-navigation/native';
 
 export const ShoppingCartScreen = () => {
   const ICON_SIZE = 28;
   const { t } = useTranslation();
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
+  const navigation = useNavigation();
 
   const productsLength = true;
 
@@ -41,7 +43,9 @@ export const ShoppingCartScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
-  const onPressContinue = () => {};
+  const onPressContinue = () => {
+    navigation.navigate('DeliveryAddress');
+  };
 
   return (
     <SafeAreaView style={styles.safeAreaView}>

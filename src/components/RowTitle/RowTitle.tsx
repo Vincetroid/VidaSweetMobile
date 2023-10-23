@@ -7,12 +7,13 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { FontSizes, gStyles, themeStyles } from '@/global-styles';
+import { FontSizes, themeStyles } from '@/global-styles';
 
 interface RowTitleItem {
   title: string;
   secondaryText?: string;
   centered?: boolean;
+  wrapperStyle?: ViewStyle;
   styleTextTitle?: TextStyle;
   styleSecondaryTextTitle?: TextStyle;
 }
@@ -21,6 +22,7 @@ export const RowTitle = ({
   title,
   secondaryText,
   centered = false,
+  wrapperStyle = {},
   styleTextTitle = {},
   styleSecondaryTextTitle = {},
 }: RowTitleItem): JSX.Element => {
@@ -31,6 +33,7 @@ export const RowTitle = ({
       style={[
         styles.secondaryTextWrapper,
         centeredStyle as StyleProp<ViewStyle>,
+        wrapperStyle,
       ]}>
       <Text style={[styles.title, styleTextTitle]}>{title}</Text>
       <Text style={[styles.secondaryTitle, styleSecondaryTextTitle]}>
@@ -38,7 +41,12 @@ export const RowTitle = ({
       </Text>
     </View>
   ) : (
-    <View style={[styles.wrapper, centeredStyle as StyleProp<ViewStyle>]}>
+    <View
+      style={[
+        styles.wrapper,
+        centeredStyle as StyleProp<ViewStyle>,
+        wrapperStyle,
+      ]}>
       <Text style={[styles.title, styleTextTitle]}>{title}</Text>
     </View>
   );

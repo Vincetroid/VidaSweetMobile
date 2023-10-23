@@ -15,3 +15,10 @@ export interface MenuElementItem {
   img: number;
   title: string;
 }
+
+export interface AddressItem {
+  id: string;
+  fullAddress: string;
+  isEditable: boolean;
+  isFavorite: boolean;
+}

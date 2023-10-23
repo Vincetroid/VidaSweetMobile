@@ -1,5 +1,6 @@
 import { AddRemoveProduct } from './AddRemoveProduct';
 import { AddRemoveToFavorites } from './AddRemoveToFavorites';
+import { AddressRow } from './AddressRow';
 import { BackButton } from './BackButton';
 import { Button } from './Button';
 import { ChatWrapper } from './ChatWrapper';
@@ -16,6 +17,7 @@ import { TemplateSplitedViewScrollAndButtonFixedAtTheBottom } from './TemplateSp
 export {
   AddRemoveProduct,
   AddRemoveToFavorites,
+  AddressRow,
   BackButton,
   Button,
   ChatWrapper,
