@@ -27,6 +27,7 @@
     "@react-navigation/native-stack": "^6.9.13",
     "@reduxjs/toolkit": "^1.9.5",
     "babel-plugin-module-resolver": "^5.0.0",
+    "fluentvalidation-ts": "^2.3.0",
     "i18next": "^23.4.4",
     "react": "18.2.0",
     "react-i18next": "^13.0.3",

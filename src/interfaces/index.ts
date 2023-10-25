@@ -22,3 +22,9 @@ export interface AddressItem {
   isEditable: boolean;
   isFavorite: boolean;
 }
+
+export interface UserItem {
+  userName: string;
+  email: string;
+  password: string;
+}

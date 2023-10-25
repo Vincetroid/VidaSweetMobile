@@ -6,6 +6,8 @@ import { IceCreamScreen } from './IceCreamScreen';
 import { SettingsScreen } from './SettingsScreen';
 import { ShoppingCartScreen } from './ShoppingCartScreen';
 import { SplashScreen } from './SplashScreen';
+import { SignInScreen } from './SignInScreen';
+import { SignUpScreen } from './SignUpScreen';
 
 export {
   CakeryScreen,
@@ -16,4 +18,6 @@ export {
   SettingsScreen,
   ShoppingCartScreen,
   SplashScreen,
+  SignInScreen,
+  SignUpScreen,
 };

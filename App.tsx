@@ -12,7 +12,7 @@ import './i18n.config';
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);
-  const authenticatedUser = true;
+  const authenticatedUser = false;
 
   useEffect(() => {
     addFontAwesomeIcons();
