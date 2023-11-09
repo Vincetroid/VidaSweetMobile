@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import {
   Button,
   Splash,
@@ -9,6 +10,7 @@ import {
 import { styles } from './InitialScreen.styles';
 
 export const InitialScreen = () => {
+  const navigation = useNavigation();
   const { t } = useTranslation();
 
   return (
@@ -20,13 +22,17 @@ export const InitialScreen = () => {
         <>
           <Button
             title={t('SignIn')}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('SignIn');
+            }}
             buttonViewStyle={styles.signInBtn}
             buttonTextStyle={styles.signInTextBtn}
           />
           <Button
             title={t('SignUp')}
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate('SignUp');
+            }}
             buttonViewStyle={styles.signUpBtn}
             buttonTextStyle={styles.signUpTextBtn}
           />

@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import { Button } from '@/components';
 import styles from './SignUpScreen.styles';
 // import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { UserValidator } from './SignUpScreen.validator';
@@ -15,11 +17,12 @@ import { UserValidator } from './SignUpScreen.validator';
 
 export const SignUpScreen = () => {
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [loader, setLoader] = useState(false);
+  const [loader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
@@ -96,8 +99,15 @@ export const SignUpScreen = () => {
           )}
         </TouchableOpacity>
       </View>
-      <View>
-        <Text>{t('CreateAnAccount')}</Text>
+      <View style={styles.bottomLabel}>
+        {/* <Button>{t('AreYouAMember')}</Button> */}
+        <Button
+          title={t('AreYouAMember')}
+          onPress={() => {
+            navigation.navigate('SignIn' as never);
+          }}
+          buttonTextStyle={styles.bottomBtnText}
+        />
       </View>
     </SafeAreaView>
   );

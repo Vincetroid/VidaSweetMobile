@@ -5,9 +5,13 @@ const styles = StyleSheet.create({
   topLabel: {
     alignSelf: 'center',
   },
+  bottomLabel: {
+    alignSelf: 'center',
+  },
   topLabelText: {
-    fontSize: FontSizes.big,
+    fontSize: FontSizes.x_big,
     fontFamily: FontFamilies.bartleenScript,
+    color: themeStyles.black,
   },
   textInput: {
     textAlign: 'center',
@@ -21,24 +25,27 @@ const styles = StyleSheet.create({
   signUpBtn: {
     marginTop: 26,
     paddingVertical: 10,
-    backgroundColor: 'black',
+    backgroundColor: themeStyles.black,
     borderRadius: 20,
   },
   signUpBtnText: {
     textAlign: 'center',
-    color: 'white',
+    color: themeStyles.white,
     fontSize: FontSizes.big,
     fontFamily: FontFamilies.latoBoldItalic,
   },
   safeAreaContainer: {
-    backgroundColor: 'aqua',
     flex: 1,
     alignSelf: 'center',
     justifyContent: 'space-between',
     width: '70%',
   },
-  signUpContainer: {
-    backgroundColor: 'bisque',
+  signUpContainer: {},
+  bottomBtnText: {
+    textAlign: 'center',
+    color: themeStyles.black,
+    fontSize: FontSizes.big,
+    fontFamily: FontFamilies.latoItalic,
   },
 });
 
