@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { Colors, FontSizes, gStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -17,7 +18,6 @@ import { useAppSelector } from '@/hooks';
 import { formatCurrency } from '@/utils';
 import { MercadoPagoIcon } from '@/assets/icons';
 import { styles } from './ShoppingCartScreen.styles';
-import { useNavigation } from '@react-navigation/native';
 
 export const ShoppingCartScreen = () => {
   const ICON_SIZE = 28;

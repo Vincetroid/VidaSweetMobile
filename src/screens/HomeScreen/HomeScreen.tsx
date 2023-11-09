@@ -1,8 +1,8 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import { gStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { Menu, RowTitle } from '@/components';
@@ -31,7 +31,7 @@ export const HomeScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   return (
     <SafeAreaView>

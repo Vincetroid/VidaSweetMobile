@@ -1,5 +1,3 @@
-import { withOpacity } from './Helpers';
-
 export const Colors = {
   gold: '#D1831C',
   yellow: '#FFF16F',

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import {
-  Text,
-  SafeAreaView,
-  TextInput,
-  Pressable,
   ActivityIndicator,
-  Alert,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
 } from 'react-native';
+import { themeStyles } from '@/global-styles';
 // import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from './SignInScreen.styles';
-import { gStyles, themeStyles } from '@/global-styles';
 // import handleErrors from '../../utils/handleErrors';
 
 export const SignInScreen = () => {
@@ -17,7 +16,7 @@ export const SignInScreen = () => {
   // const [password, setPassword] = useState('');
   const [email, setEmail] = useState('a@hotmail.com');
   const [password, setPassword] = useState('asdfgh');
-  const [loader, setLoader] = useState(false);
+  const [loader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 

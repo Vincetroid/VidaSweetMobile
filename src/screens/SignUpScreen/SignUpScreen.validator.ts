@@ -1,5 +1,4 @@
 import { Validator } from 'fluentvalidation-ts';
-
 import { UserItem } from '@/interfaces';
 
 export class UserValidator extends Validator<UserItem> {

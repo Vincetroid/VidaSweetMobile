@@ -6,8 +6,7 @@ export const CakeryScreen = () => {
   return (
     <SafeAreaView style={styles.bg}>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
-        <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.viewWrapper}>
           <Text>cackery Screen</Text>
         </View>
       </ScrollView>
@@ -22,4 +21,5 @@ const styles = StyleSheet.create({
   bg2: {
     backgroundColor: 'green',
   },
+  viewWrapper: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 });

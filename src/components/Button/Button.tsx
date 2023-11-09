@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import { styles } from './Button.styles';
 
 interface ButtonProps {
@@ -22,8 +22,8 @@ export const Button = ({
   buttonViewStyle,
   buttonTextStyle,
 }: ButtonProps) => {
-  const navigation = useNavigation();
-  const [loader, setLoader] = useState(false);
+  // const navigation = useNavigation();
+  const [loader] = useState(false);
 
   return (
     <TouchableOpacity style={[styles.btn, buttonViewStyle]} onPress={onPress}>

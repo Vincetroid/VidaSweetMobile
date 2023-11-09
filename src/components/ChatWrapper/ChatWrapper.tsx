@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { WhatsAppIcon } from '@/assets/icons';
 import { styles } from './ChatWrapper.styles';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { FontSizes } from '@/global-styles';
 import { useTranslation } from 'react-i18next';
-import { RowTitle, AddressRow } from '@/components';
+import { FontSizes } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
+import { AddressRow, RowTitle } from '@/components';
 
 export const DeliveryAddressScreen = () => {
   const { t } = useTranslation();

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useAppSelector } from '@/hooks';
 import { styles } from './ShoppingCartButton.styles';
 
-interface ShoppingCartButtonProps {}
+// interface ShoppingCartButtonProps {}
 
 export const ShoppingCartButton = () => {
   const ICON_SIZE = 26;

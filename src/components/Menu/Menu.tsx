@@ -1,14 +1,14 @@
 import React from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import { gStyles } from '@/global-styles';
 import { MenuElementItem } from '@/interfaces';
 import { MenuElement } from '@/components/MenuElement';
 import { styles } from './Menu.styles';
 
 export const Menu = () => {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const { t } = useTranslation();
 
   const menuItem1 = {

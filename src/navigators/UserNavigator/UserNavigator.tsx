@@ -1,7 +1,7 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Colors, FontSizes } from '@/global-styles';
 import {
   CakeryScreen,
   DeliveryAddressScreen,
@@ -18,7 +18,6 @@ import {
   faIceCream,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { ShoppingCartButton } from '@/components';
 import { CommonNavigationOptions } from './CommonNavigationOptions';
 
 const Tab = createBottomTabNavigator();

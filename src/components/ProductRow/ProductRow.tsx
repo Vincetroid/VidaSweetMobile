@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { ProductItem } from '@/interfaces';
 import { AddRemoveProduct } from '@/components/AddRemoveProduct';
@@ -7,7 +8,8 @@ import { formatCurrency } from '@/utils';
 import { styles } from './ProductRow.styles';
 
 export const ProductRow = ({ product }: { product: ProductItem }) => {
-  const { id, img, title, price, isFavorite = false } = product;
+  // const { id, img, title, price, isFavorite = false } = product;
+  const { img, title, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
   const getProductPrice = (id: string) => {

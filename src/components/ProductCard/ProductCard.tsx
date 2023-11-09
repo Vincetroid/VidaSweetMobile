@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { ProductItem } from '@/interfaces';
