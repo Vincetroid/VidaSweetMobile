@@ -1,23 +1,27 @@
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { GuestScreen } from '../../screens/GuestScreen';
-import { SignInScreen, SignUpScreen } from '@/screens';
+import { InitialScreen, SignInScreen, SignUpScreen } from '@/screens';
 
 const Stack = createNativeStackNavigator();
 
 export const GuestNavigator = () => {
   console.log('GuestNav');
   return (
-    <Stack.Navigator initialRouteName="SignUp">
-      <Stack.Screen name="Guest" component={GuestScreen} />
+    <Stack.Navigator initialRouteName="InitialScreen">
+      <Stack.Screen
+        name="InitialScreen"
+        component={InitialScreen}
+        options={{ header: () => null }}
+      />
       <Stack.Screen
         name="SignUp"
         component={SignUpScreen}
-        options={{ title: 'Regístrate' }}
+        options={{ header: () => null }}
       />
       <Stack.Screen
         name="SignIn"
         component={SignInScreen}
-        options={{ title: 'Sign In' }}
+        options={{ header: () => null }}
       />
     </Stack.Navigator>
   );

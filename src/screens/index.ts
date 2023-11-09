@@ -3,11 +3,12 @@ import { DeliveryAddressScreen } from './DeliveryAddressScreen';
 import { HomeScreen } from './HomeScreen';
 import { HomeNavigationOptions } from './HomeScreen';
 import { IceCreamScreen } from './IceCreamScreen';
+import { InitialScreen } from './InitialScreen';
 import { SettingsScreen } from './SettingsScreen';
 import { ShoppingCartScreen } from './ShoppingCartScreen';
-import { SplashScreen } from './SplashScreen';
 import { SignInScreen } from './SignInScreen';
 import { SignUpScreen } from './SignUpScreen';
+import { SplashScreen } from './SplashScreen';
 
 export {
   CakeryScreen,
@@ -15,9 +16,10 @@ export {
   HomeNavigationOptions,
   HomeScreen,
   IceCreamScreen,
+  InitialScreen,
   SettingsScreen,
   ShoppingCartScreen,
-  SplashScreen,
   SignInScreen,
   SignUpScreen,
+  SplashScreen,
 };
