@@ -69,3 +69,5 @@ yarn-error.log
 
 .vscode/
 .vscode/settings.json
+
+.env

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { getAuth } from 'firebase/auth';
 import { Provider } from 'react-redux';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import { ChatWrapper } from './src/components/ChatWrapper/ChatWrapper';
 import { themeStyles } from './src/global-styles/Theme';
+import { useFirebaseAuth } from './src/hooks';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { UserNavigator } from './src/navigators/UserNavigator/UserNavigator';
 import { store } from './src/redux-content/store';
@@ -11,8 +13,10 @@ import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import './i18n.config';
 
 const App = () => {
+  const auth = getAuth();
+  const authenticatedUser = useFirebaseAuth(auth);
   const [loadingApp, setLoadingApp] = useState(true);
-  const authenticatedUser = false;
+  // const authenticatedUser = false;
 
   useEffect(() => {
     addFontAwesomeIcons();

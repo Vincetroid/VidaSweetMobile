@@ -1,6 +1,4 @@
-/**
- * @format
- */
+import './src/firebase/conf';
 
 import { AppRegistry } from 'react-native';
 
