@@ -20,12 +20,16 @@
   "SecurePaymentsWithText": "Compras protegidas con {{vendor}}",
   "SelectAddress": "Selecciona una dirección",
   "SignIn": "Inicia sesión",
+  "SignOut": "Sign out",
+  "SignedOutSuccessfully": "Cerraste sesión correctamente",
   "SignUp": "Regístrate",
   "SignUpWithEmail": "Regístrate con tu correo",
   "Slogan": "Pide helados y nieves a domicilio",
   "Subtotal": "Subtotal",
+  "ThereWasAnErrorSigningOutTryAgain": "Hubo un error cerrando sesión, intenta nuevamente",
   "TopSellers": "Más vendidos",
   "Total": "Total",
   "UserName": "nombre de usuario / username",
+  "YouAreNotAMember": "¿No eres miembro?",
   "YouForgotSomethingMsg": "¿Olvidaste algo?"
 }

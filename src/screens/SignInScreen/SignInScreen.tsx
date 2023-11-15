@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import {
   ActivityIndicator,
-  Pressable,
+  Alert,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { themeStyles } from '@/global-styles';
 import { Button } from '@/components';
+import handleErrors from '@/utils/handleErrors';
 // import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from './SignInScreen.styles';
 // import handleErrors from '../../utils/handleErrors';
@@ -23,26 +25,26 @@ export const SignInScreen = () => {
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   const [email, setEmail] = useState('a@hotmail.com');
-  const [password, setPassword] = useState('asdfgh');
-  const [loader] = useState(false);
+  const [password, setPassword] = useState('12345678');
+  const [loader, setLoader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
   const onSignInPress = () => {
-    // setLoader(true);
-    // const auth = getAuth();
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then(() => {
-    //     setLoader(false);
-    //     setEmail('');
-    //     setPassword('');
-    //     Alert.alert('Successful login');
-    //   })
-    //   .catch(error => {
-    //     const errorCode = error.code;
-    //     handleErrors(errorCode);
-    //     setLoader(false);
-    //   });
+    setLoader(true);
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setLoader(false);
+        setEmail('');
+        setPassword('');
+        Alert.alert('Successful login');
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        handleErrors(errorCode);
+        setLoader(false);
+      });
   };
 
   return (
@@ -82,9 +84,9 @@ export const SignInScreen = () => {
       <View style={styles.bottomLabel}>
         {/* <Button>{t('AreYouAMember')}</Button> */}
         <Button
-          title={t('AreYouAMember')}
+          title={t('YouAreNotAMember')}
           onPress={() => {
-            navigation.navigate('SignIn' as never);
+            navigation.navigate('SignUp' as never);
           }}
           buttonTextStyle={styles.bottomBtnText}
         />

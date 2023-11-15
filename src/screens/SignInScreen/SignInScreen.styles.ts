@@ -20,9 +20,13 @@ const styles = StyleSheet.create({
     color: themeStyles.black,
   },
   textInput: {
-    backgroundColor: 'white',
+    textAlign: 'center',
+    paddingTop: 10,
+    paddingBottom: 4,
+    borderBottomColor: themeStyles.black,
     margin: 10,
-    borderRadius: 5,
+    borderBottomWidth: 1,
+    borderColor: themeStyles.background,
   },
   signInBtn: {
     margin: 10,

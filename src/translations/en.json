@@ -19,12 +19,16 @@
   "SecurePaymentsWithText": "Secure Purchases by {{vendor}}",
   "SelectAddress": "Select an address",
   "SignIn": "Sign in",
+  "SignOut": "Sign out",
+  "SignedOutSuccessfully": "Signed out successfully",
   "SignUp": "Sign up",
   "SignUpWithEmail": "Sign up with email",
   "Slogan": "Ice cream & shorbeit delivery",
   "Subtotal": "Subtotal",
+  "ThereWasAnErrorSigningOutTryAgain": "There was an error signing out, try again",
   "TopSellers": "Top Sellers",
   "Total": "Total",
   "UserName": "username",
+  "YouAreNotAMember": "Are you not a member?",
   "YouForgotSomethingMsg": "Anything else?"
 }

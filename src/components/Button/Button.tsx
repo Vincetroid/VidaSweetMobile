@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   ActivityIndicator,
   Text,
@@ -6,14 +6,14 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
 import { styles } from './Button.styles';
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   onPress: () => void;
   buttonViewStyle?: ViewStyle;
   buttonTextStyle?: TextStyle;
+  children?: ReactNode;
 }
 
 export const Button = ({
@@ -21,17 +21,19 @@ export const Button = ({
   onPress,
   buttonViewStyle,
   buttonTextStyle,
+  children,
 }: ButtonProps) => {
-  // const navigation = useNavigation();
   const [loader] = useState(false);
+
+  const buttonLayoutContent = children ? (
+    children
+  ) : (
+    <Text style={[styles.btnText, buttonTextStyle]}>{title}</Text>
+  );
 
   return (
     <TouchableOpacity style={[styles.btn, buttonViewStyle]} onPress={onPress}>
-      {!loader ? (
-        <Text style={[styles.btnText, buttonTextStyle]}>{title}</Text>
-      ) : (
-        <ActivityIndicator color="grey" />
-      )}
+      {!loader ? buttonLayoutContent : <ActivityIndicator color="grey" />}
     </TouchableOpacity>
   );
 };
