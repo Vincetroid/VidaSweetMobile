@@ -97,13 +97,12 @@ export const SignUpScreen = () => {
           placeholderTextColor="grey"
           autoCapitalize="none"
         />
-        <TouchableOpacity onPress={onSignUpPress} style={styles.signUpBtn}>
-          {!loader ? (
-            <Text style={styles.signUpBtnText}>{t('SignUp')}</Text>
-          ) : (
-            <ActivityIndicator color="grey" />
-          )}
-        </TouchableOpacity>
+        <Button
+          title={t('SignUp')}
+          onPress={onSignUpPress}
+          buttonViewStyle={styles.signUpBtn}
+          buttonTextStyle={styles.signUpBtnText}
+        />
       </View>
       <View style={styles.bottomLabel}>
         {/* <Button>{t('AreYouAMember')}</Button> */}

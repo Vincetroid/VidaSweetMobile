@@ -29,14 +29,16 @@ const styles = StyleSheet.create({
     borderColor: themeStyles.background,
   },
   signInBtn: {
-    margin: 10,
-    padding: 16,
-    backgroundColor: 'black',
-    borderRadius: 5,
+    marginTop: 26,
+    paddingVertical: 10,
+    backgroundColor: themeStyles.black,
+    borderRadius: 20,
   },
   signInBtnText: {
     textAlign: 'center',
-    color: 'white',
+    color: themeStyles.white,
+    fontSize: FontSizes.big,
+    fontFamily: FontFamilies.latoBoldItalic,
   },
   bottomBtnText: {
     textAlign: 'center',
