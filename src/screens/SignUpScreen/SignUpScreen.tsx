@@ -105,7 +105,6 @@ export const SignUpScreen = () => {
         />
       </View>
       <View style={styles.bottomLabel}>
-        {/* <Button>{t('AreYouAMember')}</Button> */}
         <Button
           title={t('AreYouAMember')}
           onPress={() => {

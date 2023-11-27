@@ -5,7 +5,6 @@ import { InitialScreen, SignInScreen, SignUpScreen } from '@/screens';
 const Stack = createNativeStackNavigator();
 
 export const GuestNavigator = () => {
-  console.log('GuestNav');
   return (
     <Stack.Navigator initialRouteName="InitialScreen">
       <Stack.Screen
