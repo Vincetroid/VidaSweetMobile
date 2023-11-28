@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { themeStyles } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 // import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';

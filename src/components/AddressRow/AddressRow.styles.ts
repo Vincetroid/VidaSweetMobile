@@ -1,33 +1,31 @@
 import { StyleSheet } from 'react-native';
-import { FontSizes, themeStyles } from '@/global-styles';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    marginBottom: 20,
     flex: 1,
     flexDirection: 'row',
     padding: 10,
-    backgroundColor: 'white',
+    minHeight: 80,
+    backgroundColor: Colors.grayLightBg,
+    marginBottom: 10,
   },
   leftZone: {
     flex: 0.1,
-    backgroundColor: 'bisque',
-    // flexDirection: 'column',
-    // alignSelf: 'center',
-    // alignContent: 'center',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
+    marginTop: 20,
   },
   centerZone: {
-    flex: 0.5,
+    flex: 0.8,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   rightZone: {
-    flex: 0.3,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   addBtn: {
     marginTop: 10,
@@ -67,9 +65,9 @@ export const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   heartWrapperStyle: {
-    position: 'absolute',
-    zIndex: 1,
-    top: 10,
-    right: 12,
+    // position: 'absolute',
+    // zIndex: 1,
+    // top: 10,
+    // right: 12,
   },
 });

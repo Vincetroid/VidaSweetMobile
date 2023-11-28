@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: '@react-native-community',
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'simple-import-sort'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'simple-import-sort'],
   rules: {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',

@@ -24,16 +24,6 @@ export const AddressRow = ({ address }: { address: AddressItem }) => {
             color: themeStyles.secondary,
           }}
         />
-        <View
-          style={
-            {
-              // alignItems: 'center',
-              // justifyContent: 'center',
-              // backgroundColor: 'red',
-              // flex: 1,
-            }
-          }
-        />
       </View>
       <View style={styles.centerZone}>
         <Text style={styles.productTitle}>{fullAddress}</Text>
@@ -46,12 +36,12 @@ export const AddressRow = ({ address }: { address: AddressItem }) => {
             color: themeStyles.secondary,
           }}
         />
+        <AddRemoveToFavorites
+          isFavorite={isFavorite}
+          size={18}
+          wrapperStyle={styles.heartWrapperStyle}
+        />
       </View>
-      <AddRemoveToFavorites
-        isFavorite={isFavorite}
-        size={18}
-        wrapperStyle={styles.heartWrapperStyle}
-      />
     </View>
   );
 };

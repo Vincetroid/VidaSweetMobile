@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, SafeAreaView, Text, View } from 'react-native';
+import { Alert, SafeAreaView, Text } from 'react-native';
 import { getAuth, signOut } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';

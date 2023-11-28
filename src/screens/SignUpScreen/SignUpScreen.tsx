@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
 // import handleErrors from '../../utils/handleErrors';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';

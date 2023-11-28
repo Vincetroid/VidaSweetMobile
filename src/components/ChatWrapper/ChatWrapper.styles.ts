@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   chatViewWrapper: {
     position: 'absolute',
-    bottom: 90,
+    bottom: 96,
     right: 10,
   },
   icon: {
