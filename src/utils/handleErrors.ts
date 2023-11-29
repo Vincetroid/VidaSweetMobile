@@ -19,6 +19,9 @@ const handleErrors = (errorCode: string) => {
     case ErrorCodes.wrongPassword:
       Alert.alert(ErrorMessages.wrongPassword);
       break;
+    case ErrorCodes.missingPassword:
+      Alert.alert(ErrorMessages.wrongPassword);
+      break;
     default:
       Alert.alert(`${ErrorMessages.unknownError} ${errorCode}`);
       break;

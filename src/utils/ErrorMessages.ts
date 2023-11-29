@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+
 interface ErrorMessagesInterface {
   duplicatedEmail: string;
   invalidEmail: string;
@@ -8,13 +10,12 @@ interface ErrorMessagesInterface {
 }
 
 const ErrorMessages: ErrorMessagesInterface = Object.freeze({
-  duplicatedEmail: 'Email already in use, please provide another one.',
-  invalidEmail: 'Nonexistent or invalid Email. Please type a valid Email.',
-  networkRequestFailed:
-    'Error, please check your internnet connection and try again.',
-  unknownError: 'Error: ',
-  userNotFound: 'User not found with that email, please check.',
-  wrongPassword: 'Wrong password, please check it.',
+  duplicatedEmail: i18n.t('duplicatedEmail'),
+  invalidEmail: i18n.t('InvalidEmail'),
+  networkRequestFailed: i18n.t('NetworkRequestFailed'),
+  unknownError: i18n.t('UnknownError'),
+  userNotFound: i18n.t('UserNotFound'),
+  wrongPassword: i18n.t('WrongPassword'),
 });
 
 export default ErrorMessages;

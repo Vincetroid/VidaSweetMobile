@@ -4,6 +4,7 @@ interface ErrorCodesInterface {
   networkRequestFailed: string;
   userNotFound: string;
   wrongPassword: string;
+  missingPassword: string;
 }
 
 const ErrorCodes: ErrorCodesInterface = Object.freeze({
@@ -12,6 +13,7 @@ const ErrorCodes: ErrorCodesInterface = Object.freeze({
   networkRequestFailed: 'auth/network-request-failed',
   userNotFound: 'auth/user-not-found',
   wrongPassword: 'auth/wrong-password',
+  missingPassword: 'auth/missing-password',
 });
 
 export default ErrorCodes;
