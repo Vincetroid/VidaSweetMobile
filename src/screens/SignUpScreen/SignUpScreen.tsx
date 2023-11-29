@@ -94,6 +94,7 @@ export const SignUpScreen = () => {
           onPress={onSignUpPress}
           buttonViewStyle={styles.signUpBtn}
           buttonTextStyle={styles.signUpBtnText}
+          isLoading={loader}
         />
       </View>
       <View style={styles.bottomLabel}>

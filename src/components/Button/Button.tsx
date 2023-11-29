@@ -14,6 +14,7 @@ interface ButtonProps {
   buttonViewStyle?: ViewStyle;
   buttonTextStyle?: TextStyle;
   children?: ReactNode;
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -22,9 +23,8 @@ export const Button = ({
   buttonViewStyle,
   buttonTextStyle,
   children,
+  isLoading = false,
 }: ButtonProps) => {
-  const [loader] = useState(false);
-
   const buttonLayoutContent = children ? (
     children
   ) : (
@@ -32,8 +32,11 @@ export const Button = ({
   );
 
   return (
-    <TouchableOpacity style={[styles.btn, buttonViewStyle]} onPress={onPress}>
-      {!loader ? buttonLayoutContent : <ActivityIndicator color="grey" />}
+    <TouchableOpacity
+      style={[styles.btn, buttonViewStyle]}
+      onPress={onPress}
+      disabled={isLoading}>
+      {!isLoading ? buttonLayoutContent : <ActivityIndicator color="grey" />}
     </TouchableOpacity>
   );
 };

@@ -22,6 +22,7 @@ export const SignInScreen = () => {
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
   const onSignInPress = () => {
+    console.log('PRESIONANDO');
     setLoader(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -68,6 +69,7 @@ export const SignInScreen = () => {
           onPress={onSignInPress}
           buttonViewStyle={styles.signInBtn}
           buttonTextStyle={styles.signInBtnText}
+          isLoading={loader}
         />
       </View>
       <View style={styles.bottomLabel}>
