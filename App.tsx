@@ -16,7 +16,7 @@ const App = () => {
   const auth = getAuth();
   const authenticatedUser = useFirebaseAuth(auth);
   const [loadingApp, setLoadingApp] = useState(true);
-  // const authenticatedUser = false;
+  // const authenticatedUser = true;
 
   useEffect(() => {
     addFontAwesomeIcons();

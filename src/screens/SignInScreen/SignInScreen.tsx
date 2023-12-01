@@ -50,7 +50,7 @@ export const SignInScreen = () => {
           editable={!loader}
           style={[styles.textInput, textInputColor]}
           onChangeText={setEmail}
-          placeholder="Email"
+          placeholder={t('Email')}
           placeholderTextColor="grey"
           autoCapitalize="none"
         />
@@ -60,7 +60,7 @@ export const SignInScreen = () => {
           editable={!loader}
           style={[styles.textInput, textInputColor]}
           onChangeText={setPassword}
-          placeholder="Password"
+          placeholder={t('Password')}
           placeholderTextColor="grey"
           autoCapitalize="none"
         />

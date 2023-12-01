@@ -1,6 +1,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { FontFamilies, FontSizes, themeStyles } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +12,12 @@ import {
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import { styles } from './DeliveryAddressScreen.styles';
 
 export const DeliveryAddressScreen = () => {
   const ICON_BTN_SIZE = 18;
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   const address1 = {
     id: 'd34akj432',
@@ -81,7 +84,7 @@ export const DeliveryAddressScreen = () => {
   };
 
   const onAddAddress = () => {
-    // navigation.navigate('DeliveryAddress');
+    navigation.navigate('AddAddress');
   };
 
   return (
@@ -98,11 +101,6 @@ export const DeliveryAddressScreen = () => {
           <AddressRow address={address3} />
           <AddressRow address={address4} />
           <AddressRow address={address5} />
-          <AddressRow address={address6} />
-          <AddressRow address={address7} />
-          <AddressRow address={address8} />
-          <AddressRow address={address9} />
-
           <Button
             onPress={onAddAddress}
             buttonViewStyle={styles.addAnAddressBtn}>
@@ -119,30 +117,3 @@ export const DeliveryAddressScreen = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  safeAreaView: {
-    flex: 1,
-  },
-  selectAddress: {
-    fontSize: FontSizes.big,
-  },
-  addAnAddressBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: FontSizes.big,
-    marginBottom: 30,
-  },
-  bg: {
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  addAnAddressTextBtn: {
-    color: themeStyles.black,
-    fontSize: FontSizes.big,
-    marginLeft: 10,
-    fontFamily: FontFamilies.latoItalic,
-  },
-});

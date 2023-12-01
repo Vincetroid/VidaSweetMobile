@@ -28,3 +28,10 @@ export interface UserItem {
   email: string;
   password: string;
 }
+
+export interface CountryPhoneCodeItem {
+  code: string;
+  dial_code: string;
+  flag: string;
+  name: string;
+}
