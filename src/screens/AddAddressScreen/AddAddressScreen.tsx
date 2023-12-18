@@ -20,6 +20,7 @@ export const AddAddressScreen = () => {
   const [interiorNumber, setInteriorNumber] = useState<string>('');
   const [zipCode, setZipCode] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [specialIndications, setSpecialIndications] = useState<string>('');
   const [countryPhoneCode, setCountryPhoneCode] = useState<string>('');
   const [loader, setLoader] = useState<boolean>(false);
   const [countryCodesModalVisible, setCountryCodesModalVisible] =
@@ -108,10 +109,10 @@ export const AddAddressScreen = () => {
             />
           </View>
           <TextInput
-            value={street}
+            value={specialIndications}
             editable={!loader}
             style={[styles.textInput, styles.specialIns, textInputColor]}
-            onChangeText={setStreet}
+            onChangeText={setSpecialIndications}
             placeholder={t('SpecialIndications')}
             placeholderTextColor="grey"
             multiline={true}

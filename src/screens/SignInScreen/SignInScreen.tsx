@@ -13,30 +13,35 @@ export const SignInScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [email, setEmail] = useState('a@hotmail.com');
-  const [password, setPassword] = useState('12345678');
+  const [password, setPassword] = useState('1234567');
   const [loader, setLoader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
-  const onSignInPress = () => {
+  const onSignInPress = async () => {
     console.log('PRESIONANDO');
     setLoader(true);
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setLoader(false);
-        setEmail('');
-        setPassword('');
-        Alert.alert('Successful login');
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        handleErrors(errorCode);
-        setLoader(false);
-      });
+
+    try {
+      const signInResponse = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password,
+      );
+      console.log('signInResponse');
+      console.log(signInResponse);
+      setLoader(false);
+      setEmail('');
+      setPassword('');
+      Alert.alert('Successful login');
+    } catch (error) {
+      console.log('error');
+      const errorCode = error.code;
+      handleErrors(errorCode);
+      setLoader(false);
+    }
   };
 
   return (
