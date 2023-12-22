@@ -7,6 +7,9 @@ interface ErrorMessagesInterface {
   unknownError: string;
   userNotFound: string;
   wrongPassword: string;
+  missingPassword: string;
+  tooManyRequests: string;
+  invalidLoginCredentials: string;
 }
 
 const ErrorMessages: ErrorMessagesInterface = Object.freeze({
@@ -16,6 +19,9 @@ const ErrorMessages: ErrorMessagesInterface = Object.freeze({
   unknownError: i18n.t('UnknownError'),
   userNotFound: i18n.t('UserNotFound'),
   wrongPassword: i18n.t('WrongPassword'),
+  missingPassword: i18n.t('MissingPassword'),
+  tooManyRequests: i18n.t('TooManyRequests'),
+  invalidLoginCredentials: i18n.t('InvalidLoginCredentials'),
 });
 
 export default ErrorMessages;

@@ -5,6 +5,8 @@ interface ErrorCodesInterface {
   userNotFound: string;
   wrongPassword: string;
   missingPassword: string;
+  tooManyRequests: string;
+  invalidLoginCredentials: string;
 }
 
 const ErrorCodes: ErrorCodesInterface = Object.freeze({
@@ -14,6 +16,8 @@ const ErrorCodes: ErrorCodesInterface = Object.freeze({
   userNotFound: 'auth/user-not-found',
   wrongPassword: 'auth/wrong-password',
   missingPassword: 'auth/missing-password',
+  tooManyRequests: 'auth/too-many-requests',
+  invalidLoginCredentials: 'auth/invalid-login-credentials',
 });
 
 export default ErrorCodes;
