@@ -71,3 +71,5 @@ yarn-error.log
 .vscode/settings.json
 
 .env
+
+functions/node_modules/
