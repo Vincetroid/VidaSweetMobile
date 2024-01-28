@@ -1,6 +1,7 @@
 import { AddRemoveProduct } from './AddRemoveProduct';
 import { AddRemoveToFavorites } from './AddRemoveToFavorites';
 import { AddressRow } from './AddressRow';
+import { AuthenticatedUser } from './AuthenticatedUser';
 import { BackButton } from './BackButton';
 import { Button } from './Button';
 import { ChatWrapper } from './ChatWrapper';
@@ -18,6 +19,7 @@ export {
   AddRemoveProduct,
   AddRemoveToFavorites,
   AddressRow,
+  AuthenticatedUser,
   BackButton,
   Button,
   ChatWrapper,

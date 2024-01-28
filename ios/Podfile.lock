@@ -343,7 +343,7 @@ PODS:
   - React-jsinspector (0.72.3)
   - React-logger (0.72.3):
     - glog
-  - react-native-safe-area-context (4.8.2):
+  - react-native-safe-area-context (4.7.4):
     - React-Core
   - React-NativeModulesApple (0.72.3):
     - React-callinvoker
@@ -450,17 +450,38 @@ PODS:
     - React-jsi (= 0.72.3)
     - React-logger (= 0.72.3)
     - React-perflogger (= 0.72.3)
-  - RNCAsyncStorage (1.21.0):
+  - RNCAsyncStorage (1.19.8):
     - React-Core
   - RNGestureHandler (2.14.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - RNScreens (3.29.0):
+  - RNScreens (3.27.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
   - RNSVG (13.14.0):
     - React-Core
   - SocketRocket (0.6.1)
+  - Stripe (22.8.4):
+    - Stripe/Stripe3DS2 (= 22.8.4)
+    - StripeApplePay (= 22.8.4)
+    - StripeCore (= 22.8.4)
+    - StripeUICore (= 22.8.4)
+  - stripe-react-native (0.19.0):
+    - React-Core
+    - Stripe (~> 22.8.1)
+    - StripeFinancialConnections (~> 22.8.1)
+  - Stripe/Stripe3DS2 (22.8.4):
+    - StripeApplePay (= 22.8.4)
+    - StripeCore (= 22.8.4)
+    - StripeUICore (= 22.8.4)
+  - StripeApplePay (22.8.4):
+    - StripeCore (= 22.8.4)
+  - StripeCore (22.8.4)
+  - StripeFinancialConnections (22.8.4):
+    - StripeCore (= 22.8.4)
+    - StripeUICore (= 22.8.4)
+  - StripeUICore (22.8.4):
+    - StripeCore (= 22.8.4)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -531,6 +552,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -548,6 +570,11 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - SocketRocket
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeFinancialConnections
+    - StripeUICore
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -635,6 +662,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  stripe-react-native:
+    :path: "../node_modules/@stripe/stripe-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -671,7 +700,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 2c15ba1bace70177492368d5180b564f165870fd
   React-jsinspector: b511447170f561157547bc0bef3f169663860be7
   React-logger: c5b527272d5f22eaa09bb3c3a690fee8f237ae95
-  react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
+  react-native-safe-area-context: 2cd91d532de12acdb0a9cbc8d43ac72a8e4c897c
   React-NativeModulesApple: bfbb84f3e6a1b919791b57303524de557ba45fef
   React-perflogger: 6bd153e776e6beed54c56b0847e1220a3ff92ba5
   React-RCTActionSheet: c0b62af44e610e69d9a2049a682f5dba4e9dff17
@@ -689,11 +718,17 @@ SPEC CHECKSUMS:
   React-runtimescheduler: af0b24628c1d543a3f87251c9efa29c5a589e08a
   React-utils: bcb57da67eec2711f8b353f6e3d33bd8e4b2efa3
   ReactCommon: d7d63a5b3c3ff29304a58fc8eb3b4f1b077cd789
-  RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
+  RNCAsyncStorage: 687bb9e85dd3d45b966662440dcfc0cd962347e6
   RNGestureHandler: 32a01c29ecc9bb0b5bf7bc0a33547f61b4dc2741
-  RNScreens: 3c5b9f4a9dcde752466854b6109b79c0e205dad3
+  RNScreens: 3c2d122f5e08c192e254c510b212306da97d2581
   RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  Stripe: 59f6659e8ea413def19c97c57e23f5ec6ea48cf8
+  stripe-react-native: 0e50141806454839806143db5ce514a0cddd4d12
+  StripeApplePay: 6e9aebd3d248464836e9fbdaef6e5fb1817d56a6
+  StripeCore: 193f27552fb98108ebfe0df11651fe5f38948305
+  StripeFinancialConnections: 955c345ada7d0dff1a9bd15c4ebc97eacce4ac75
+  StripeUICore: 6a5bbea0164d63bd91000f001903e7901859e1a4
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

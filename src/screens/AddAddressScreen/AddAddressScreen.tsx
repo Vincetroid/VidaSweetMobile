@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import RNPhoneCodeSelect from 'react-native-phone-code-select';
 import { useNavigation } from '@react-navigation/native';
 import { CountryPhoneCodeItem } from '@/interfaces';
+import { CardField, useStripe } from '@stripe/stripe-react-native';
 import {
   Button,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
@@ -13,6 +14,7 @@ import { styles } from './AddAddressScreen.styles';
 export const AddAddressScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { confirmPayment } = useStripe();
 
   const [addressName, setAddressName] = useState<string>('');
   const [street, setStreet] = useState<string>('');
@@ -33,6 +35,7 @@ export const AddAddressScreen = () => {
   const onSaveAddress = () => {
     navigation.navigate('AddAddress');
   };
+
   const onSelectCountry = (countryDialCode: string) => {
     setCountryPhoneCode(countryDialCode as string);
   };
@@ -41,6 +44,27 @@ export const AddAddressScreen = () => {
     <SafeAreaView style={styles.safeAreaView}>
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <>
+          <CardField
+            postalCodeEnabled={true}
+            placeholders={{
+              number: '4242 4242 4242 4242',
+            }}
+            cardStyle={{
+              backgroundColor: '#FFFFFF',
+              textColor: '#000000',
+            }}
+            style={{
+              width: '100%',
+              height: 50,
+              marginVertical: 30,
+            }}
+            onCardChange={cardDetails => {
+              console.log('cardDetails', cardDetails);
+            }}
+            onFocus={focusedField => {
+              console.log('focusField', focusedField);
+            }}
+          />
           <TextInput
             value={addressName}
             editable={!loader}
