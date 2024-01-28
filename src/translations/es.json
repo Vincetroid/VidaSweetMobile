@@ -28,6 +28,7 @@
   "NetworkRequestFailed": "Error, por favor revisa tu conexión a internet e intenta de nuevo",
   "Password": "contraseña",
   "PhoneNumber": "Número de Télefono (Cel / Local)",
+  "RegistrationCompleted": "Has completado tu registro, navega por la app y agrega algo a tu carrito",
   "Save": "Guardar",
   "SecurePaymentsWithText": "Compras protegidas con {{vendor}}",
   "SelectAddress": "Selecciona una dirección",

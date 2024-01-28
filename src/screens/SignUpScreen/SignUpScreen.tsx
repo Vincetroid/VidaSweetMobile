@@ -30,7 +30,7 @@ export const SignUpScreen = () => {
         setUserName('');
         setEmail('');
         setPassword('');
-        Alert.alert('Registration Completed');
+        Alert.alert(t('RegistrationCompleted'));
       })
       .catch(error => {
         const errorCode = error.code;
