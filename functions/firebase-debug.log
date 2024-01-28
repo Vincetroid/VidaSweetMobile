@@ -1,0 +1,131 @@
+[debug] [2024-01-28T08:03:48.896Z] ----------------------------------------------------------------------
+[debug] [2024-01-28T08:03:48.897Z] Command:       /Users/vince/.nvm/versions/node/v18.2.0/bin/node /Users/vince/.nvm/versions/node/v18.2.0/bin/firebase deploy --only functions
+[debug] [2024-01-28T08:03:48.898Z] CLI Version:   13.0.2
+[debug] [2024-01-28T08:03:48.898Z] Platform:      darwin
+[debug] [2024-01-28T08:03:48.898Z] Node Version:  v18.2.0
+[debug] [2024-01-28T08:03:48.900Z] Time:          Sun Jan 28 2024 02:03:48 GMT-0600 (Central Standard Time)
+[debug] [2024-01-28T08:03:48.900Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-01-28T08:03:48.939Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-01-28T08:03:48.939Z] > authorizing via signed-in user (vincetroid@gmail.com)
+[debug] [2024-01-28T08:03:48.939Z] [iam] checking project vida-sweet for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-01-28T08:03:48.940Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions [none]
+[debug] [2024-01-28T08:03:48.941Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:48.941Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-01-28T08:03:49.407Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions 200
+[debug] [2024-01-28T08:03:49.408Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-01-28T08:03:49.408Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/vida-sweet/serviceAccounts/vida-sweet@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-01-28T08:03:49.409Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/vida-sweet/serviceAccounts/vida-sweet@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-01-28T08:03:49.805Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/vida-sweet/serviceAccounts/vida-sweet@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-01-28T08:03:49.805Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/vida-sweet/serviceAccounts/vida-sweet@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'vida-sweet'...
+[info] 
+[info] i  deploying functions 
+[debug] [2024-01-28T08:03:49.808Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet [none]
+[debug] [2024-01-28T08:03:50.105Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet 200
+[debug] [2024-01-28T08:03:50.106Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet {"projectId":"vida-sweet","projectNumber":"532803335847","displayName":"vida-sweet","name":"projects/vida-sweet","resources":{"hostingSite":"vida-sweet"},"state":"ACTIVE","etag":"1_1db4080e-c099-46bf-9f57-81c394495e8a"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-01-28T08:03:50.106Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-01-28T08:03:50.107Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:50.108Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-01-28T08:03:50.108Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:50.109Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudbuild.googleapis.com [none]
+[debug] [2024-01-28T08:03:50.109Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudbuild.googleapis.com x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:50.110Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/artifactregistry.googleapis.com [none]
+[debug] [2024-01-28T08:03:50.110Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/artifactregistry.googleapis.com x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:50.730Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/runtimeconfig.googleapis.com 200
+[debug] [2024-01-28T08:03:50.730Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-01-28T08:03:50.731Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudfunctions.googleapis.com 200
+[debug] [2024-01-28T08:03:50.731Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-01-28T08:03:50.732Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudbuild.googleapis.com 200
+[debug] [2024-01-28T08:03:50.732Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-01-28T08:03:51.518Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/artifactregistry.googleapis.com 200
+[debug] [2024-01-28T08:03:51.518Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/vida-sweet/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-01-28T08:03:51.519Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet/adminSdkConfig [none]
+[debug] [2024-01-28T08:03:51.764Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet/adminSdkConfig 200
+[debug] [2024-01-28T08:03:51.765Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet/adminSdkConfig {"projectId":"vida-sweet","storageBucket":"vida-sweet.appspot.com"}
+[debug] [2024-01-28T08:03:51.766Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs [none]
+[debug] [2024-01-28T08:03:52.123Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs 200
+[debug] [2024-01-28T08:03:52.123Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs {"configs":[{"name":"projects/vida-sweet/configs/stripe"}]}
+[debug] [2024-01-28T08:03:52.124Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables [none]
+[debug] [2024-01-28T08:03:52.380Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables 200
+[debug] [2024-01-28T08:03:52.380Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables {"variables":[{"name":"projects/vida-sweet/configs/stripe/variables/secret_key","updateTime":"2024-01-28T07:59:09.995742614Z"},{"name":"projects/vida-sweet/configs/stripe/variables/token","updateTime":"2023-12-18T07:29:37.720572630Z"},{"name":"projects/vida-sweet/configs/stripe/variables/payments_webhook_secret","updateTime":"2023-12-18T08:57:45.322126217Z"}]}
+[debug] [2024-01-28T08:03:52.382Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/secret_key [none]
+[debug] [2024-01-28T08:03:52.388Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/token [none]
+[debug] [2024-01-28T08:03:52.395Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/payments_webhook_secret [none]
+[debug] [2024-01-28T08:03:52.578Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/token 200
+[debug] [2024-01-28T08:03:52.578Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/token {"name":"projects/vida-sweet/configs/stripe/variables/token","updateTime":"2023-12-18T07:29:37.720572630Z","text":"sk_test_51NhLavJtqsgJaMJE2Rz4n6fcWOhvITE5T8oUADeEkAnM7FdoSgLdOsqXVT9w9WeQ431ZOAAf6HvpjrdE4WEvd5Au00SMiWrlX6"}
+[debug] [2024-01-28T08:03:52.623Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/payments_webhook_secret 200
+[debug] [2024-01-28T08:03:52.623Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/payments_webhook_secret {"name":"projects/vida-sweet/configs/stripe/variables/payments_webhook_secret","updateTime":"2023-12-18T08:57:45.322126217Z","text":"whsec_nWqCZRKv2Geo0wDmvNLT19u3yegor2gS"}
+[debug] [2024-01-28T08:03:52.768Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/secret_key 200
+[debug] [2024-01-28T08:03:52.770Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/vida-sweet/configs/stripe/variables/secret_key {"name":"projects/vida-sweet/configs/stripe/variables/secret_key","updateTime":"2024-01-28T07:59:09.995742614Z","text":"sk_test_51NhLavJtqsgJaMJE2Rz4n6fcWOhvITE5T8oUADeEkAnM7FdoSgLdOsqXVT9w9WeQ431ZOAAf6HvpjrdE4WEvd5Au00SMiWrlX6"}
+[debug] [2024-01-28T08:03:52.775Z] Validating nodejs source
+[debug] [2024-01-28T08:03:53.516Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1",
+    "stripe": "^14.14.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2024-01-28T08:03:53.517Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-01-28T08:03:53.518Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-01-28T08:03:53.524Z] Found firebase-functions binary at '/Users/vince/Documents/Projects/VidaSweetMobile/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8009
+
+[debug] [2024-01-28T08:03:54.212Z] Got response from /__/functions.yaml {"endpoints":{"createStripeCheckout":{"platform":"gcfv1","labels":{},"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"callableTrigger":{},"entryPoint":"createStripeCheckout"},"stripeWebhook":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"httpsTrigger":{},"entryPoint":"stripeWebhook"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /Users/vince/Documents/Projects/VidaSweetMobile/functions (131.62 KB) for uploading 
+[debug] [2024-01-28T08:03:54.252Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/-/functions [none]
+[debug] [2024-01-28T08:03:54.805Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/-/functions 200
+[debug] [2024-01-28T08:03:54.805Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/-/functions {}
+[debug] [2024-01-28T08:03:54.807Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/vida-sweet/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-01-28T08:03:55.336Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/vida-sweet/locations/-/functions 200
+[debug] [2024-01-28T08:03:55.337Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/vida-sweet/locations/-/functions {}
+[debug] [2024-01-28T08:03:55.340Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet [none]
+[debug] [2024-01-28T08:03:55.599Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet 200
+[debug] [2024-01-28T08:03:55.600Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vida-sweet {"projectId":"vida-sweet","projectNumber":"532803335847","displayName":"vida-sweet","name":"projects/vida-sweet","resources":{"hostingSite":"vida-sweet"},"state":"ACTIVE","etag":"1_1db4080e-c099-46bf-9f57-81c394495e8a"}
+[debug] [2024-01-28T08:03:55.601Z] [functions] found 1 new HTTP functions, testing setIamPolicy permission...
+[debug] [2024-01-28T08:03:55.602Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions [none]
+[debug] [2024-01-28T08:03:55.602Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions x-goog-quota-user=projects/vida-sweet
+[debug] [2024-01-28T08:03:55.602Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2024-01-28T08:03:55.981Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions 200
+[debug] [2024-01-28T08:03:55.981Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vida-sweet:testIamPermissions {"permissions":["cloudfunctions.functions.setIamPolicy"]}
+[debug] [2024-01-28T08:03:55.982Z] [functions] found setIamPolicy permission, proceeding with deploy
+[debug] [2024-01-28T08:03:55.983Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2024-01-28T08:03:55.983Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions:generateUploadUrl {}
+[debug] [2024-01-28T08:03:56.566Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2024-01-28T08:03:56.566Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip?GoogleAccessId=service-532803335847@gcf-admin-robot.iam.gserviceaccount.com&Expires=1706430836&Signature=ETTOPDAKWgeheymdtokDEpOtXTIexz14xW8xO8PTMC1UbUBhuPfVSpDNQZgSnNB5UzN2Fb%2BTq%2FyeacMM2m%2FyfhgAb9qTyiFOdklcfLW8vEngQ8%2FT8734MtvE%2Bwc38FTU0VvQMCWpvCM8MTDRycX%2F6D4uSeag%2BPEVkZxhSDVT2XwEWWg7jbfJhBpWTNRSAeqrd3oZCX4yNEcLt21LGfRGziNTyXTO6f%2F3iLAkS0b6gD2eKPG4IXRNzeQY%2BlJO0MgpBI6KrBd7CuLePHaabTzPZHtpQI6bEYnuAmMw2PqeS%2FC07ATyJjdeMof97ZKGIUBNYqj2Xh2CsnNy2qLsKDpP9Q%3D%3D"}
+[debug] [2024-01-28T08:03:56.568Z] >>> [apiv2][query] PUT https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip GoogleAccessId=service-532803335847%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1706430836&Signature=ETTOPDAKWgeheymdtokDEpOtXTIexz14xW8xO8PTMC1UbUBhuPfVSpDNQZgSnNB5UzN2Fb%2BTq%2FyeacMM2m%2FyfhgAb9qTyiFOdklcfLW8vEngQ8%2FT8734MtvE%2Bwc38FTU0VvQMCWpvCM8MTDRycX%2F6D4uSeag%2BPEVkZxhSDVT2XwEWWg7jbfJhBpWTNRSAeqrd3oZCX4yNEcLt21LGfRGziNTyXTO6f%2F3iLAkS0b6gD2eKPG4IXRNzeQY%2BlJO0MgpBI6KrBd7CuLePHaabTzPZHtpQI6bEYnuAmMw2PqeS%2FC07ATyJjdeMof97ZKGIUBNYqj2Xh2CsnNy2qLsKDpP9Q%3D%3D
+[debug] [2024-01-28T08:03:56.568Z] >>> [apiv2][body] PUT https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip [stream]
+[debug] [2024-01-28T08:03:57.625Z] <<< [apiv2][status] PUT https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip 200
+[debug] [2024-01-28T08:03:57.626Z] <<< [apiv2][body] PUT https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip [omitted]
+[info] ✔  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (1st Gen) function createStripeCheckout(us-central1)... 
+[info] i  functions: creating Node.js 18 (1st Gen) function stripeWebhook(us-central1)... 
+[debug] [2024-01-28T08:03:57.630Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions [none]
+[debug] [2024-01-28T08:03:57.630Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v1/projects/vida-sweet/locations/us-central1/functions {"name":"projects/vida-sweet/locations/us-central1/functions/createStripeCheckout","sourceUploadUrl":"https://storage.googleapis.com/uploads-1050062702539.us-central1.cloudfunctions.appspot.com/50eb5be5-0d3a-4706-a270-517ca45ed2b0.zip?GoogleAccessId=service-532803335847@gcf-admin-robot.iam.gserviceaccount.com&Expires=1706430836&Signature=ETTOPDAKWgeheymdtokDEpOtXTIexz14xW8xO8PTMC1UbUBhuPfVSpDNQZgSnNB5UzN2Fb%2BTq%2FyeacMM2m%2FyfhgAb9qTyiFOdklcfLW8vEngQ8%2FT8734MtvE%2Bwc38FTU0VvQMCWpvCM8MTDRycX%2F6D4uSeag%2BPEVkZxhSDVT2XwEWWg7jbfJhBpWTNRSAeqrd3oZCX4yNEcLt21LGfRGziNTyXTO6f%2F3iLAkS0b6gD2eKPG4IXRNzeQY%2BlJO0MgpBI6KrBd7CuLePHaabTzPZHtpQI6bEYnuAmMw2PqeS%2FC07ATyJjdeMof97ZKGIUBNYqj2Xh2CsnNy2qLsKDpP9Q%3D%3D","entryPoint":"createStripeCheckout","runtime":"nodejs18","dockerRegistry":"ARTIFACT_REGISTRY","labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"4ade1a98b87e71a1bafff811722180108b86d4ba"},"httpsTrigger":{"securityLevel":"SECURE_ALWAYS"},"minInstances":null,"maxInstances":null,"ingressSettings":null,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"vida-sweet\",\"storageBucket\":\"vida-sweet.appspot.com\"}","GCLOUD_PROJECT":"vida-sweet","EVENTARC_CLOUD_EVENT_SOURCE":"projects/vida-sweet/locations/us-central1/functions/createStripeCheckout"},"serviceAccountEmail":null,"availableMemoryMb":null,"timeout":null,"vpcConnector":null,"vpcConnectorEgressSettings":null,"buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}}
