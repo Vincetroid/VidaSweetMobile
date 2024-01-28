@@ -1,41 +1,31 @@
 import React, { useState } from 'react';
-import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, Text, TextInput, View } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import styles from './SignInScreen.styles';
-// import handleErrors from '../../utils/handleErrors';
 
 export const SignInScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('a@hotmail.com');
-  const [password, setPassword] = useState('1234567');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
   const onSignInPress = async () => {
-    console.log('PRESIONANDO');
     setLoader(true);
     const auth = getAuth();
 
     try {
-      const signInResponse = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      console.log('signInResponse');
-      console.log(signInResponse);
+      await signInWithEmailAndPassword(auth, email, password);
       setLoader(false);
       setEmail('');
       setPassword('');
-      Alert.alert('Successful login');
     } catch (error) {
       console.log('error');
       const errorCode = error.code;
