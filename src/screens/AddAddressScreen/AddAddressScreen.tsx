@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { Platform, SafeAreaView, TextInput, View } from 'react-native';
+// const functions = require('firebase-functions');
+// const functions = require('firebase-functions/v1');
+// import { firebase } from 'firebase-functions/v1';
 import { useTranslation } from 'react-i18next';
 import RNPhoneCodeSelect from 'react-native-phone-code-select';
+import functions from '@react-native-firebase/functions';
 import { useNavigation } from '@react-navigation/native';
 import { CountryPhoneCodeItem } from '@/interfaces';
+// import { STRIPE_PUBLISHABLE_KEY } from '@env';
 import { CardField, useStripe } from '@stripe/stripe-react-native';
 import {
   Button,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
 import { styles } from './AddAddressScreen.styles';
+
+// import functions from '@react-native-firebase/functions';
+// Use a local emulator in development
+// if (__DEV__) {
+//   console.log('INSIDE DEV');
+//   // If you are running on a physical device, replace http://localhost with the local ip of your PC. (http://192.168.x.x)
+//   functions().useEmulator('localhost', 5001);
+// }
 
 export const AddAddressScreen = () => {
   const { t } = useTranslation();
@@ -36,6 +49,39 @@ export const AddAddressScreen = () => {
     navigation.navigate('AddAddress');
   };
 
+  const doTheMagic = () => {
+    console.log('0000');
+    //TE QUEDASTE AQUI EN EL FRONT
+    //DE DONDE SE OBTIENE firebase, functions y Stripe?
+    //NO ESTAS TAN PERDIDO PORQUE ESTO DESPLIEGA HTML ASI QUE NO ES COMPATIBLE, BUSCAR QUE SI
+    // const createStripeCheckout = firebase
+    //   .functions()
+    //   .httpsCallable('createStripeCheckout');
+    // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    // createStripeCheckout().then(response => {
+    //   const sessionId = response.data.id;
+    //   stripe.redirectToCheckout({ sessionId: sessionId });
+    // });
+
+    const createStripeCheckout = functions().httpsCallable(
+      'createStripeCheckout',
+    );
+
+    // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+
+    createStripeCheckout()
+      .then(response => {
+        const sessionId = response.data.id;
+        console.log('sessionId');
+        console.log(sessionId);
+        // stripe.redirectToCheckout({ sessionId: sessionId });
+      })
+      .catch(e => {
+        console.log('error');
+        console.log(e);
+      });
+  };
+
   const onSelectCountry = (countryDialCode: string) => {
     setCountryPhoneCode(countryDialCode as string);
   };
@@ -44,6 +90,7 @@ export const AddAddressScreen = () => {
     <SafeAreaView style={styles.safeAreaView}>
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <>
+          <Button title="¡Haz Magia!" onPress={doTheMagic} />
           <CardField
             postalCodeEnabled={true}
             placeholders={{

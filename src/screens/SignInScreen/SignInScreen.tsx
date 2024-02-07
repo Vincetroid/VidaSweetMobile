@@ -11,8 +11,8 @@ export const SignInScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('b@hotmail.com');
+  const [password, setPassword] = useState('12345678');
   const [loader, setLoader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : 'black' };

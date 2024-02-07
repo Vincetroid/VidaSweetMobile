@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "532803335847",
+    "project_id": "vida-sweet",
+    "storage_bucket": "vida-sweet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532803335847:android:6d495055f7739af3408d82",
+        "android_client_info": {
+          "package_name": "com.vidasweetmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASJzRA298K3E5hwQhP2Hwgsm2AV-qHCkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

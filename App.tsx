@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
+import functions from '@react-native-firebase/functions';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import { AuthenticatedUser } from './src/components';
@@ -8,6 +9,13 @@ import { useFirebaseAuth } from './src/hooks';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import './i18n.config';
+// Use a local emulator in development
+if (__DEV__) {
+  console.log('INSIDE DEV', __DEV__);
+  // If you are running on a physical device, replace http://localhost with the local ip of your PC. (http://192.168.x.x)
+  // functions().useEmulator('localhost', 5001);
+  console.log(functions);
+}
 
 const App = () => {
   const auth = getAuth();
