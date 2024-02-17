@@ -1,10 +1,9 @@
-import { addDoc, collection, getDocs, Timestamp } from 'firebase/firestore';
-import Note from '../types/Note';
-import { createRandomNote } from '../utils/Faker';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { createRandomDataWithFaker } from '@/utils/Faker';
 import { db } from './conf';
 
-const getNotes = async () => {
-  const notesCollection = collection(db, 'notes');
+const getRandomData = async () => {
+  const notesCollection = collection(db, 'randomTestData');
   const notesSnapshotOfDocuments = await getDocs(notesCollection);
   const notesList = notesSnapshotOfDocuments.docs.map(doc => {
     const data = doc.data();
@@ -12,19 +11,36 @@ const getNotes = async () => {
     const docId = doc.id;
     return { docId, ...data };
   });
-  return notesList as Array<Note>;
+  console.log('notesList');
+  console.log(notesList);
+  return notesList as Array<any>;
 };
 
-const setNote = async (title: string, description: string) => {
-  // To create random notes
-  // const { title, description, create_timestamp } = await createRandomNote();
+const setRandomData = async () => {
+  const { color, description, create_timestamp, parangaricutirimicuaro } =
+    createRandomDataWithFaker();
 
-  // To create notes from form
-  await addDoc(collection(db, 'notes'), {
-    title,
-    description,
-    create_timestamp: new Date(),
-  });
+  // try {
+  addDoc(collection(db, 'randomTestData'), {
+    color,
+    description: description,
+    create_timestamp: create_timestamp,
+    parangaricutirimicuaro,
+  })
+    .then(res => {
+      console.log('res');
+      console.log(res);
+    })
+    .catch(error => {
+      console.log('error');
+      console.log(error);
+    });
+  // console.log('result');
+  // console.log(result);
+  // } catch (error) {
+  //   console.log('error');
+  //   console.log(error);
+  // }
 };
 
-export { getNotes, setNote };
+export { getRandomData, setRandomData };

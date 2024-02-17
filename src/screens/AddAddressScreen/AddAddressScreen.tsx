@@ -5,7 +5,8 @@ import { Platform, SafeAreaView, TextInput, View } from 'react-native';
 // import { firebase } from 'firebase-functions/v1';
 import { useTranslation } from 'react-i18next';
 import RNPhoneCodeSelect from 'react-native-phone-code-select';
-import functions from '@react-native-firebase/functions';
+// import functions, { firebase } from '@react-native-firebase/functions';
+// import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigation } from '@react-navigation/native';
 import { CountryPhoneCodeItem } from '@/interfaces';
 // import { STRIPE_PUBLISHABLE_KEY } from '@env';
@@ -63,23 +64,48 @@ export const AddAddressScreen = () => {
     //   stripe.redirectToCheckout({ sessionId: sessionId });
     // });
 
-    const createStripeCheckout = functions().httpsCallable(
-      'createStripeCheckout',
-    );
+    // const createStripeCheckout = firebase
+    //   .functions()
+    //   .httpsCallable('createStripeCheckout');
+    // // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    // createStripeCheckout()
+    //   .then(response => {
+    //     const sessionId = response.data.id;
+    //     // stripe.redirectToCheckout({ sessionId: sessionId });
+    //   })
+    //   .catch(e => {
+    //     console.log('error');
+    //     console.log(e);
+    //   });
 
-    // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    // const result = functions().httpsCallable('sayHello');
 
-    createStripeCheckout()
-      .then(response => {
-        const sessionId = response.data.id;
-        console.log('sessionId');
-        console.log(sessionId);
-        // stripe.redirectToCheckout({ sessionId: sessionId });
-      })
-      .catch(e => {
-        console.log('error');
-        console.log(e);
-      });
+    // result()
+    //   .then(response => {
+    //     console.log('response');
+    //     console.log(response);
+    //   })
+    //   .catch(e => {
+    //     console.log('error');
+    //     console.log(e);
+    //   });
+
+    // if (__DEV__) {
+    //   const result = functions().useEmulator('localhost', 5001);
+
+    //   console.log('result');
+    //   console.log(result);
+
+    //   // result()
+    //   //   .then(response => {
+    //   //     console.log('response');
+    //   //     console.log(response);
+    //   //   })
+    //   //   .catch(e => {
+    //   //     console.log('error');
+    //   //     console.log(e);
+    //   //   });
+    // }
   };
 
   const onSelectCountry = (countryDialCode: string) => {

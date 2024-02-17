@@ -1,7 +1,7 @@
-import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 // import { getFirestore } from 'firebase/firestore';
 import { initializeFirestore } from 'firebase/firestore';
+import functions from '@react-native-firebase/functions';
 import {
   FIREBASE_API_KEY,
   FIREBASE_APP_ID,
@@ -28,6 +28,4 @@ const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
 });
 
-const analytics = getAnalytics(app);
-
-export { analytics, app, db };
+export { app, db, functions };

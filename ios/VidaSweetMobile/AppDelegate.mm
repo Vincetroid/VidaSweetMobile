@@ -3,6 +3,9 @@
 
 #import <React/RCTBundleURLProvider.h>
 
+#import <UIKit/UIKit.h>
+#import <FirebaseCore/FirebaseCore.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -14,6 +17,7 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  // return YES;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

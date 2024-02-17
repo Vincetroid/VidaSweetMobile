@@ -16,6 +16,7 @@ module.exports = {
           '@/interfaces': './src/interfaces',
           '@/api': './src/api',
           '@/global-styles': './src/global-styles',
+          '@/firebase': './src/firebase',
         },
       },
     ],
