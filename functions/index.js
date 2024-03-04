@@ -50,8 +50,9 @@ exports.makeUppercase = functions.firestore
   });
 
 exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
-  // Stripe init
-  const stripe = require('stripe')(functions.config().stripe.secret_key);
+  const stripe = require('stripe')(functions.config().stripe.secret_key); // Pero esta parece que se tiene que asignar primero a través de linea de comandos
+  // const stripe = require('stripe')(STRIPE_WEBHOOK_SECRET); // y este parece que tendría que instalar .env en el proyecto de functions lo que se ve menos factible
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     mode: 'payment',

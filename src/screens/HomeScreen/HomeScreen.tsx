@@ -2,16 +2,12 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
-// import functions from '@react-native-firebase/functions';
 import { functions } from '@/firebase/conf';
-import { getRandomData, setRandomData } from '@/firebase/queries';
-// import { setRandomData } from '@/firebase/queries';
-// import { useNavigation } from '@react-navigation/native';
+import { getCities, setRandomData } from '@/firebase/queries';
 import { gStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { Button, Menu, RowTitle } from '@/components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
-// import { functions } from '../../firebase/conf';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -67,6 +63,48 @@ export const HomeScreen = () => {
     });
   };
 
+  const getCitiesData = () => {
+    getCities().then(result => {
+      console.log('result');
+      console.log(result.length);
+    });
+  };
+
+  const callStripe = () => {
+    const result = functions().httpsCallableFromUrl(
+      'http://127.0.0.1:5001/vida-sweet/us-central1/createStripeCheckout',
+    );
+
+    result()
+      .then(response => {
+        console.log('response');
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log('error');
+        console.log(e);
+      });
+
+    // const createStripeCheckout = firebase
+    //   .functions()
+    //   .httpsCallable('createStripeCheckout');
+
+    // console.log('createStripeCheckout');
+    // console.log(createStripeCheckout);
+    // // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    // createStripeCheckout()
+    //   .then(response => {
+    //     const sessionId = response.data.id;
+    //     console.log('sessionId');
+    //     console.log(sessionId);
+    //     // stripe.redirectToCheckout({ sessionId: sessionId });
+    //   })
+    //   .catch(error => {
+    //     console.log('error');
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
@@ -76,6 +114,8 @@ export const HomeScreen = () => {
         />
         <Button title={t('Create')} onPress={createRandomStuffInDb} />
         <Button title={t('Get')} onPress={getRandomStuff} />
+        <Button title={t('Get Cities')} onPress={getCitiesData} />
+        <Button title={t('Call Stripe')} onPress={callStripe} />
 
         <SliderBox images={images} />
 
