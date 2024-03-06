@@ -1,3 +1,4 @@
+const cors = require('cors')({ allowedHeaders: true, maxAge: 100 });
 const functions = require('firebase-functions'); // V1
 const admin = require('firebase-admin');
 admin.initializeApp();
@@ -80,31 +81,81 @@ exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
   };
 });
 
-exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
-  const stripe = require('stripe')(functions.config().stripe.token);
+exports.stripeWebhook = functions.https.onRequest(async (request, response) => {
   let event;
 
   try {
-    const whSec = functions.config().stripe.payments_webhook_secret;
+    const stripe = require('stripe')(functions.config().stripe.token);
+    const endpointSecret = require('stripe')(
+      functions.config().stripe.payments_webhook_secret,
+    );
 
     event = stripe.webhooks.constructEvent(
-      req.rawBody,
-      req.headers['stripe-signature'],
-      whSec,
+      request.rawBody,
+      request.headers['stripe-signature'],
+      endpointSecret,
     );
   } catch (err) {
     console.error('⚠️ Webhook signature verification failed.');
-    return res.sendStatus(400);
+    return response.sendStatus(400);
   }
 
-  const dataObject = event.data.object;
+  // const dataObject = event.data.object;
 
-  await admin.firestore().collection('orders').doc().set({
-    checkoutSessionId: dataObject.id,
-    paymentStatus: dataObject.payment_status,
-    shippingInfo: dataObject.shipping,
-    amountTotal: dataObject.amount_total,
-  });
+  // await admin.firestore().collection('orders').doc().set({
+  //   checkoutSessionId: dataObject.id,
+  //   paymentStatus: dataObject.payment_status,
+  //   shippingInfo: dataObject.shipping,
+  //   amountTotal: dataObject.amount_total,
+  // });
 
-  return res.sendStatus(200);
+  // return res.sendStatus(200);
+
+  return response.sendStatus(200);
+
+  // cors(request, response, async () => {
+  //   const stripe = require('stripe')(functions.config().stripe.token);
+  //   const endpointSecret = require('stripe')(
+  //     functions.config().stripe.payments_webhook_secret,
+  //   );
+
+  //   //este como que ni hace falta
+  //   // response.set('Access-Control-Allow-Origin', '*');
+  //   // response.set('Access-Control-Allow-Headers', '*');
+
+  //   // console.log('Inside stripeWebhook');
+
+  //   // // This is your Stripe CLI webhook secret for testing your endpoint locally.
+
+  //   // const sig = request.headers['stripe-signature'];
+
+  //   // console.log('request.body2:');
+  //   // // console.log(request.rawBody);
+  //   // console.log(request);
+
+  //   // let event;
+
+  //   // try {
+  //   //   event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+  //   // } catch (err) {
+  //   //   console.log(`Webhook Error: ${err.message}`);
+  //   //   response.status(400).send(`Webhook Error: ${err.message}`);
+  //   //   return;
+  //   // }
+
+  //   // // Handle the event
+  //   // switch (event.type) {
+  //   //   case 'payment_intent.succeeded':
+  //   //     const paymentIntentSucceeded = event.data.object;
+  //   //     // Then define and call a function to handle the event payment_intent.succeeded
+  //   //     break;
+  //   //   // ... handle other event types
+  //   //   default:
+  //   //     console.log(`Unhandled event type ${event.type}`);
+  //   // }
+
+  //   // // Return a 200 response to acknowledge receipt of the event
+  //   // response.send();
+  //   return response.sendStatus(200);
+  // });
 });

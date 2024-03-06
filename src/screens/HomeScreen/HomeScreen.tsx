@@ -2,7 +2,8 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
-import { functions } from '@/firebase/conf';
+// import { functions } from '@/firebase/conf';
+import functions from '@react-native-firebase/functions';
 import { getCities, setRandomData } from '@/firebase/queries';
 import { gStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
@@ -36,14 +37,17 @@ export const HomeScreen = () => {
 
   const testFirebaseFunctions = () => {
     // const result = functions().httpsCallable('createRandomData');
+    // const result = functions().httpsCallableFromUrl(
+    //   // 'http://127.0.0.1:5001/vida-sweet/us-central1/addMessage?text=uppercasemetoo',
+    //   'https://us-central1-vida-sweet.cloudfunctions.net/addMessage?text=uppercasemetoo',
+    // );
     const result = functions().httpsCallableFromUrl(
-      // 'http://127.0.0.1:5001/vida-sweet/us-central1/addMessage?text=uppercasemetoo',
-      'https://us-central1-vida-sweet.cloudfunctions.net/addMessage?text=uppercasemetoo',
+      'https://us-central1-vida-sweet.cloudfunctions.net/stripeWebhook',
     );
-
     result()
       .then(response => {
-        console.log('response');
+        console.log('response webhook: ');
+        console.log(response);
         console.log(response.data);
       })
       .catch(e => {
@@ -71,19 +75,32 @@ export const HomeScreen = () => {
   };
 
   const callStripe = () => {
-    const result = functions().httpsCallableFromUrl(
-      'http://127.0.0.1:5001/vida-sweet/us-central1/createStripeCheckout',
-    );
+    console.log('callStripe2');
 
-    result()
+    console.log('testFirebaseFunctions');
+    functions()
+      .httpsCallable('stripeWebhook')()
       .then(response => {
         console.log('response');
-        console.log(response.data);
+        console.log(response);
       })
       .catch(e => {
-        console.log('error');
         console.log(e);
       });
+
+    // const result = functions().httpsCallableFromUrl(
+    //   'http://127.0.0.1:5001/vida-sweet/us-central1/stripeWebhook',
+    // );
+
+    // result()
+    //   .then(response => {
+    //     console.log('response');
+    //     console.log(response.data);
+    //   })
+    //   .catch(e => {
+    //     console.log('error');
+    //     console.log(e);
+    //   });
 
     // const createStripeCheckout = firebase
     //   .functions()
