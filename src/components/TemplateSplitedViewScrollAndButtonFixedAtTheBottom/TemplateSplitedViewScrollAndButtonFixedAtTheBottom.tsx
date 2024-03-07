@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { ScrollView, View, ViewStyle } from 'react-native';
-import { gStyles } from '@/global-styles';
 import { styles } from './TemplateSplitedViewScrollAndButtonFixedAtTheBottom.styles';
 
 interface TemplateProps {
@@ -17,7 +16,7 @@ export const TemplateSplitedViewScrollAndButtonFixedAtTheBottom = ({
   return (
     <>
       <ScrollView
-        contentContainerStyle={[gStyles.gralMargin, fixedTopViewStyles]}>
+        contentContainerStyle={[styles.gralMargin, fixedTopViewStyles]}>
         {children[0]}
       </ScrollView>
       <View

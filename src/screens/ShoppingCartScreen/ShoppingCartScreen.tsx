@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { Colors, FontSizes, gStyles } from '@/global-styles';
+import { Colors, FontSizes } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
@@ -105,7 +105,7 @@ export const ShoppingCartScreen = () => {
               styleTextTitle={styles.youForgotSomethingTitle}
               styleSecondaryTextTitle={styles.youForgotSomethingSecondaryTitle}
             />
-            <View style={[gStyles.gralMargin, styles.productCardsContainer]}>
+            <View style={[styles.productCardsContainer]}>
               <ProductCard product={product1} />
               <ProductCard product={product2} />
               <ProductCard product={product1} />

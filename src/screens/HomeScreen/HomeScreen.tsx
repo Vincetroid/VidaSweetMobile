@@ -1,11 +1,10 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { SliderBox } from 'react-native-image-slider-box';
+// import { SliderBox } from 'react-native-image-slider-box';
 // import { functions } from '@/firebase/conf';
 import functions from '@react-native-firebase/functions';
 import { getCities, setRandomData } from '@/firebase/queries';
-import { gStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { Button, Menu, RowTitle } from '@/components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
@@ -123,7 +122,7 @@ export const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView testID="home-screen">
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
         <Button
           title={t('Get with Firebase functions')}
@@ -134,7 +133,7 @@ export const HomeScreen = () => {
         <Button title={t('Get Cities')} onPress={getCitiesData} />
         <Button title={t('Call Stripe')} onPress={callStripe} />
 
-        <SliderBox images={images} />
+        {/* <SliderBox images={images} /> */}
 
         <RowTitle title={t('Menu')} centered />
 
@@ -142,7 +141,7 @@ export const HomeScreen = () => {
 
         <RowTitle title={t('TopSellers')} />
 
-        <View style={[gStyles.gralMargin, styles.container]}>
+        <View style={[styles.container]}>
           <ProductCard product={product1} />
           <ProductCard product={product2} />
           <ProductCard product={product1} />
@@ -162,5 +161,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+    margin: 16,
   },
 });

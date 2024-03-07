@@ -4,7 +4,7 @@ import functions from '@react-native-firebase/functions';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import { AuthenticatedUser } from './src/components';
-import { themeStyles } from './src/global-styles/Theme';
+// import { themeStyles } from './src/global-styles/Theme';
 import { useFirebaseAuth } from './src/hooks';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
@@ -39,7 +39,7 @@ const App = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: themeStyles.background,
+      // background: themeStyles.background,
     },
   };
 
