@@ -213,13 +213,13 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView testID="home-screen">
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
-        <Button
+        {/* <Button
           title={t('Get with Firebase functions')}
           onPress={testFirebaseFunctions}
         />
         <Button title={t('Create')} onPress={createRandomStuffInDb} />
         <Button title={t('Get')} onPress={getRandomStuff} />
-        <Button title={t('Get Cities')} onPress={getCitiesData} />
+        <Button title={t('Get Cities')} onPress={getCitiesData} /> */}
         <Button title={t('Call Stripe')} onPress={callStripe} />
 
         <Button
