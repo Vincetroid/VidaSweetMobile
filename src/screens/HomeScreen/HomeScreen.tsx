@@ -1,12 +1,22 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import {
+  Alert,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
 // import { SliderBox } from 'react-native-image-slider-box';
 // import { functions } from '@/firebase/conf';
 import functions from '@react-native-firebase/functions';
 import { getCities, setRandomData } from '@/firebase/queries';
 import { ProductItem } from '@/interfaces';
+import { usePaymentSheet } from '@stripe/stripe-react-native';
 import { Button, Menu, RowTitle } from '@/components';
+import { API_URL } from '../../../Constants';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 
 const images = [
@@ -18,6 +28,85 @@ const images = [
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
+  const [isPaymentReady, setIsPaymentReady] = useState<boolean>(false);
+  const {
+    initPaymentSheet,
+    presentPaymentSheet,
+    loading,
+    resetPaymentSheetCustomer,
+  } = usePaymentSheet();
+
+  useEffect(() => {
+    initialisePaymentSheet();
+  }, []);
+
+  const initialisePaymentSheet = async () => {
+    const { paymentIntent } = await fetchPaymentSheetParams();
+
+    const { error } = await initPaymentSheet({
+      appearance: {
+        colors: {
+          primary: '#e06c75',
+          background: '#282c34',
+          componentBackground: '#abb2bf',
+          componentDivider: '#e5c07b',
+          primaryText: '#61afef',
+          secondaryText: '#c678dd',
+          componentText: '#282c34',
+          icon: '#e06c75',
+          placeholderText: '#ffffff',
+        },
+        shapes: {
+          borderRadius: 25,
+        },
+      },
+      paymentIntentClientSecret: paymentIntent,
+      merchantDisplayName: 'Example Inc.',
+      applePay: {
+        merchantCountryCode: 'US',
+      },
+      googlePay: {
+        merchantCountryCode: 'US',
+        testEnv: true,
+        currencyCode: 'usd',
+      },
+      allowsDelayedPaymentMethods: true,
+      returnURL: 'stripe-example://stripe-redirect',
+    });
+    if (error) {
+      Alert.alert(`Error code: ${error.code}`, error.message);
+    } else {
+      setIsPaymentReady(true);
+    }
+  };
+
+  const fetchPaymentSheetParams = async () => {
+    console.log('fetchPaymentSheetParams');
+    const response = await fetch(`${API_URL}/payment-sheet`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const { paymentIntent, ephemeralKey, customer } = await response.json();
+
+    return {
+      paymentIntent,
+      ephemeralKey,
+      customer,
+    };
+  };
+
+  async function buy() {
+    const { error } = await presentPaymentSheet();
+
+    if (error) {
+      Alert.alert(`Error code: ${error.code}`, error.message);
+    } else {
+      Alert.alert('Success', 'The payment was confirmed successfully');
+      setIsPaymentReady(false);
+    }
+  }
 
   const product1 = {
     img: require('@/assets/products/ice-cream-liter.jpeg'),
@@ -132,6 +221,18 @@ export const HomeScreen = () => {
         <Button title={t('Get')} onPress={getRandomStuff} />
         <Button title={t('Get Cities')} onPress={getCitiesData} />
         <Button title={t('Call Stripe')} onPress={callStripe} />
+
+        <Button
+          title={t('BUY')}
+          onPress={buy}
+          disabled={loading || !isPaymentReady}
+        />
+        <Button
+          title={'Logout'}
+          onPress={async () => {
+            await resetPaymentSheetCustomer();
+          }}
+        />
 
         {/* <SliderBox images={images} /> */}
 
