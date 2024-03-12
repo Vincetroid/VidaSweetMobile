@@ -17,6 +17,7 @@ import { getCities, setRandomData } from '@/firebase/queries';
 import { ProductItem } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import { Button, Menu, RowTitle } from '@/components';
+import handleErrors from '@/utils/handleErrors';
 import { API_URL } from '../../../Constants';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 
@@ -110,10 +111,9 @@ export const HomeScreen = () => {
     const { error } = await presentPaymentSheet();
 
     if (error) {
-      Alert.alert(`Error code: ${error.code}`, error.message);
+      handleErrors(error.code);
     } else {
-      Alert.alert('Success', 'The payment was confirmed successfully');
-      // Alert.alert(t('Success', 'SuccessfulPaymentMsg'));
+      Alert.alert(t('Success'), t('SuccessfulPaymentMsg'));
       setIsPaymentReady(false);
     }
   }

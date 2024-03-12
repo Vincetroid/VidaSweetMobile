@@ -7,6 +7,7 @@ interface ErrorCodesInterface {
   missingPassword: string;
   tooManyRequests: string;
   invalidLoginCredentials: string;
+  stripeCanceled: string;
 }
 
 const ErrorCodes: ErrorCodesInterface = Object.freeze({
@@ -18,6 +19,7 @@ const ErrorCodes: ErrorCodesInterface = Object.freeze({
   missingPassword: 'auth/missing-password',
   tooManyRequests: 'auth/too-many-requests',
   invalidLoginCredentials: 'auth/invalid-login-credentials',
+  stripeCanceled: 'Canceled',
 });
 
 export default ErrorCodes;

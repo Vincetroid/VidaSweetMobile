@@ -28,6 +28,9 @@ const handleErrors = (errorCode: string) => {
     case ErrorCodes.invalidLoginCredentials:
       Alert.alert(ErrorMessages.invalidLoginCredentials);
       break;
+    case ErrorCodes.stripeCanceled:
+      Alert.alert(ErrorMessages.stripeCanceled);
+      break;
     default:
       Alert.alert(`${ErrorMessages.unknownError} ${errorCode}`);
       break;

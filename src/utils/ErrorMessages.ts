@@ -10,6 +10,7 @@ interface ErrorMessagesInterface {
   missingPassword: string;
   tooManyRequests: string;
   invalidLoginCredentials: string;
+  stripeCanceled: string;
 }
 
 const ErrorMessages: ErrorMessagesInterface = Object.freeze({
@@ -22,6 +23,7 @@ const ErrorMessages: ErrorMessagesInterface = Object.freeze({
   missingPassword: i18n.t('MissingPassword'),
   tooManyRequests: i18n.t('TooManyRequests'),
   invalidLoginCredentials: i18n.t('InvalidLoginCredentials'),
+  stripeCanceled: i18n.t('StripeCanceled'),
 });
 
 export default ErrorMessages;
