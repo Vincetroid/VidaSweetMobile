@@ -73,5 +73,12 @@
 		<string>Lato Semibold.ttf</string>
 		<string>Lato Thin.ttf</string>
 	</array>
+  <key>CFBundleAllowMixedLocalizations</key>
+  <string>true</string>
+  <key>CFBundleLocalizations</key>
+  <array>
+      <string>en</string>
+      <string>es</string>
+  </array>
 </dict>
 </plist>

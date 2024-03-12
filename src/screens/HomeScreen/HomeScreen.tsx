@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 // import { functions } from '@/firebase/conf';
 import functions from '@react-native-firebase/functions';
 import { getCities, setRandomData } from '@/firebase/queries';
+import { themeStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import { Button, Menu, RowTitle } from '@/components';
@@ -46,31 +47,38 @@ export const HomeScreen = () => {
     const { paymentIntent } = await fetchPaymentSheetParams();
 
     const { error } = await initPaymentSheet({
+      defaultBillingDetails: {
+        email: 'foo@bar.com', // No se donde se ve esto
+        address: {
+          country: 'MX',
+        },
+      },
       appearance: {
         colors: {
-          primary: '#e06c75',
-          background: '#282c34',
-          componentBackground: '#abb2bf',
-          componentDivider: '#e5c07b',
-          primaryText: '#61afef',
-          secondaryText: '#c678dd',
-          componentText: '#282c34',
-          icon: '#e06c75',
-          placeholderText: '#ffffff',
+          primary: themeStyles.primary,
+          background: themeStyles.background,
+          componentBackground: themeStyles.black,
+          componentDivider: themeStyles.divider,
+          primaryText: themeStyles.text,
+          secondaryText: themeStyles.secondary,
+          componentText: themeStyles.disabled, // Choose country component
+          icon: themeStyles.quaternary,
+          placeholderText: themeStyles.disabled,
+          componentBorder: themeStyles.tertiary,
         },
         shapes: {
           borderRadius: 25,
         },
       },
       paymentIntentClientSecret: paymentIntent,
-      merchantDisplayName: 'Example Inc.',
+      merchantDisplayName: 'Vida Sweet',
       applePay: {
-        merchantCountryCode: 'US',
+        merchantCountryCode: 'MX',
       },
       googlePay: {
-        merchantCountryCode: 'US',
+        merchantCountryCode: 'MX',
         testEnv: true,
-        currencyCode: 'usd',
+        currencyCode: 'mxn',
       },
       allowsDelayedPaymentMethods: true,
       returnURL: 'stripe-example://stripe-redirect',
