@@ -8,6 +8,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import { getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 // import { SliderBox } from 'react-native-image-slider-box';
 // import { functions } from '@/firebase/conf';
@@ -81,12 +82,20 @@ export const HomeScreen = () => {
   };
 
   const fetchPaymentSheetParams = async () => {
+    const auth = getAuth();
+    const userEmail = auth.currentUser?.email;
+
     console.log('fetchPaymentSheetParams');
+    const theBody = {
+      email: userEmail,
+    };
+
     const response = await fetch(`${API_URL}/payment-sheet`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(theBody),
     });
     const { paymentIntent, ephemeralKey, customer } = await response.json();
 
@@ -104,6 +113,7 @@ export const HomeScreen = () => {
       Alert.alert(`Error code: ${error.code}`, error.message);
     } else {
       Alert.alert('Success', 'The payment was confirmed successfully');
+      // Alert.alert(t('Success', 'SuccessfulPaymentMsg'));
       setIsPaymentReady(false);
     }
   }

@@ -13,6 +13,7 @@ import { cartSlice } from '@/redux-content';
 
 const combinedReducer = combineReducers({
   cart: cartSlice,
+  // user: userSlice
 });
 
 const persistConfig = {

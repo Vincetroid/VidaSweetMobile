@@ -4,6 +4,7 @@ import cartSlice, {
   removeGlobalProductCounter,
   removeProduct,
 } from './cart/Cart.slice';
+// import userSlice from './user/User.slice';
 
 export {
   addGlobalProductCounter,
@@ -11,4 +12,5 @@ export {
   cartSlice,
   removeGlobalProductCounter,
   removeProduct,
+  // userSlice,
 };
