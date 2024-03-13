@@ -6,6 +6,7 @@ import { BackButton } from './BackButton';
 import { Button } from './Button';
 import { ChatWrapper } from './ChatWrapper';
 import { Divider } from './Divider';
+import { FullScreenLoader } from './FullScreenLoader';
 import { Menu } from './Menu';
 import { MenuElement } from './MenuElement';
 import { ProductCard } from './ProductCard';
@@ -24,6 +25,7 @@ export {
   Button,
   ChatWrapper,
   Divider,
+  FullScreenLoader,
   Menu,
   MenuElement,
   ProductCard,

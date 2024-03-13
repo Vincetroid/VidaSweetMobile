@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Platform, SafeAreaView, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Platform,
+  SafeAreaView,
+  TextInput,
+  View,
+} from 'react-native';
 import { getAuth } from 'firebase/auth';
 // const functions = require('firebase-functions');
 // const functions = require('firebase-functions/v1');
@@ -13,8 +19,10 @@ import { setAddress } from '@/firebase/queries';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
 import {
   Button,
+  FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import handleErrors from '@/utils/handleErrors';
 import { styles } from './AddAddressScreen.styles';
 
 export const AddAddressScreen = () => {
@@ -37,7 +45,8 @@ export const AddAddressScreen = () => {
 
   const keyboardType = Platform.OS === 'android' ? 'numeric' : 'number-pad';
 
-  const onSaveAddress = () => {
+  const onSaveAddress = async () => {
+    setLoader(true);
     // No añadir la dirección a redux, vamos a ver si puedo directamente
     // en Firestore y cachearla desde esa tecnología después
 
@@ -52,8 +61,16 @@ export const AddAddressScreen = () => {
       specialIndications,
     } as AddressItem;
 
-    setAddress(addressObj);
-    navigation.navigate('AddAddress');
+    try {
+      await setAddress(addressObj);
+      setLoader(false);
+    } catch (error) {
+      const errorCode = error.code;
+      handleErrors(errorCode);
+      setLoader(false);
+    }
+
+    navigation.navigate('DeliveryAddress');
   };
 
   const onSelectCountry = (countryDialCode: string) => {
@@ -62,6 +79,7 @@ export const AddAddressScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <>
           <TextInput

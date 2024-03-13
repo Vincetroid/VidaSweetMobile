@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import functions from '@react-native-firebase/functions';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { themeStyles } from '@/global-styles';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import { AuthenticatedUser } from './src/components';
 // import { themeStyles } from './src/global-styles/Theme';
@@ -39,7 +40,7 @@ const App = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      // background: themeStyles.background,
+      background: themeStyles.background,
     },
   };
 
