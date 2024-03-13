@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
-// import { SliderBox } from 'react-native-image-slider-box';
+import { SliderBox } from 'react-native-image-slider-box';
 // import { functions } from '@/firebase/conf';
 import functions from '@react-native-firebase/functions';
 import { getCities, setRandomData } from '@/firebase/queries';
@@ -238,7 +238,7 @@ export const HomeScreen = () => {
         <Button title={t('Create')} onPress={createRandomStuffInDb} />
         <Button title={t('Get')} onPress={getRandomStuff} />
         <Button title={t('Get Cities')} onPress={getCitiesData} /> */}
-        <Button title={t('Call Stripe')} onPress={callStripe} />
+        {/* <Button title={t('Call Stripe')} onPress={callStripe} /> */}
 
         <Button
           title={t('BUY')}
@@ -252,7 +252,7 @@ export const HomeScreen = () => {
           }}
         />
 
-        {/* <SliderBox images={images} /> */}
+        <SliderBox images={images} />
 
         <RowTitle title={t('Menu')} centered />
 

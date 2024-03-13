@@ -35,3 +35,14 @@ export interface CountryPhoneCodeItem {
   flag: string;
   name: string;
 }
+
+export interface AddressItem {
+  addressName: string;
+  street: string;
+  exteriorNumber: string;
+  interiorNumber: string;
+  zipCode: string;
+  countryPhoneCode: string;
+  phoneNumber: string;
+  specialIndications: string;
+}

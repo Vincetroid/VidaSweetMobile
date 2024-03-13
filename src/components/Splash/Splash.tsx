@@ -37,7 +37,6 @@ export const Splash = ({ label }: SplashProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: themeStyles.background,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

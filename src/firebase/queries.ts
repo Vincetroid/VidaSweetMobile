@@ -1,5 +1,7 @@
 // import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import { addDoc, collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { AddressItem } from '@/interfaces';
 import { createRandomDataWithFaker } from '@/utils/Faker';
 import { db } from './conf';
 
@@ -37,6 +39,23 @@ const setRandomData = async () => {
   }
 };
 
+const setAddress = async (address: AddressItem) => {
+  const auth = getAuth();
+  const userUID = auth.currentUser?.uid;
+
+  try {
+    const docRef = await addDoc(collection(db, 'addresses'), {
+      ...address,
+      userUID,
+    });
+
+    console.log(docRef);
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
 async function getCities() {
   const citiesCol = collection(db, 'cities');
   const citySnapshot = await getDocs(citiesCol);
@@ -47,4 +66,4 @@ async function getCities() {
 }
 
 // export { getRandomData, setRandomData };
-export { getCities, setRandomData };
+export { getCities, setAddress, setRandomData };
