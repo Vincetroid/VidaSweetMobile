@@ -1,8 +1,7 @@
 // import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { AddressItem } from '@/interfaces';
-import { createRandomDataWithFaker } from '@/utils/Faker';
 import { db } from './conf';
 
 // const getRandomData = async () => {
@@ -56,14 +55,11 @@ const setAddress = async (address: AddressItem) => {
   }
 };
 
-async function getCities() {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  console.log('cityList');
-  console.log(cityList);
-  return cityList;
-}
+const getAddresses = async () => {
+  const addressesCollection = collection(db, 'addresses');
+  const addressesDocsSnapshot = await getDocs(addressesCollection);
+  const addresses = addressesDocsSnapshot.docs.map(doc => doc.data());
+  return addresses;
+};
 
-// export { getRandomData, setRandomData };
-export { getCities, setAddress, setRandomData };
+export { getAddresses, setAddress, setRandomData };

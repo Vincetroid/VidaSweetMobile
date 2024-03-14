@@ -1,83 +1,53 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { FontFamilies, FontSizes, themeStyles } from '@/global-styles';
+import { getAddresses } from '@/firebase/queries';
 import { AddressItem } from '@/interfaces';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   AddressRow,
   Button,
+  FullScreenLoader,
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import handleErrors from '@/utils/handleErrors';
 import { styles } from './DeliveryAddressScreen.styles';
 
 export const DeliveryAddressScreen = () => {
   const ICON_BTN_SIZE = 18;
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const [addresses, setAddresses] = useState<AddressItem[]>([]);
+  const [loader, setLoader] = useState<boolean>(false);
 
-  const address1 = {
-    id: 'd34akj432',
-    fullAddress:
-      'Calle 29, 85, El Sol, Estado de México, Nezahualcóyotl, 57200',
-    isEditable: true,
-    isFavorite: false,
-  } as AddressItem;
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', async () => {
+      setLoader(true);
+      try {
+        await pullAddresses();
+        setLoader(false);
+      } catch (error) {
+        handleErrors(error.code);
+      }
+    });
 
-  const address2 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
+    return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const address3 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-
-  const address4 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-  const address5 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-
-  const address6 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-  const address7 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-  const address8 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
-  const address9 = {
-    id: 'j43d34ak2',
-    fullAddress: 'Dr. García Diego 201, Col. Doctores, Cuauhtémoc, CDMX, 63000',
-    isEditable: true,
-    isFavorite: true,
-  } as AddressItem;
+  const pullAddresses = async () => {
+    try {
+      const addressesList = await getAddresses();
+      console.log('addressesList');
+      console.log(addressesList);
+      setAddresses(addressesList);
+    } catch (error) {
+      handleErrors(error.code);
+    }
+  };
 
   const onPressContinue = () => {
     // navigation.navigate('DeliveryAddress');
@@ -89,6 +59,7 @@ export const DeliveryAddressScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
+      {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <>
           <RowTitle
@@ -96,11 +67,9 @@ export const DeliveryAddressScreen = () => {
             styleTextTitle={styles.selectAddress}
             wrapperStyle={{ marginTop: 0 }}
           />
-          <AddressRow address={address1} />
-          <AddressRow address={address2} />
-          <AddressRow address={address3} />
-          <AddressRow address={address4} />
-          <AddressRow address={address5} />
+          {addresses.map(address => {
+            return <AddressRow address={address} />;
+          })}
           <Button
             onPress={onAddAddress}
             buttonViewStyle={styles.addAnAddressBtn}>

@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  ActivityIndicator,
-  Platform,
-  SafeAreaView,
-  TextInput,
-  View,
-} from 'react-native';
-import { getAuth } from 'firebase/auth';
+import { Platform, SafeAreaView, TextInput, View } from 'react-native';
 // const functions = require('firebase-functions');
 // const functions = require('firebase-functions/v1');
 // import { firebase } from 'firebase-functions/v1';
@@ -33,6 +26,9 @@ export const AddAddressScreen = () => {
   const [street, setStreet] = useState<string>('');
   const [exteriorNumber, setExteriorNumber] = useState<string>('');
   const [interiorNumber, setInteriorNumber] = useState<string>('');
+  const [colonia, setColonia] = useState<string>('');
+  const [municipality, setMunicipality] = useState<string>('');
+  const [state, setState] = useState<string>('');
   const [zipCode, setZipCode] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [specialIndications, setSpecialIndications] = useState<string>('');
@@ -50,15 +46,21 @@ export const AddAddressScreen = () => {
     // No añadir la dirección a redux, vamos a ver si puedo directamente
     // en Firestore y cachearla desde esa tecnología después
 
+    const addressNumber = interiorNumber
+      ? `#${exteriorNumber} Int ${interiorNumber}`
+      : `#${exteriorNumber}`;
+
     const addressObj = {
       addressName,
-      street: street,
+      street,
       exteriorNumber,
       interiorNumber,
       zipCode,
       countryPhoneCode,
       phoneNumber,
       specialIndications,
+      isFavorite: false,
+      fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
     } as AddressItem;
 
     try {
@@ -113,6 +115,33 @@ export const AddAddressScreen = () => {
             style={[styles.textInput, textInputColor]}
             onChangeText={setInteriorNumber}
             placeholder={t('InteriorNumber')}
+            placeholderTextColor="grey"
+            keyboardType={keyboardType}
+          />
+          <TextInput
+            value={colonia}
+            editable={!loader}
+            style={[styles.textInput, textInputColor]}
+            onChangeText={setColonia}
+            placeholder={t('Colonia')}
+            placeholderTextColor="grey"
+            keyboardType={keyboardType}
+          />
+          <TextInput
+            value={municipality}
+            editable={!loader}
+            style={[styles.textInput, textInputColor]}
+            onChangeText={setMunicipality}
+            placeholder={t('Municipality')}
+            placeholderTextColor="grey"
+            keyboardType={keyboardType}
+          />
+          <TextInput
+            value={state}
+            editable={!loader}
+            style={[styles.textInput, textInputColor]}
+            onChangeText={setState}
+            placeholder={t('State')}
             placeholderTextColor="grey"
             keyboardType={keyboardType}
           />

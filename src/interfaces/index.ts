@@ -16,13 +16,6 @@ export interface MenuElementItem {
   title: string;
 }
 
-export interface AddressItem {
-  id: string;
-  fullAddress: string;
-  isEditable: boolean;
-  isFavorite: boolean;
-}
-
 export interface UserItem {
   userName: string;
   email: string;
@@ -37,12 +30,18 @@ export interface CountryPhoneCodeItem {
 }
 
 export interface AddressItem {
+  id: string;
   addressName: string;
   street: string;
   exteriorNumber: string;
   interiorNumber: string;
+  colonia: string;
+  municipality: string;
+  state: string;
   zipCode: string;
   countryPhoneCode: string;
   phoneNumber: string;
   specialIndications: string;
+  isFavorite: boolean;
+  fullAddress: string;
 }

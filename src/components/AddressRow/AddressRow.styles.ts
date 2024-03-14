@@ -44,8 +44,8 @@ export const styles = StyleSheet.create({
   },
   productTitle: {
     textAlign: 'center',
-    fontFamily: 'Lato Bold Italic',
-    fontSize: FontSizes.xx_medium,
+    fontFamily: 'Lato',
+    fontSize: FontSizes.x_medium,
     marginVertical: 2,
   },
   productPrice: {
