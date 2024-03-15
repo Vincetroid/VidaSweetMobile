@@ -68,7 +68,14 @@ export const DeliveryAddressScreen = () => {
             wrapperStyle={{ marginTop: 0 }}
           />
           {addresses.map(address => {
-            return <AddressRow address={address} />;
+            return (
+              <AddressRow
+                address={address}
+                key={address.docId}
+                setLoader={setLoader}
+                pullAddresses={pullAddresses}
+              />
+            );
           })}
           <Button
             onPress={onAddAddress}

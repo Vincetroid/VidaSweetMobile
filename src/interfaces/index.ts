@@ -30,7 +30,7 @@ export interface CountryPhoneCodeItem {
 }
 
 export interface AddressItem {
-  id: string;
+  docId: string;
   addressName: string;
   street: string;
   exteriorNumber: string;

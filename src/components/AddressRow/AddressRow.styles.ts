@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   },
   productTitle: {
     textAlign: 'center',
-    fontFamily: 'Lato',
+    fontFamily: 'Lato Regular',
     fontSize: FontSizes.x_medium,
     marginVertical: 2,
   },
@@ -64,10 +64,8 @@ export const styles = StyleSheet.create({
     height: 'auto',
     aspectRatio: 1,
   },
-  heartWrapperStyle: {
-    // position: 'absolute',
-    // zIndex: 1,
-    // top: 10,
-    // right: 12,
+  iconBtn: {
+    padding: 0,
+    width: 'auto',
   },
 });
