@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Platform, SafeAreaView, TextInput, View } from 'react-native';
+import { serverTimestamp } from 'firebase/firestore';
 // const functions = require('firebase-functions');
 // const functions = require('firebase-functions/v1');
 // import { firebase } from 'firebase-functions/v1';
@@ -8,7 +9,7 @@ import RNPhoneCodeSelect from 'react-native-phone-code-select';
 // import functions, { firebase } from '@react-native-firebase/functions';
 // import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigation } from '@react-navigation/native';
-import { setAddress } from '@/firebase/queries';
+import { editAddress, setAddress } from '@/firebase/queries';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
 import {
   Button,
@@ -16,23 +17,44 @@ import {
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
 import handleErrors from '@/utils/handleErrors';
-import { styles } from './AddAddressScreen.styles';
+import { styles } from './AddressScreen.styles';
 
-export const AddAddressScreen = () => {
+export const AddressScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const streetParam = route.params ? route.params.street : '';
 
-  const [addressName, setAddressName] = useState<string>('');
-  const [street, setStreet] = useState<string>('');
-  const [exteriorNumber, setExteriorNumber] = useState<string>('');
-  const [interiorNumber, setInteriorNumber] = useState<string>('');
-  const [colonia, setColonia] = useState<string>('');
-  const [municipality, setMunicipality] = useState<string>('');
-  const [state, setState] = useState<string>('');
-  const [zipCode, setZipCode] = useState<string>('');
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
-  const [specialIndications, setSpecialIndications] = useState<string>('');
-  const [countryPhoneCode, setCountryPhoneCode] = useState<string>('');
+  const [addressName, setAddressName] = useState<string>(
+    route.params ? route.params.addressName : '',
+  );
+  const [street, setStreet] = useState<string>(streetParam);
+  const [exteriorNumber, setExteriorNumber] = useState<string>(
+    route.params ? route.params.exteriorNumber : '',
+  );
+  const [interiorNumber, setInteriorNumber] = useState<string>(
+    route.params ? route.params.interiorNumber : '',
+  );
+  const [colonia, setColonia] = useState<string>(
+    route.params ? route.params.colonia : '',
+  );
+  const [municipality, setMunicipality] = useState<string>(
+    route.params ? route.params.municipality : '',
+  );
+  const [state, setState] = useState<string>(
+    route.params ? route.params.state : '',
+  );
+  const [zipCode, setZipCode] = useState<string>(
+    route.params ? route.params.zipCode : '',
+  );
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    route.params ? route.params.phoneNumber : '',
+  );
+  const [specialIndications, setSpecialIndications] = useState<string>(
+    route.params ? route.params.specialIndications : '',
+  );
+  const [countryPhoneCode, setCountryPhoneCode] = useState<string>(
+    route.params ? route.params.countryPhoneCode : '',
+  );
   const [loader, setLoader] = useState<boolean>(false);
   const [countryCodesModalVisible, setCountryCodesModalVisible] =
     useState<boolean>(false);
@@ -43,33 +65,67 @@ export const AddAddressScreen = () => {
 
   const onSaveAddress = async () => {
     setLoader(true);
-    // No añadir la dirección a redux, vamos a ver si puedo directamente
-    // en Firestore y cachearla desde esa tecnología después
 
-    const addressNumber = interiorNumber
-      ? `#${exteriorNumber} Int ${interiorNumber}`
-      : `#${exteriorNumber}`;
+    if (route?.params && route?.params?.isEdit) {
+      const addressNumber = interiorNumber
+        ? `#${exteriorNumber} Int ${interiorNumber}`
+        : `#${exteriorNumber}`;
 
-    const addressObj = {
-      addressName,
-      street,
-      exteriorNumber,
-      interiorNumber,
-      zipCode,
-      countryPhoneCode,
-      phoneNumber,
-      specialIndications,
-      isFavorite: false,
-      fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-    } as AddressItem;
+      const addressObj = {
+        addressName,
+        street,
+        exteriorNumber,
+        interiorNumber,
+        zipCode,
+        colonia,
+        municipality,
+        state,
+        countryPhoneCode,
+        phoneNumber,
+        specialIndications,
+        isFavorite: false,
+        fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+        updateTimestamp: serverTimestamp(),
+      } as AddressItem;
 
-    try {
-      await setAddress(addressObj);
-      setLoader(false);
-    } catch (error) {
-      const errorCode = error.code;
-      handleErrors(errorCode);
-      setLoader(false);
+      try {
+        await editAddress(addressObj, route?.params?.docId);
+        setLoader(false);
+      } catch (error) {
+        const errorCode = error.code;
+        handleErrors(errorCode);
+        setLoader(false);
+      }
+    } else {
+      const addressNumber = interiorNumber
+        ? `#${exteriorNumber} Int ${interiorNumber}`
+        : `#${exteriorNumber}`;
+
+      const addressObj = {
+        addressName,
+        street,
+        exteriorNumber,
+        interiorNumber,
+        zipCode,
+        colonia,
+        municipality,
+        state,
+        countryPhoneCode,
+        phoneNumber,
+        specialIndications,
+        isFavorite: false,
+        fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+        createTimestamp: serverTimestamp(),
+      } as AddressItem;
+
+      try {
+        await setAddress(addressObj);
+        setLoader(false);
+      } catch (error) {
+        const errorCode = error.code;
+        handleErrors(errorCode);
+        setLoader(false);
+      }
     }
 
     navigation.navigate('DeliveryAddress');

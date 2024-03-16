@@ -1,3 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface ProductItem {
   id: string;
   img: number;
@@ -34,7 +36,7 @@ export interface AddressItem {
   addressName: string;
   street: string;
   exteriorNumber: string;
-  interiorNumber: string;
+  interiorNumber?: string;
   colonia: string;
   municipality: string;
   state: string;
@@ -43,5 +45,8 @@ export interface AddressItem {
   phoneNumber: string;
   specialIndications: string;
   isFavorite: boolean;
+  isEdit?: boolean;
   fullAddress: string;
+  createTimestamp: Timestamp;
+  updateTimestamp?: Timestamp;
 }

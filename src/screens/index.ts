@@ -1,4 +1,4 @@
-import { AddAddressScreen } from './AddAddressScreen';
+import { AddressScreen } from './AddressScreen';
 import { CakeryScreen } from './CakeryScreen';
 import { DeliveryAddressScreen } from './DeliveryAddressScreen';
 import { HomeScreen } from './HomeScreen';
@@ -12,7 +12,7 @@ import { SignUpScreen } from './SignUpScreen';
 import { SplashScreen } from './SplashScreen';
 
 export {
-  AddAddressScreen,
+  AddressScreen,
   CakeryScreen,
   DeliveryAddressScreen,
   HomeNavigationOptions,

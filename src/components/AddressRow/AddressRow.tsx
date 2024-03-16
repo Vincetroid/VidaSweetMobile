@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 import { db } from '@/firebase/conf';
 import { themeStyles } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
@@ -27,6 +28,7 @@ export const AddressRow = ({
   pullAddresses,
 }: AddressRowProps) => {
   const { fullAddress = false } = address;
+  const navigation = useNavigation();
 
   // const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
@@ -45,6 +47,11 @@ export const AddressRow = ({
     }
   };
 
+  const onPressEdit = async () => {
+    address.isEdit = true;
+    navigation.navigate('Address', address);
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.leftZone}>
@@ -60,7 +67,7 @@ export const AddressRow = ({
         <Text style={styles.productTitle}>{fullAddress}</Text>
       </View>
       <View style={styles.rightZone}>
-        <Button onPress={onPressTrash} buttonViewStyle={styles.iconBtn}>
+        <Button onPress={onPressEdit} buttonViewStyle={styles.iconBtn}>
           <FontAwesomeIcon
             icon={faEdit}
             size={16}

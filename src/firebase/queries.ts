@@ -1,7 +1,13 @@
-// import { addDoc, collection, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  updateDoc,
+} from 'firebase/firestore';
 import { AddressItem } from '@/interfaces';
+import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
 const setAddress = async (address: AddressItem) => {
@@ -14,10 +20,20 @@ const setAddress = async (address: AddressItem) => {
       userUID,
     });
 
-    console.log(docRef);
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
+  }
+};
+
+const editAddress = async (address: AddressItem, addressId: string) => {
+  const addressRef = doc(db, 'addresses', addressId);
+
+  try {
+    await updateDoc(addressRef, address);
+  } catch (error) {
+    console.log('Error');
+    handleErrors(error.code);
   }
 };
 
@@ -32,4 +48,4 @@ const getAddresses = async () => {
   return addresses as Array<AddressItem>;
 };
 
-export { getAddresses, setAddress };
+export { editAddress, getAddresses, setAddress };

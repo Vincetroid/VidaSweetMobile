@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
-  AddAddressScreen,
+  AddressScreen,
   CakeryScreen,
   DeliveryAddressScreen,
   HomeNavigationOptions,
@@ -49,8 +49,8 @@ export function UserNavigator() {
         }}
       />
       <UserStack.Screen
-        name="AddAddress"
-        component={AddAddressScreen}
+        name="Address"
+        component={AddressScreen}
         options={{
           title: t('AddAnAddress'),
         }}

@@ -41,8 +41,6 @@ export const DeliveryAddressScreen = () => {
   const pullAddresses = async () => {
     try {
       const addressesList = await getAddresses();
-      console.log('addressesList');
-      console.log(addressesList);
       setAddresses(addressesList);
     } catch (error) {
       handleErrors(error.code);
@@ -54,7 +52,7 @@ export const DeliveryAddressScreen = () => {
   };
 
   const onAddAddress = () => {
-    navigation.navigate('AddAddress');
+    navigation.navigate('Address');
   };
 
   return (
