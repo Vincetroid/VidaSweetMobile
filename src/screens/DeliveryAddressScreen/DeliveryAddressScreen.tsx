@@ -48,7 +48,7 @@ export const DeliveryAddressScreen = () => {
   };
 
   const onPressContinue = () => {
-    // navigation.navigate('DeliveryAddress');
+    navigation.navigate('Schedule');
   };
 
   const onAddAddress = () => {

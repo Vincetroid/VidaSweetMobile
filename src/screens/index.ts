@@ -5,6 +5,8 @@ import { HomeScreen } from './HomeScreen';
 import { HomeNavigationOptions } from './HomeScreen';
 import { IceCreamScreen } from './IceCreamScreen';
 import { InitialScreen } from './InitialScreen';
+import { PrePurchaseSummaryScreen } from './PrePurchaseSummaryScreen';
+import { ScheduleScreen } from './ScheduleScreen';
 import { SettingsScreen } from './SettingsScreen';
 import { ShoppingCartScreen } from './ShoppingCartScreen';
 import { SignInScreen } from './SignInScreen';
@@ -19,6 +21,8 @@ export {
   HomeScreen,
   IceCreamScreen,
   InitialScreen,
+  PrePurchaseSummaryScreen,
+  ScheduleScreen,
   SettingsScreen,
   ShoppingCartScreen,
   SignInScreen,

@@ -9,6 +9,8 @@ import {
   HomeNavigationOptions,
   HomeScreen,
   IceCreamScreen,
+  PrePurchaseSummaryScreen,
+  ScheduleScreen,
   SettingsScreen,
   ShoppingCartScreen,
 } from '@/screens';
@@ -53,6 +55,20 @@ export function UserNavigator() {
         component={AddressScreen}
         options={{
           title: t('AddAnAddress'),
+        }}
+      />
+      <UserStack.Screen
+        name="Schedule"
+        component={ScheduleScreen}
+        options={{
+          title: t('ScheduleDelivery'),
+        }}
+      />
+      <UserStack.Screen
+        name="PrePurchaseSummary"
+        component={PrePurchaseSummaryScreen}
+        options={{
+          title: t('PrePurchaseSummary'),
         }}
       />
     </UserStack.Navigator>
