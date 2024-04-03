@@ -240,11 +240,7 @@ export const HomeScreen = () => {
         <Button title={t('Get Cities')} onPress={getCitiesData} /> */}
         {/* <Button title={t('Call Stripe')} onPress={callStripe} /> */}
 
-        <Button
-          title={t('BUY')}
-          onPress={buy}
-          disabled={loading || !isPaymentReady}
-        />
+        {/* <Button title={t('Create user')} onPress={createUser} /> */}
         <Button
           title={'Logout'}
           onPress={async () => {

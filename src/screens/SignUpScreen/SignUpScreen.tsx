@@ -4,6 +4,7 @@ import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import { setUser } from '@/firebase/queries';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignUpScreen.styles';
@@ -14,8 +15,9 @@ export const SignUpScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
+  const [names, setNames] = useState('');
+  const [surnames, setSurnames] = useState('');
   const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
 
@@ -25,11 +27,11 @@ export const SignUpScreen = () => {
     setLoader(true);
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        setLoader(false);
-        setUserName('');
-        setEmail('');
-        setPassword('');
+      .then(async () => {
+        await createUserWithRestOfData();
+
+        await resetForm();
+
         Alert.alert(t('RegistrationCompleted'));
       })
       .catch(error => {
@@ -37,6 +39,19 @@ export const SignUpScreen = () => {
         handleErrors(errorCode);
         setLoader(false);
       });
+  };
+
+  const createUserWithRestOfData = async () => {
+    setUser(names, surnames);
+  };
+
+  const resetForm = async () => {
+    console.log('resetForm');
+    setLoader(false);
+    setEmail('');
+    setNames('');
+    setSurnames('');
+    setPassword('');
   };
 
   const requestValidator = new UserValidator();
@@ -47,7 +62,6 @@ export const SignUpScreen = () => {
   // });
 
   const validator = requestValidator.validate({
-    userName,
     email,
     password,
   });
@@ -62,20 +76,29 @@ export const SignUpScreen = () => {
       </View>
       <View style={styles.signUpContainer}>
         <TextInput
-          value={userName}
-          editable={!loader}
-          style={[styles.textInput, textInputColor]}
-          onChangeText={setUserName}
-          placeholder={t('UserName')}
-          placeholderTextColor="grey"
-          autoCapitalize="none"
-        />
-        <TextInput
           value={email}
           editable={!loader}
           style={[styles.textInput, textInputColor]}
           onChangeText={setEmail}
           placeholder={t('Email')}
+          placeholderTextColor="grey"
+          autoCapitalize="none"
+        />
+        <TextInput
+          value={names}
+          editable={!loader}
+          style={[styles.textInput, textInputColor]}
+          onChangeText={setNames}
+          placeholder={t('Names')}
+          placeholderTextColor="grey"
+          autoCapitalize="none"
+        />
+        <TextInput
+          value={surnames}
+          editable={!loader}
+          style={[styles.textInput, textInputColor]}
+          onChangeText={setSurnames}
+          placeholder={t('Surnames')}
           placeholderTextColor="grey"
           autoCapitalize="none"
         />

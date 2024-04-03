@@ -19,7 +19,6 @@ export interface MenuElementItem {
 }
 
 export interface UserItem {
-  userName: string;
   email: string;
   password: string;
 }

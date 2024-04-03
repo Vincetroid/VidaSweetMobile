@@ -25,7 +25,8 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
       {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <View>
-          <Text>Resumen de compra</Text>
+          <Text>{t('DeliveryAddress')}</Text>
+          <Text>{deliveryDate}</Text>
           <Text>{deliveryDate}</Text>
           <Text>{deliveryTime}</Text>
         </View>

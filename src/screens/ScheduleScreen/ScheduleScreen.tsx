@@ -13,29 +13,79 @@ import {
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import { useAppDispatch } from '@/hooks';
 import { styles } from './ScheduleScreen.styles';
+const moment = require('moment');
 
 export const ScheduleScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [time, setTime] = useState<string>('');
 
+  // const calculateIfTimeSelectedIsEarlierThanCurrentTime = (): boolean => {
+  //   // const startMoment = moment(time);
+  //   // const endMoment = moment(new Date());
+  //   const diffTime = endMoment.diff(startMoment, 'minutes');
+
+  //   return Math.sign(diffTime) === -1 ? 0 : diffTime;
+  // };
+
   const onPressContinue = () => {
+    const now = new moment();
+
     if (!selectedDate && !time) {
       Alert.alert('Selecciona una fecha y una hora');
       return;
+    } else if (selectedDate && !time) {
+      Alert.alert('Selecciona una hora');
+      return;
+    } else if (!selectedDate && time) {
+      Alert.alert('Selecciona una fecha');
+      return;
     }
+    // else if (calculateIfTimeSelectedIsEarlierThanCurrentTime()) {
+    //   Alert.alert('Selecciona una fecha');
+    //   return;
+    // }
 
-    navigation.navigate('PrePurchaseSummary', {
-      deliveryDate: selectedDate,
-      deliveryTime: time === '' ? '00:00' : time,
-    });
+    const dateTime = `${selectedDate} ${time}`;
+    //Y PODERLA USAR AQUI
+    console.log('new format: ', dateTime);
+    console.log(moment().utc());
+
+    //     If the moment is earlier than the moment you are passing to moment.fn.diff, the return value will be negative.
+
+    // var a = moment();
+    // var b = moment().add(1, 'seconds');
+    // a.diff(b) // -1000
+    // b.diff(a) // 1000
+    // An easy way to think of this is by replacing .diff( with a minus operator.
+
+    //           // a < b
+    // a.diff(b) // a - b < 0
+    // b.diff(a) // b - a > 0
+    const dateDiff = now.diff();
+    // const timeInHours = elapsedTimeInHours(dateDiff);
+
+    console.log('dateDiff');
+    console.log(dateDiff);
+
+    // navigation.navigate('PrePurchaseSummary', {
+    //   deliveryDate: selectedDate,
+    //   deliveryTime: time === '' ? '00:00' : time,
+    // });
+    dispatch(removeProduct(product));
+    navigation.navigate('PrePurchaseSummary');
   };
 
   const onChangeDate = (date: string) => {
     const lan = i18next.language;
+    //TE QUEDASTE AQUI porque es mejor manejar mas tarde la fecha en formato ingles para hacer la siguiente operacion:
+    // new Date('03/07/2024 10:00')
+    // Thu Mar 07 2024 10:00:00 GMT-0600 (hora estándar central)
     const formatDate = lan.includes('es') ? 'DD/MM/YYYY' : 'YYYY/MM/DD';
     const formattedDate = getFormatedDate(new Date(date), formatDate);
 
@@ -67,6 +117,8 @@ export const ScheduleScreen = () => {
           minimumDate={getToday()}
           onSelectedChange={onChangeDate}
           onTimeChange={onChangeTime}
+          selectorStartingYear={new Date().getFullYear()}
+          selectorEndingYear={2100}
         />
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
