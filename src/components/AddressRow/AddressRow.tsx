@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '@/firebase/conf';
@@ -20,19 +20,19 @@ interface AddressRowProps {
   setLoader: React.Dispatch<React.SetStateAction<boolean>>;
   key: string;
   pullAddresses: () => void;
+  currentAddressId: string;
+  setCurrentAddressId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const AddressRow = ({
   address,
   setLoader,
   pullAddresses,
+  currentAddressId,
+  setCurrentAddressId,
 }: AddressRowProps) => {
   const { fullAddress = false } = address;
   const navigation = useNavigation();
-
-  // const [toggleCheckBox, setToggleCheckBox] = useState(false);
-
-  // const { cartProducts } = useAppSelector(state => state.cart);
 
   const onPressTrash = async () => {
     setLoader(true);
@@ -52,8 +52,15 @@ export const AddressRow = ({
     navigation.navigate('Address', address);
   };
 
+  const onPressAddressRectangle = async (addressId: string) => {
+    console.log('onPressAddres: ', address);
+    setCurrentAddressId(addressId);
+  };
+
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity
+      style={[styles.wrapper, address.isCurrent ? styles.shadowEffect : null]}
+      onPress={() => onPressAddressRectangle(address.docId)}>
       <View style={styles.leftZone}>
         <FontAwesomeIcon
           icon={faMapMarkerAlt}
@@ -86,6 +93,6 @@ export const AddressRow = ({
           />
         </Button>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };

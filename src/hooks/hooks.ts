@@ -7,10 +7,12 @@ import {
   EmptyObject,
   ThunkDispatch,
 } from '@reduxjs/toolkit';
+import { AddressSliceState } from '@/redux-content/address/Address.slice';
 import { CartSliceState } from '@/redux-content/cart/Cart.slice';
 
 export type SliceStates = {
   cart: CartSliceState;
+  address: AddressSliceState;
 };
 
 export interface AsyncThunkConfig {

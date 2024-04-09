@@ -6,12 +6,11 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
-import { AddressItem, UserItem } from '@/interfaces';
+import { AddressItem, OrderItem, UserItem } from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
 const setUser = async (names: string, surnames: string) => {
-  console.log('setUser');
   const auth = getAuth();
   const userUID = auth.currentUser?.uid;
 
@@ -43,6 +42,7 @@ const setAddress = async (address: AddressItem) => {
     });
 
     console.log('Document written with ID: ', docRef.id);
+    return docRef.id;
   } catch (e) {
     console.error('Error adding document: ', e);
   }
@@ -70,4 +70,28 @@ const getAddresses = async () => {
   return addresses as Array<AddressItem>;
 };
 
-export { editAddress, getAddresses, setAddress, setUser };
+// const setOrder = async (order: OrderItem) => {
+const setOrder = async (addressId: string) => {
+  console.log('setOrder:');
+  console.log(addressId);
+  const auth = getAuth();
+  const userUID = auth.currentUser?.uid;
+  // const addressId =
+
+  const order = {
+    deliverySchedule: new Date(),
+  };
+
+  try {
+    const docRef = await addDoc(collection(db, 'orders'), {
+      ...order,
+      userUID,
+      addressId,
+    });
+    console.log('Document written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
+export { editAddress, getAddresses, setAddress, setOrder, setUser };

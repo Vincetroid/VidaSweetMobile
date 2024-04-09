@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
 // import { functions } from '@/firebase/conf';
 import functions from '@react-native-firebase/functions';
-import { getCities, setRandomData } from '@/firebase/queries';
+import { getCities, setOrder, setRandomData } from '@/firebase/queries';
 import { themeStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
@@ -166,11 +166,12 @@ export const HomeScreen = () => {
     setRandomData();
   };
 
-  const getRandomStuff = () => {
-    getRandomData().then(result => {
-      console.log('result');
-      console.log(result.length);
-    });
+  const createOrder = () => {
+    console.log('creando ordern');
+    //ULTIMADAMENTE AQUI TE QUEDASTE PORQUE AHORA YA TIENES SLICE ADDRESS DEL QUE OBTENDRAS LA DIRECCION
+    // ACTUAL SELECCIONADA Y DE DONDE LO PASARAS PARA SETEAR LA ORDEN CON
+    // ORDER ID, USER ID, ADDRESS ID Y TAL VEZ OTRO DATO COMO LA FECHA O SCHEDULE DEL PEDIDO
+    setOrder('00J4sqEC34az2ZmAwIY5');
   };
 
   const getCitiesData = () => {
@@ -240,7 +241,7 @@ export const HomeScreen = () => {
         <Button title={t('Get Cities')} onPress={getCitiesData} /> */}
         {/* <Button title={t('Call Stripe')} onPress={callStripe} /> */}
 
-        {/* <Button title={t('Create user')} onPress={createUser} /> */}
+        <Button title={t('Create pseudo order')} onPress={createOrder} />
         <Button
           title={'Logout'}
           onPress={async () => {

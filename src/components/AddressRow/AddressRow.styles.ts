@@ -11,6 +11,12 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.grayLightBg,
     marginBottom: 10,
   },
+  shadowEffect: {
+    shadowColor: '#ff0000',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.6,
+    shadowRadius: 10,
+  },
   leftZone: {
     flex: 0.1,
     alignItems: 'center',

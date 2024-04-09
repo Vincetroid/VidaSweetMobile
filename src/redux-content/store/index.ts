@@ -9,10 +9,11 @@ import {
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { cartSlice } from '@/redux-content';
+import { addressSlice, cartSlice } from '@/redux-content';
 
 const combinedReducer = combineReducers({
   cart: cartSlice,
+  address: addressSlice,
   // user: userSlice
 });
 

@@ -11,17 +11,20 @@ import RNPhoneCodeSelect from 'react-native-phone-code-select';
 import { useNavigation } from '@react-navigation/native';
 import { editAddress, setAddress } from '@/firebase/queries';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
+import { addCurrentSelectedAddress } from '@/redux-content';
 import {
   Button,
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import { useAppDispatch } from '@/hooks';
 import handleErrors from '@/utils/handleErrors';
 import { styles } from './AddressScreen.styles';
 
 export const AddressScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
   const streetParam = route.params ? route.params.street : '';
 
   const [addressName, setAddressName] = useState<string>(
@@ -83,9 +86,10 @@ export const AddressScreen = ({ route }) => {
         countryPhoneCode,
         phoneNumber,
         specialIndications,
-        isFavorite: false,
+        isCurrent: false,
         fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-        updateTimestamp: serverTimestamp(),
+        // updateTimestamp: serverTimestamp(),
+        updateTimestamp: new Date().toString(),
       } as AddressItem;
 
       try {
@@ -113,13 +117,21 @@ export const AddressScreen = ({ route }) => {
         countryPhoneCode,
         phoneNumber,
         specialIndications,
-        isFavorite: false,
+        isCurrent: false,
         fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-        createTimestamp: serverTimestamp(),
+        // createTimestamp: serverTimestamp(),
+        createTimestamp: new Date().toString(),
       } as AddressItem;
 
       try {
-        await setAddress(addressObj);
+        console.log('before set addres');
+        const docId = await setAddress(addressObj);
+        //TAMBIEN TE QUEDASTE AQUI
+        console.log('docId: ', docId); // Si resultó, ya tienes el addressId Para usarlo en orders
+        dispatch(
+          addCurrentSelectedAddress({ ...addressObj, docId: docId || '' }),
+        );
+        console.log('about to dispatch');
         setLoader(false);
       } catch (error) {
         const errorCode = error.code;
