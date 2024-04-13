@@ -6,7 +6,8 @@ import { useAppDispatch } from '@/hooks';
 
 export interface AddressSliceState {
   addresses: AddressItem[];
-  currentSelectedAddress: AddressItem;
+  currentSelectedAddress: AddressItem; // ESTE TRATAR DE QUITARLO
+  currentAddressId: string;
 }
 
 // const initialTimestamp = new Timestamp(new Date().getMilliseconds(), 0); // no se sabe si está bien esto pero getTime saca error
@@ -36,6 +37,7 @@ const addressObj = {
 const initialState = {
   addresses: [],
   currentSelectedAddress: addressObj,
+  currentAddressId: '',
 } as AddressSliceState;
 
 const addressSlice = createSlice({
@@ -113,6 +115,9 @@ const addressSlice = createSlice({
         // },
       };
     },
+    addCurrentAddressId(state, action: PayloadAction<string>) {
+      state.currentAddressId = action.payload;
+    },
     removeAddresses(state, action: PayloadAction) {
       // const productId = action.payload.id;
       // if (state.cartProducts[productId].quantity > 0) {
@@ -128,6 +133,10 @@ const addressSlice = createSlice({
 
 //Donde tendría que poner la accion de cartProductsSubtotal
 
-export const { addAddresses, addCurrentSelectedAddress, removeAddresses } =
-  addressSlice.actions;
+export const {
+  addAddresses,
+  addCurrentSelectedAddress,
+  removeAddresses,
+  addCurrentAddressId,
+} = addressSlice.actions;
 export default addressSlice.reducer;

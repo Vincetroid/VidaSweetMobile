@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '@/firebase/conf';
 import { themeStyles } from '@/global-styles';
@@ -11,28 +12,35 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { addCurrentAddressId } from '@/redux-content';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import { styles } from './AddressRow.styles';
 
 interface AddressRowProps {
   address: AddressItem;
+  setAddresses: React.Dispatch<React.SetStateAction<AddressItem[]>>;
   setLoader: React.Dispatch<React.SetStateAction<boolean>>;
   key: string;
   pullAddresses: () => void;
-  currentAddressId: string;
-  setCurrentAddressId: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const AddressRow = ({
   address,
+  setAddresses,
   setLoader,
   pullAddresses,
-  currentAddressId,
-  setCurrentAddressId,
 }: AddressRowProps) => {
   const { fullAddress = false } = address;
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (address.isCurrent) {
+      console.log('assignin2');
+      dispatch(addCurrentAddressId(address.docId));
+    }
+  }, []);
 
   const onPressTrash = async () => {
     setLoader(true);
@@ -52,15 +60,36 @@ export const AddressRow = ({
     navigation.navigate('Address', address);
   };
 
-  const onPressAddressRectangle = async (addressId: string) => {
+  const onPressAddressRectangle = async (
+    addressId: string,
+    addressIsCurrent: boolean,
+  ) => {
     console.log('onPressAddres: ', address);
-    setCurrentAddressId(addressId);
+    console.log('Address id: ', addressId);
+    // const newData = [...data];
+
+    //TODO: Esto más bien deberia estar en redux no? para que no se complique tanto en hacerse copias, etc
+    // setAddresses(prevAddresses => {
+    //   return prevAddresses.map((prevAddress: AddressItem) => {
+    //     if (address.docId === addressId) {
+    //       console.log('111111');
+    //       return {
+    //         ...prevAddress,
+    //         docId: address.docId,
+    //         isCurrent: !address.isCurrent,
+    //       };
+    //     }
+    //   });
+    // });
+
+    dispatch(addCurrentAddressId(address.docId));
   };
 
   return (
     <TouchableOpacity
-      style={[styles.wrapper, address.isCurrent ? styles.shadowEffect : null]}
-      onPress={() => onPressAddressRectangle(address.docId)}>
+      // style={[styles.wrapper, address.isCurrent ? styles.shadowEffect : null]}
+      style={[styles.wrapper]}
+      onPress={() => onPressAddressRectangle(address.docId, address.isCurrent)}>
       <View style={styles.leftZone}>
         <FontAwesomeIcon
           icon={faMapMarkerAlt}

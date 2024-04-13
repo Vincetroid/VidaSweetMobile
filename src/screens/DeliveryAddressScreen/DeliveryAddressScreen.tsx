@@ -22,7 +22,6 @@ export const DeliveryAddressScreen = () => {
   const navigation = useNavigation();
   const [addresses, setAddresses] = useState<AddressItem[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
-  const [currentAddressId, setCurrentAddressId] = useState<string>('');
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
@@ -70,11 +69,10 @@ export const DeliveryAddressScreen = () => {
             return (
               <AddressRow
                 address={address}
+                setAddresses={setAddresses}
                 key={address.docId}
                 setLoader={setLoader}
                 pullAddresses={pullAddresses}
-                currentAddress={currentAddressId}
-                setCurrentAddress={setCurrentAddressId}
               />
             );
           })}

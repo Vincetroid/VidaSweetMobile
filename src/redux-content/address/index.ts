@@ -1,6 +1,12 @@
 import addressSlice, {
   addAddresses,
+  addCurrentAddressId,
   addCurrentSelectedAddress,
 } from './Address.slice';
 
-export { addAddresses, addCurrentSelectedAddress, addressSlice };
+export {
+  addAddresses,
+  addCurrentAddressId,
+  addCurrentSelectedAddress,
+  addressSlice,
+};

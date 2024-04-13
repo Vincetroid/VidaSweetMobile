@@ -1,5 +1,6 @@
 // import userSlice from './user/User.slice';
 import addressSlice, {
+  addCurrentAddressId,
   addCurrentSelectedAddress,
 } from './address/Address.slice';
 import cartSlice, {
@@ -10,6 +11,7 @@ import cartSlice, {
 } from './cart/Cart.slice';
 
 export {
+  addCurrentAddressId,
   addCurrentSelectedAddress,
   addGlobalProductCounter,
   addProduct,
