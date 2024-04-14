@@ -82,7 +82,7 @@ export const AddressRow = ({
     //   });
     // });
 
-    dispatch(addCurrentAddressId(address.docId));
+    dispatch(addCurrentAddressId(address.docId)); // AQUI HACE FALTA LA FULL ADDRESS PARA LA CONFIRMACION DE COMPRA
   };
 
   return (

@@ -72,11 +72,10 @@ const getAddresses = async () => {
 
 // const setOrder = async (order: OrderItem) => {
 const setOrder = async (addressId: string) => {
-  console.log('setOrder:');
-  console.log(addressId);
+  // const setOrder = async () => {
+  console.log('setOrder: ', addressId);
   const auth = getAuth();
   const userUID = auth.currentUser?.uid;
-  // const addressId =
 
   const order = {
     deliverySchedule: new Date(),

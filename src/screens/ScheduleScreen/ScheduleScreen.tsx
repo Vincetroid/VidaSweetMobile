@@ -73,12 +73,15 @@ export const ScheduleScreen = () => {
     console.log('dateDiff');
     console.log(dateDiff);
 
+    navigation.navigate('PrePurchaseSummary' as any, {
+      deliveryDate: new Date().toString(),
+      deliveryTime: '00:00',
+    });
     // navigation.navigate('PrePurchaseSummary', {
     //   deliveryDate: selectedDate,
     //   deliveryTime: time === '' ? '00:00' : time,
     // });
-    dispatch(removeProduct(product));
-    navigation.navigate('PrePurchaseSummary');
+    // navigation.navigate('PrePurchaseSummary');
   };
 
   const onChangeDate = (date: string) => {
