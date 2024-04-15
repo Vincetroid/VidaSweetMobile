@@ -2,10 +2,8 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
-// import { functions } from '@/firebase/conf';
-import functions from '@react-native-firebase/functions';
 import { ProductItem } from '@/interfaces';
-import { Button, Menu, RowTitle } from '@/components';
+import { Menu, RowTitle } from '@/components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 
 const images = [
@@ -31,42 +29,9 @@ export const HomeScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
-  const testFirebaseFunctions = () => {
-    // const result = functions().httpsCallable('createRandomData');
-    // const result = functions().httpsCallableFromUrl(
-    //   // 'http://127.0.0.1:5001/vida-sweet/us-central1/addMessage?text=uppercasemetoo',
-    //   'https://us-central1-vida-sweet.cloudfunctions.net/addMessage?text=uppercasemetoo',
-    // );
-    const result = functions().httpsCallableFromUrl(
-      'https://us-central1-vida-sweet.cloudfunctions.net/stripeWebhook',
-    );
-    result()
-      .then(response => {
-        console.log('response webhook: ');
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log('error');
-        console.log(e);
-      });
-  };
-
   return (
     <SafeAreaView testID="home-screen">
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
-        {/* <Button
-          title={t('Get with Firebase functions')}
-          onPress={testFirebaseFunctions}
-        />*/}
-
-        <Button
-          title={'Logout'}
-          onPress={async () => {
-            await resetPaymentSheetCustomer();
-          }}
-        />
-
         <SliderBox images={images} />
 
         <RowTitle title={t('Menu')} centered />

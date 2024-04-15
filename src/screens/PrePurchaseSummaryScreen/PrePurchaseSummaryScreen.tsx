@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Alert, SafeAreaView, Text, View } from 'react-native';
 import { getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
-import functions from '@react-native-firebase/functions';
 import { useNavigation } from '@react-navigation/native';
-import { setOrder } from '@/firebase/queries';
+import { setOrder, setProductOrder } from '@/firebase/queries';
 import { themeStyles } from '@/global-styles';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import {
@@ -21,18 +20,17 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { currentAddressId } = useAppSelector(state => state.address);
+  const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
+    useAppSelector(state => state.cart);
   const { deliveryDate, deliveryTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const [isPaymentReady, setIsPaymentReady] = useState<boolean>(false);
-  const {
-    initPaymentSheet,
-    presentPaymentSheet,
-    loading,
-    resetPaymentSheetCustomer,
-  } = usePaymentSheet();
+  const { initPaymentSheet, presentPaymentSheet, loading } = usePaymentSheet();
 
   useEffect(() => {
     initialisePaymentSheet();
+    console.log('initialise payment');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initialisePaymentSheet = async () => {
@@ -83,12 +81,15 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   };
 
   const fetchPaymentSheetParams = async () => {
+    console.log('fetchPaymentSheetParams');
     const auth = getAuth();
     const userEmail = auth.currentUser?.email;
 
-    console.log('fetchPaymentSheetParams');
+    const total = (cartProductsSubtotal + cartProductsIva) * 100;
+    console.log('total: ', total);
     const theBody = {
       email: userEmail,
+      totalAmount: total,
     };
 
     const response = await fetch(`${API_URL}/payment-sheet`, {
@@ -107,7 +108,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     };
   };
 
-  async function buy() {
+  const makeStripePayment = async () => {
     const { error } = await presentPaymentSheet();
 
     if (error) {
@@ -116,60 +117,15 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
       Alert.alert(t('Success'), t('SuccessfulPaymentMsg'));
       setIsPaymentReady(false);
     }
-  }
-
-  const callStripe = () => {
-    console.log('callStripe2');
-
-    console.log('testFirebaseFunctions');
-    functions()
-      .httpsCallable('stripeWebhook')()
-      .then(response => {
-        console.log('response');
-        console.log(response);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-
-    // const result = functions().httpsCallableFromUrl(
-    //   'http://127.0.0.1:5001/vida-sweet/us-central1/stripeWebhook',
-    // );
-
-    // result()
-    //   .then(response => {
-    //     console.log('response');
-    //     console.log(response.data);
-    //   })
-    //   .catch(e => {
-    //     console.log('error');
-    //     console.log(e);
-    //   });
-
-    // const createStripeCheckout = firebase
-    //   .functions()
-    //   .httpsCallable('createStripeCheckout');
-
-    // console.log('createStripeCheckout');
-    // console.log(createStripeCheckout);
-    // // const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-    // createStripeCheckout()
-    //   .then(response => {
-    //     const sessionId = response.data.id;
-    //     console.log('sessionId');
-    //     console.log(sessionId);
-    //     // stripe.redirectToCheckout({ sessionId: sessionId });
-    //   })
-    //   .catch(error => {
-    //     console.log('error');
-    //     console.log(error);
-    //   });
   };
 
-  const onPressContinue = () => {
-    // navigation.navigate('PrePurchaseSummary');
-    setOrder(currentAddressId);
-    buy();
+  const onPressContinue = async () => {
+    //Primero ver que la compra sea exitosa
+    await makeStripePayment();
+    //Segundo, asignar la orden
+    await setOrder(currentAddressId);
+    //Tercero, asignar el product_order porque ya se tiene la orden previamente de setOrder
+    await setProductOrder(); // Aqui ver como mandar el sabor, cantidad, el subtotal...
   };
 
   return (

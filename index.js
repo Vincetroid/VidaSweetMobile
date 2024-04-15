@@ -1,3 +1,6 @@
+if (__DEV__) {
+  require('./ReactotronConfig');
+}
 import './src/firebase/conf';
 
 import { AppRegistry } from 'react-native';

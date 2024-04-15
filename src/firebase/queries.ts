@@ -93,4 +93,15 @@ const setOrder = async (addressId: string) => {
   }
 };
 
-export { editAddress, getAddresses, setAddress, setOrder, setUser };
+const setProductOrder = async () => {
+  console.log('setProductOrder');
+};
+
+export {
+  editAddress,
+  getAddresses,
+  setAddress,
+  setOrder,
+  setProductOrder,
+  setUser,
+};
