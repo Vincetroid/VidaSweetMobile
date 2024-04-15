@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Alert, SafeAreaView, Text } from 'react-native';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
@@ -13,14 +13,12 @@ import {
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { useAppDispatch } from '@/hooks';
 import { styles } from './ScheduleScreen.styles';
 const moment = require('moment');
 
 export const ScheduleScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const dispatch = useAppDispatch();
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [time, setTime] = useState<string>('');
@@ -53,8 +51,8 @@ export const ScheduleScreen = () => {
 
     const dateTime = `${selectedDate} ${time}`;
     //Y PODERLA USAR AQUI
-    console.log('new format: ', dateTime);
-    console.log(moment().utc());
+    // console.log('new format: ', dateTime);
+    // console.log(moment().utc());
 
     //     If the moment is earlier than the moment you are passing to moment.fn.diff, the return value will be negative.
 
@@ -70,8 +68,8 @@ export const ScheduleScreen = () => {
     const dateDiff = now.diff();
     // const timeInHours = elapsedTimeInHours(dateDiff);
 
-    console.log('dateDiff');
-    console.log(dateDiff);
+    // console.log('dateDiff');
+    // console.log(dateDiff);
 
     navigation.navigate('PrePurchaseSummary' as any, {
       deliveryDate: new Date().toString(),
@@ -89,14 +87,39 @@ export const ScheduleScreen = () => {
     //TE QUEDASTE AQUI porque es mejor manejar mas tarde la fecha en formato ingles para hacer la siguiente operacion:
     // new Date('03/07/2024 10:00')
     // Thu Mar 07 2024 10:00:00 GMT-0600 (hora estándar central)
-    const formatDate = lan.includes('es') ? 'DD/MM/YYYY' : 'YYYY/MM/DD';
-    const formattedDate = getFormatedDate(new Date(date), formatDate);
+    const latinOrEnglishDateFormatString = lan.includes('es')
+      ? 'DD/MM/YYYY'
+      : 'YYYY/MM/DD';
+    // console.log(
+    //   'latinOrEnglishDateFormatString: ',
+    //   latinOrEnglishDateFormatString,
+    // );
+    const formattedDate = getFormatedDate(
+      new Date(date),
+      latinOrEnglishDateFormatString,
+    );
+
+    console.log('formattedDate');
+    console.log(formattedDate);
 
     setSelectedDate(formattedDate);
   };
 
-  const onChangeTime = (timeParam: string) => {
-    setTime(timeParam);
+  const onChangeTime = () => {
+    return;
+    // setTime(timeParam);
+  };
+
+  const getMaximumDateDelivery = () => {
+    const today = new moment();
+    const future = today.clone().add(6, 'month');
+
+    const formattedDateForDatePicker = getFormatedDate(
+      new Date(future.format()),
+      'YYYY/MM/DD',
+    );
+
+    return formattedDateForDatePicker;
   };
 
   const formatDateTime = useMemo(() => {
@@ -121,12 +144,15 @@ export const ScheduleScreen = () => {
               borderColor: 'rgba(122, 146, 165, 0.2)',
             }}
             minuteInterval={15}
-            mode="datepicker"
+            mode="calendar"
             minimumDate={getToday()}
+            maximumDate={getMaximumDateDelivery()}
             onSelectedChange={onChangeDate}
-            onTimeChange={onChangeTime}
+            onTimeChange={onChangeTime} //Se va a eliminar porque no permite rango de hora
             selectorStartingYear={new Date().getFullYear()}
             selectorEndingYear={2100}
+            // selected={formatDateTime}
+            // current={formatDateTime}
           />
           <Text style={styles.scheduleText}>{formatDateTime}</Text>
         </>
