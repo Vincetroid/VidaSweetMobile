@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Alert, SafeAreaView } from 'react-native';
+import React, { memo, useMemo, useState } from 'react';
+import { Alert, SafeAreaView, Text } from 'react-native';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import DatePicker, {
@@ -99,30 +99,37 @@ export const ScheduleScreen = () => {
     setTime(timeParam);
   };
 
+  const formatDateTime = useMemo(() => {
+    return `${selectedDate} - ${time}`;
+  }, [selectedDate, time]);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
-        <DatePicker
-          options={{
-            defaultFont: 'Lato Regular',
-            headerFont: 'Lato Bold',
-            backgroundColor: themeStyles.background,
-            textHeaderColor: themeStyles.secondary,
-            textDefaultColor: themeStyles.text,
-            selectedTextColor: themeStyles.white,
-            mainColor: themeStyles.secondary,
-            textSecondaryColor: themeStyles.black,
-            borderColor: 'rgba(122, 146, 165, 0.2)',
-          }}
-          minuteInterval={15}
-          mode="datepicker"
-          minimumDate={getToday()}
-          onSelectedChange={onChangeDate}
-          onTimeChange={onChangeTime}
-          selectorStartingYear={new Date().getFullYear()}
-          selectorEndingYear={2100}
-        />
+        <>
+          <DatePicker
+            options={{
+              defaultFont: 'Lato Regular',
+              headerFont: 'Lato Bold',
+              backgroundColor: themeStyles.background,
+              textHeaderColor: themeStyles.secondary,
+              textDefaultColor: themeStyles.text,
+              selectedTextColor: themeStyles.white,
+              mainColor: themeStyles.secondary,
+              textSecondaryColor: themeStyles.black,
+              borderColor: 'rgba(122, 146, 165, 0.2)',
+            }}
+            minuteInterval={15}
+            mode="datepicker"
+            minimumDate={getToday()}
+            onSelectedChange={onChangeDate}
+            onTimeChange={onChangeTime}
+            selectorStartingYear={new Date().getFullYear()}
+            selectorEndingYear={2100}
+          />
+          <Text style={styles.scheduleText}>{formatDateTime}</Text>
+        </>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
     </SafeAreaView>
