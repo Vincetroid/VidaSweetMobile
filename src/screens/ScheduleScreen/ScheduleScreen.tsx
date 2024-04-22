@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Alert, SafeAreaView, Text } from 'react-native';
+import { Alert, SafeAreaView, Text, View } from 'react-native';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import DatePicker, {
@@ -15,13 +15,15 @@ import {
 } from '@/components';
 import { styles } from './ScheduleScreen.styles';
 const moment = require('moment');
+import TimePicker from 'react-native-date-picker';
 
 export const ScheduleScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const [loader, setLoader] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
-  const [time, setTime] = useState<string>('');
+  // const [time, setTime] = useState<string>('');
+  const [time, setTime] = useState(new Date());
 
   // const calculateIfTimeSelectedIsEarlierThanCurrentTime = (): boolean => {
   //   // const startMoment = moment(time);
@@ -99,15 +101,14 @@ export const ScheduleScreen = () => {
       latinOrEnglishDateFormatString,
     );
 
-    console.log('formattedDate');
-    console.log(formattedDate);
+    // console.log('formattedDate');
+    // console.log(formattedDate);
 
     setSelectedDate(formattedDate);
   };
 
-  const onChangeTime = () => {
-    return;
-    // setTime(timeParam);
+  const onChangeTime = (timeParam: Date) => {
+    setTime(timeParam);
   };
 
   const getMaximumDateDelivery = () => {
@@ -123,8 +124,21 @@ export const ScheduleScreen = () => {
   };
 
   const formatDateTime = useMemo(() => {
-    return `${selectedDate} - ${time}`;
-  }, [selectedDate, time]);
+    return selectedDate;
+  }, [selectedDate]);
+
+  const formatTime = useMemo(() => {
+    const formattedTime = Intl.DateTimeFormat('mx', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    }).format(time);
+
+    console.log('formattedTime');
+    console.log(formattedTime);
+
+    return formattedTime;
+  }, [time]);
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -148,13 +162,24 @@ export const ScheduleScreen = () => {
             minimumDate={getToday()}
             maximumDate={getMaximumDateDelivery()}
             onSelectedChange={onChangeDate}
-            onTimeChange={onChangeTime} //Se va a eliminar porque no permite rango de hora
+            // onTimeChange={onChangeTime} //Se va a eliminar porque no permite rango de hora
             selectorStartingYear={new Date().getFullYear()}
             selectorEndingYear={2100}
             // selected={formatDateTime}
             // current={formatDateTime}
           />
-          <Text style={styles.scheduleText}>{formatDateTime}</Text>
+          <View style={styles.timePickerWrapper}>
+            <TimePicker
+              date={time}
+              onDateChange={onChangeTime}
+              mode="time"
+              style={styles.timePicker}
+            />
+          </View>
+          <Text
+            style={
+              styles.scheduleText
+            }>{`${formatDateTime} - ${formatTime}`}</Text>
         </>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
