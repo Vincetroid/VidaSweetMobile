@@ -1,10 +1,12 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { NativeModules } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
 import { ProductItem } from '@/interfaces';
-import { Menu, RowTitle } from '@/components';
+import { Button, Menu, RowTitle } from '@/components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
+const { CalendarModule } = NativeModules;
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -29,9 +31,16 @@ export const HomeScreen = () => {
     isFavorite: true,
   } as ProductItem;
 
+  const onPress = () => {
+    console.log('We will invoke the native module here!');
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
+  };
+
   return (
     <SafeAreaView testID="home-screen">
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
+        <Button title={t('Save')} onPress={onPress} />
+
         <SliderBox images={images} />
 
         <RowTitle title={t('Menu')} centered />
