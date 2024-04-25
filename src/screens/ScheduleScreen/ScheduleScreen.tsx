@@ -162,11 +162,9 @@ export const ScheduleScreen = () => {
             minimumDate={getToday()}
             maximumDate={getMaximumDateDelivery()}
             onSelectedChange={onChangeDate}
-            // onTimeChange={onChangeTime} //Se va a eliminar porque no permite rango de hora
             selectorStartingYear={new Date().getFullYear()}
             selectorEndingYear={2100}
-            // selected={formatDateTime}
-            // current={formatDateTime}
+            selected={getToday()}
           />
           <View style={styles.timePickerWrapper}>
             <TimePicker
