@@ -25,17 +25,7 @@ export const ScheduleScreen = () => {
   // const [time, setTime] = useState<string>('');
   const [time, setTime] = useState(new Date());
 
-  // const calculateIfTimeSelectedIsEarlierThanCurrentTime = (): boolean => {
-  //   // const startMoment = moment(time);
-  //   // const endMoment = moment(new Date());
-  //   const diffTime = endMoment.diff(startMoment, 'minutes');
-
-  //   return Math.sign(diffTime) === -1 ? 0 : diffTime;
-  // };
-
   const onPressContinue = () => {
-    const now = new moment();
-
     if (!selectedDate && !time) {
       Alert.alert('Selecciona una fecha y una hora');
       return;
@@ -46,42 +36,19 @@ export const ScheduleScreen = () => {
       Alert.alert('Selecciona una fecha');
       return;
     }
-    // else if (calculateIfTimeSelectedIsEarlierThanCurrentTime()) {
-    //   Alert.alert('Selecciona una fecha');
-    //   return;
-    // }
 
-    const dateTime = `${selectedDate} ${time}`;
-    //Y PODERLA USAR AQUI
-    // console.log('new format: ', dateTime);
-    // console.log(moment().utc());
-
-    //     If the moment is earlier than the moment you are passing to moment.fn.diff, the return value will be negative.
-
-    // var a = moment();
-    // var b = moment().add(1, 'seconds');
-    // a.diff(b) // -1000
-    // b.diff(a) // 1000
-    // An easy way to think of this is by replacing .diff( with a minus operator.
-
-    //           // a < b
-    // a.diff(b) // a - b < 0
-    // b.diff(a) // b - a > 0
-    const dateDiff = now.diff();
-    // const timeInHours = elapsedTimeInHours(dateDiff);
-
-    // console.log('dateDiff');
-    // console.log(dateDiff);
-
-    navigation.navigate('PrePurchaseSummary' as any, {
-      deliveryDate: new Date().toString(),
-      deliveryTime: '00:00',
-    });
+    // navigation.navigate('PrePurchaseSummary', {
+    //   // deliveryDate: new Date().toString(),
+    //   // deliveryTime: '00:00',
+    //   deliveryDateTime: dateTimeToDisplay,
+    // });
     // navigation.navigate('PrePurchaseSummary', {
     //   deliveryDate: selectedDate,
     //   deliveryTime: time === '' ? '00:00' : time,
     // });
-    // navigation.navigate('PrePurchaseSummary');
+    navigation.navigate('PrePurchaseSummary', {
+      deliveryDateTime: dateTimeToDisplay,
+    });
   };
 
   const onChangeDate = (date: string) => {
@@ -140,6 +107,10 @@ export const ScheduleScreen = () => {
     return formattedTime;
   }, [time]);
 
+  const dateTimeToDisplay = useMemo(() => {
+    return `${formatDateTime} - ${formatTime}`;
+  }, [formatDateTime, formatTime]);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
@@ -174,10 +145,7 @@ export const ScheduleScreen = () => {
               style={styles.timePicker}
             />
           </View>
-          <Text
-            style={
-              styles.scheduleText
-            }>{`${formatDateTime} - ${formatTime}`}</Text>
+          <Text style={styles.scheduleText}>{dateTimeToDisplay}</Text>
         </>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>

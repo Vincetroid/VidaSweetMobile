@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { FontSizes } from '@/global-styles';
 import {
   AddressScreen,
   CakeryScreen,
@@ -69,6 +70,10 @@ export function UserNavigator() {
         component={PrePurchaseSummaryScreen}
         options={{
           title: t('PrePurchaseSummary'),
+          headerTitleStyle: {
+            fontSize: FontSizes.x_big,
+            fontFamily: 'Bartleen Script', // This font causes on Android to be a bit upper on header
+          },
         }}
       />
     </UserStack.Navigator>
