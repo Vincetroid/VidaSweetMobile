@@ -4,10 +4,12 @@ import { getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { setOrder, setProductOrder } from '@/firebase/queries';
-import { themeStyles } from '@/global-styles';
+import { Colors, themeStyles } from '@/global-styles';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import {
   Button,
+  Cart,
+  Divider,
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
@@ -22,7 +24,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   const { currentAddressId } = useAppSelector(state => state.address);
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
-  const { deliveryDate, deliveryTime } = route?.params;
+  const { deliveryDate, deliveryTime, deliveryDateTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const [isPaymentReady, setIsPaymentReady] = useState<boolean>(false);
   const { initPaymentSheet, presentPaymentSheet, loading } = usePaymentSheet();
@@ -128,14 +130,32 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     await setProductOrder(); // Aqui ver como mandar el sabor, cantidad, el subtotal...
   };
 
+  const fullAddress =
+    'C 30 - #85 Int Sin numero, Colonia El Sol, Nezahualcóyotl, Mexico, 57200';
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <View>
-          <Text>{t('DeliveryAddress')}</Text>
-          <Text>{deliveryDate}</Text>
-          <Text>{deliveryTime}</Text>
+          <Text style={styles.title}>{t('DeliveryAddress')}</Text>
+          <Text style={styles.text}>{fullAddress}</Text>
+          <Divider
+            customStyle={{
+              marginVertical: 16,
+              backgroundColor: Colors.grayLight,
+            }}
+          />
+          <Text style={styles.title}>{t('DeliveryDateTime')}</Text>
+          <Text style={styles.text}>{deliveryDateTime}</Text>
+          <Divider
+            customStyle={{
+              marginVertical: 16,
+              backgroundColor: Colors.grayLight,
+            }}
+          />
+          {/* <Text style={styles.title}>{t('ProductsToBuy')}</Text> */}
+          <Cart />
         </View>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>

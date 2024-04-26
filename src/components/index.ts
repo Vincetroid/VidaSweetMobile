@@ -4,6 +4,7 @@ import { AddressRow } from './AddressRow';
 import { AuthenticatedUser } from './AuthenticatedUser';
 import { BackButton } from './BackButton';
 import { Button } from './Button';
+import { Cart } from './Cart';
 import { ChatWrapper } from './ChatWrapper';
 import { Divider } from './Divider';
 import { FullScreenLoader } from './FullScreenLoader';
@@ -23,6 +24,7 @@ export {
   AuthenticatedUser,
   BackButton,
   Button,
+  Cart,
   ChatWrapper,
   Divider,
   FullScreenLoader,
