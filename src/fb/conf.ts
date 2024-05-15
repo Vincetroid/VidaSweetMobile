@@ -1,4 +1,4 @@
-import { getAnalytics } from 'firebase/analytics';
+// import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { initializeFirestore } from 'firebase/firestore';
@@ -23,12 +23,9 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-console.log('firebaseConfig');
-console.log(firebaseConfig);
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 
 // Este es el que funcionaba antes en la app de Notas pero ahorita no sé que esta pasando asi que usaré el que esta
 // abajo, es decir, el de getFireStore
@@ -39,4 +36,4 @@ const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-export { analytics, app, db, functions };
+export { app, db, functions };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, SafeAreaView, Text } from 'react-native';
-import { getAuth, signOut } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
+import auth from '@react-native-firebase/auth';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button } from '@/components';
@@ -12,9 +12,8 @@ export const SettingsScreen = () => {
   const { t } = useTranslation();
 
   const onSignOut = () => {
-    const auth = getAuth();
-
-    signOut(auth)
+    auth()
+      .signOut()
       .then(() => {
         Alert.alert(t('SignedOutSuccessfully'));
         // navigation.navigate('InitialScreen');

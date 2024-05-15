@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, SafeAreaView, Text, View } from 'react-native';
-import { getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
+import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { setOrder, setProductOrder } from '@/firebase/queries';
+import { setOrder, setProductOrder } from '@/fb/queries';
 import { Colors, themeStyles } from '@/global-styles';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import {
@@ -84,8 +84,9 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
 
   const fetchPaymentSheetParams = async () => {
     console.log('fetchPaymentSheetParams');
-    const auth = getAuth();
-    const userEmail = auth.currentUser?.email;
+    const userEmail = auth().currentUser?.email;
+    console.log('userEmail');
+    console.log(userEmail);
 
     const total = (cartProductsSubtotal + cartProductsIva) * 100;
     console.log('total: ', total);

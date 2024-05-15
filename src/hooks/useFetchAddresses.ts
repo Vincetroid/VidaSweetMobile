@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { getAddresses } from '@/firebase/queries';
+import { getAddresses } from '@/fb/queries';
 import { AddressItem } from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 

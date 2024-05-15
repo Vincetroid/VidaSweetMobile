@@ -9,7 +9,7 @@ import RNPhoneCodeSelect from 'react-native-phone-code-select';
 // import functions, { firebase } from '@react-native-firebase/functions';
 // import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigation } from '@react-navigation/native';
-import { editAddress, setAddress } from '@/firebase/queries';
+import { editAddress, setAddress } from '@/fb/queries';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
 import { addCurrentSelectedAddress } from '@/redux-content';
 import {

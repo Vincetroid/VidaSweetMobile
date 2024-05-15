@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { db } from '@/firebase/conf';
+import { db } from '@/fb/conf';
 import { themeStyles } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
 import {

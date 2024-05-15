@@ -1,4 +1,3 @@
-import { getAuth } from 'firebase/auth';
 import {
   addDoc,
   collection,
@@ -6,13 +5,19 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import { AddressItem, OrderItem, UserItem } from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
-const setUser = async (names: string, surnames: string) => {
-  const auth = getAuth();
-  const userUID = auth.currentUser?.uid;
+const setUser = async (
+  names: string,
+  surnames: string,
+  uid: string | undefined,
+) => {
+  console.log('auth');
+  console.log(auth);
+  // const userUID = auth.currentUser?.uid; //Este es undefined
 
   const user = {
     names,
@@ -22,7 +27,7 @@ const setUser = async (names: string, surnames: string) => {
   try {
     const docRef = await addDoc(collection(db, 'users'), {
       ...user,
-      userUID,
+      uid,
     });
 
     console.log('Document written with ID: ', docRef.id);
@@ -32,8 +37,8 @@ const setUser = async (names: string, surnames: string) => {
 };
 
 const setAddress = async (address: AddressItem) => {
-  const auth = getAuth();
-  const userUID = auth.currentUser?.uid;
+  // const auth = getAuth();
+  const userUID = auth().currentUser?.uid;
 
   try {
     const docRef = await addDoc(collection(db, 'addresses'), {
@@ -74,8 +79,8 @@ const getAddresses = async () => {
 const setOrder = async (addressId: string) => {
   // const setOrder = async () => {
   console.log('setOrder: ', addressId);
-  const auth = getAuth();
-  const userUID = auth.currentUser?.uid;
+  // const auth = getAuth();
+  const userUID = auth().currentUser?.uid;
 
   const order = {
     deliverySchedule: new Date(),

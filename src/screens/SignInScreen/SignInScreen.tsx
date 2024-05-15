@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TextInput, View } from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
+import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
@@ -19,10 +19,9 @@ export const SignInScreen = () => {
 
   const onSignInPress = async () => {
     setLoader(true);
-    const auth = getAuth();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await auth().signInWithEmailAndPassword(email, password);
       setLoader(false);
       setEmail('');
       setPassword('');

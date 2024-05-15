@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
-// import handleErrors from '../../utils/handleErrors';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useTranslation } from 'react-i18next';
+// import handleErrors from '../../utils/handleErrors';
+import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { setUser } from '@/firebase/queries';
+import { setUser } from '@/fb/queries';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignUpScreen.styles';
-// import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { UserValidator } from './SignUpScreen.validator';
 
 export const SignUpScreen = () => {
@@ -25,10 +25,26 @@ export const SignUpScreen = () => {
 
   const onSignUpPress = () => {
     setLoader(true);
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+    // const auth = getAuth();
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then(async () => {
+    //     await createUserWithRestOfData();
+
+    //     await resetForm();
+
+    //     Alert.alert(t('RegistrationCompleted'));
+    //   })
+    //   .catch(error => {
+    //     const errorCode = error.code;
+    //     handleErrors(errorCode);
+    //     setLoader(false);
+    //   });
+    // console.log('auth().currentUser?.uid');
+    // console.log(auth().currentUser?.uid);
+    auth()
+      .createUserWithEmailAndPassword(email, password)
       .then(async () => {
-        await createUserWithRestOfData();
+        await createUserWithRestOfData(auth().currentUser?.uid);
 
         await resetForm();
 
@@ -41,8 +57,8 @@ export const SignUpScreen = () => {
       });
   };
 
-  const createUserWithRestOfData = async () => {
-    setUser(names, surnames);
+  const createUserWithRestOfData = async (uid: string | undefined) => {
+    setUser(names, surnames, uid);
   };
 
   const resetForm = async () => {

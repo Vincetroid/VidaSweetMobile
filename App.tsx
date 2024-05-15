@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { getAuth } from 'firebase/auth';
-import functions from '@react-native-firebase/functions';
+import auth from '@react-native-firebase/auth';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { themeStyles } from '@/global-styles';
 import addFontAwesomeIcons from './src/assets/icons/FontAwesomeIconsHandler';
 import { AuthenticatedUser } from './src/components';
 // import { themeStyles } from './src/global-styles/Theme';
-import { useFirebaseAuth } from './src/hooks';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import './i18n.config';
-// Use a local emulator in development
-
-console.log('INSIDE DEV', __DEV__);
-// If you are running on a physical device, replace http://localhost with the local ip of your PC. (http://192.168.x.x)
-functions().useEmulator('localhost', 5001);
-
-// console.log(functions);
 
 const App = () => {
-  const auth = getAuth();
-  const authenticatedUser = useFirebaseAuth(auth);
   const [loadingApp, setLoadingApp] = useState(true);
-  // const authenticatedUser = true;
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     addFontAwesomeIcons();
 
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+
     setTimeout(() => {
       setLoadingApp(false);
     }, 1000);
+
+    return subscriber; // unsubscribe on unmount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function onAuthStateChanged(theUser) {
+    setUser(theUser);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
+  if (initializing) {
+    return null;
+  }
 
   if (loadingApp) {
     return <SplashScreen />;
@@ -46,7 +52,7 @@ const App = () => {
 
   return (
     <NavigationContainer theme={ReactNavigationThemeJustDefaultBgColor}>
-      {authenticatedUser ? <AuthenticatedUser /> : <GuestNavigator />}
+      {user ? <AuthenticatedUser /> : <GuestNavigator />}
       {/* Common modal screens just below */}
     </NavigationContainer>
   );
