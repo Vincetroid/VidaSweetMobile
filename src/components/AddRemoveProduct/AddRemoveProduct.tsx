@@ -16,8 +16,7 @@ interface AddRemoveProductProps {
 
 export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   const dispatch = useAppDispatch();
-  const [counter, setCounter] = useState(0);
-  // const { cartProductsCounter } = useAppSelector(state => state.cart);
+  const { cartProducts } = useAppSelector(state => state.cart);
 
   // Tratar de optimizar esto:
   // Tal vez llamar productsFiltered en utils
@@ -30,8 +29,7 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   // }, [cartProducts.length]);
 
   const decrementCounter = () => {
-    if (counter > 0) {
-      setCounter(counter - 1);
+    if (cartProducts[product.id]?.quantity > 0) {
       dispatch(removeProduct(product));
       // Probably will be removed next line https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
       dispatch(removeGlobalProductCounter());
@@ -39,9 +37,7 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
   };
 
   const incrementCounter = () => {
-    //por ahora 20, ya veremos despues
-    if (counter <= 20) {
-      setCounter(counter + 1);
+    if (cartProducts[product.id]?.quantity <= 20) {
       dispatch(addProduct(product));
       // Probably will be removed next line https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer
       dispatch(addGlobalProductCounter());
@@ -54,7 +50,9 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
         <Text style={styles.text}>-</Text>
       </TouchableOpacity>
       <View style={styles.centerSide}>
-        <Text style={styles.text}>{counter}</Text>
+        <Text style={styles.text}>
+          {cartProducts[product.id]?.quantity || 0}
+        </Text>
       </View>
       <TouchableOpacity style={styles.rightSide} onPress={incrementCounter}>
         <Text style={styles.text}>+</Text>
