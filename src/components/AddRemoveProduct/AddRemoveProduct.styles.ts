@@ -6,13 +6,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 80,
     paddingVertical: 4,
-    // backgroundColor: 'aqua',
-    backgroundColor: themeStyles.quaternary,
   },
   leftSide: {
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
-    // backgroundColor: 'green',
     display: 'flex',
     flex: 0.3,
   },
@@ -28,6 +25,6 @@ export const styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    color: themeStyles.background,
+    color: themeStyles.text,
   },
 });
