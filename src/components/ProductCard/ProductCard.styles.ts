@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    width: '80%',
   },
   addText: {
     marginLeft: 10,
@@ -38,8 +37,12 @@ export const styles = StyleSheet.create({
   icon: {
     color: themeStyles.primary,
   },
+  imgContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   img: {
-    width: 150,
+    width: 100,
     height: 'auto',
     aspectRatio: 1,
   },

@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash';
 import { ProductCart } from '@/interfaces';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
@@ -31,26 +32,34 @@ const cartSlice = createSlice({
             subtotal: action.payload.price,
           },
         };
-      } else {
+        state.cartProductsCounter++;
+      } else if (state.cartProducts[productId].quantity < 20) {
         state.cartProducts[productId].quantity++;
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
+        // TO CHECK: https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer. Looks like an antipattern
+        state.cartProductsSubtotal += state.cartProducts[productId].price;
+        state.cartProductsIva += state.cartProducts[productId].price * 0.16;
+        state.cartProductsCounter++;
       }
-      // TO CHECK: https://stackoverflow.com/questions/36730793/can-i-dispatch-an-action-in-reducer. Looks like an antipattern
-      state.cartProductsSubtotal += state.cartProducts[productId].price;
-      state.cartProductsIva += state.cartProducts[productId].price * 0.16;
     },
     removeProduct(state, action: PayloadAction<ProductCart>) {
       const productId = action.payload.id;
 
-      if (state.cartProducts[productId].quantity > 0) {
+      if (
+        !isEmpty(state.cartProducts) &&
+        state.cartProducts[productId].quantity > 0
+      ) {
+        console.log('else if');
         state.cartProducts[productId].quantity--;
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
+        state.cartProductsSubtotal -= state.cartProducts[productId].price;
+        state.cartProductsIva -= state.cartProducts[productId].price * 0.16;
+        state.cartProductsCounter--;
       }
-      state.cartProductsSubtotal -= state.cartProducts[productId].price;
-      state.cartProductsIva -= state.cartProducts[productId].price * 0.16;
     },
+    // VER SI SON USADAS EN OTRO LUGAR, SI NO, BORRARLAS
     addGlobalProductCounter(state) {
       state.cartProductsCounter++;
     },
