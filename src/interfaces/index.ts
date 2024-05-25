@@ -1,11 +1,12 @@
 import { Timestamp } from 'firebase/firestore';
 
 export interface ProductItem {
-  id: string;
+  docId: string;
   img: number;
   title: string;
   price: number;
-  isFavorite: boolean;
+  stock: number;
+  isFavorite?: boolean; // esta a lo mejor se va a otra tabla
 }
 
 export interface ProductCart extends ProductItem {

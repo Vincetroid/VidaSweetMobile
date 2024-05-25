@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Colors, FontSizes } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
-import { Divider, ProductCard, ProductRow, RowTitle } from '@/components';
+import { CartProducts, Divider, ProductCard, RowTitle } from '@/components';
 import { useAppSelector } from '@/hooks';
 import { formatCurrency } from '@/utils';
 import { MercadoPagoIcon } from '@/assets/icons';
@@ -16,14 +16,14 @@ export const Cart = () => {
   const { t } = useTranslation();
 
   const product1 = {
-    id: '49302897-4fd7-42cb-914c-629f358672b3',
+    docId: '49302897-4fd7-42cb-914c-629f358672b3',
     img: require('@/assets/products/ice-cream-liter.jpeg'),
     title: 'Helado 1l',
     price: 150.0,
     isFavorite: false,
   } as ProductItem;
   const product2 = {
-    id: 'd90e703e-7cb9-4a28-86c5-c2921d170a55',
+    docId: 'd90e703e-7cb9-4a28-86c5-c2921d170a55',
     img: require('@/assets/products/ice-cream-single.jpeg'),
     title: 'Helado sencillo',
     price: 60.5,
@@ -38,8 +38,7 @@ export const Cart = () => {
         styleSecondaryTextTitle={styles.cartSummarySecondaryTitle}
         secondaryText={t('NArticles', { quantity: cartProductsCounter })}
       />
-      <ProductRow product={product1} />
-      <ProductRow product={product2} />
+      <CartProducts />
       {/* <RowTitle
         title={t('CartSummary')}
         styleTextTitle={styles.cartSummaryTitle}

@@ -40,7 +40,7 @@ export const AddRemoveProduct = ({ product }: AddRemoveProductProps) => {
       </TouchableOpacity>
       <View style={styles.centerSide}>
         <Text style={styles.text}>
-          {cartProducts[product.id]?.quantity || 0}
+          {cartProducts[product.docId]?.quantity || 0}
         </Text>
       </View>
       <TouchableOpacity style={styles.rightSide} onPress={incrementCounter}>

@@ -5,6 +5,7 @@ import { AuthenticatedUser } from './AuthenticatedUser';
 import { BackButton } from './BackButton';
 import { Button } from './Button';
 import { Cart } from './Cart';
+import { CartProducts } from './CartProducts';
 import { ChatWrapper } from './ChatWrapper';
 import { Divider } from './Divider';
 import { FullScreenLoader } from './FullScreenLoader';
@@ -25,6 +26,7 @@ export {
   BackButton,
   Button,
   Cart,
+  CartProducts,
   ChatWrapper,
   Divider,
   FullScreenLoader,

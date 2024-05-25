@@ -17,6 +17,9 @@ PODS:
   - Firebase/Functions (10.20.0):
     - Firebase/CoreOnly
     - FirebaseFunctions (~> 10.20.0)
+  - Firebase/Storage (10.20.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 10.20.0)
   - FirebaseAppCheckInterop (10.21.0)
   - FirebaseAuth (10.20.0):
     - FirebaseAppCheckInterop (~> 10.17)
@@ -44,6 +47,12 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - FirebaseMessagingInterop (10.21.0)
   - FirebaseSharedSwift (10.21.0)
+  - FirebaseStorage (10.20.0):
+    - FirebaseAppCheckInterop (~> 10.0)
+    - FirebaseAuthInterop (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseCoreExtension (~> 10.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - fmt (6.2.1)
   - glog (0.3.5)
   - GoogleUtilities/AppDelegateSwizzler (7.12.0):
@@ -460,6 +469,10 @@ PODS:
     - Firebase/Functions (= 10.20.0)
     - React-Core
     - RNFBApp
+  - RNFBStorage (18.9.0):
+    - Firebase/Storage (= 10.20.0)
+    - React-Core
+    - RNFBApp
   - RNGestureHandler (2.15.0):
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -539,6 +552,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
+  - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -557,6 +571,7 @@ SPEC REPOS:
     - FirebaseFunctions
     - FirebaseMessagingInterop
     - FirebaseSharedSwift
+    - FirebaseStorage
     - fmt
     - GoogleUtilities
     - GTMSessionFetcher
@@ -659,6 +674,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNFBFunctions:
     :path: "../node_modules/@react-native-firebase/functions"
+  RNFBStorage:
+    :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
@@ -685,6 +702,7 @@ SPEC CHECKSUMS:
   FirebaseFunctions: 2b6ec69b93c49347025190ccb0a27cdbfd1cad66
   FirebaseMessagingInterop: bd03eed9a75b75d882bc685f29dcdfcae29e3279
   FirebaseSharedSwift: 19b3f709993d6fa1d84941d41c01e3c4c11eab93
+  FirebaseStorage: 8505bae8ac6662474b5b50e07759fb2765c15746
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
@@ -730,6 +748,7 @@ SPEC CHECKSUMS:
   RNFBApp: a3e139715386fe79a09c387f2dbeb6890eb05b39
   RNFBAuth: b967a31a2ce307557a4237564d8e5f7cd83a316f
   RNFBFunctions: c2b387fdd35441d366e01509249176f1c493d7ba
+  RNFBStorage: 5fe90718b84edfa91757b2625bb772222bc14574
   RNGestureHandler: 6a0bca5c5b2fb62211e9a75d5f4ed877817c4412
   RNScreens: 1c2444658fbb696a094272d946708167b1f63409
   RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396

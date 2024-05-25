@@ -22,11 +22,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct(state, action: PayloadAction<ProductCart>) {
-      const productId = action.payload.id as any; // TODO: Fix any: Element implicitly has an 'any' type because index expression is not of type 'number'
+      const productId = action.payload.docId as any; // TODO: Fix any: Element implicitly has an 'any' type because index expression is not of type 'number'
       if (!state.cartProducts[productId]) {
         state.cartProducts = {
           ...state.cartProducts,
-          [action.payload.id]: {
+          [action.payload.docId]: {
             price: action.payload.price,
             quantity: 1,
             subtotal: action.payload.price,
@@ -44,7 +44,7 @@ const cartSlice = createSlice({
       }
     },
     removeProduct(state, action: PayloadAction<ProductCart>) {
-      const productId = action.payload.id;
+      const productId = action.payload.docId;
 
       if (
         !isEmpty(state.cartProducts) &&

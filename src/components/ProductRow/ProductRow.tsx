@@ -12,9 +12,9 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
   const { img, title, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
-  const getProductPrice = (id: string) => {
-    if (cartProducts[id] && cartProducts[id].subtotal) {
-      return formatCurrency(cartProducts[id].subtotal);
+  const getProductPrice = (docId: string) => {
+    if (cartProducts[docId] && cartProducts[docId].subtotal) {
+      return formatCurrency(cartProducts[docId].subtotal);
     }
     return 0;
   };
@@ -34,7 +34,9 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
         <AddRemoveProduct product={product} />
       </View>
       <View style={styles.rightZone}>
-        <Text style={styles.productPrice}>{getProductPrice(product.id)}</Text>
+        <Text style={styles.productPrice}>
+          {getProductPrice(product.docId)}
+        </Text>
       </View>
     </View>
   );

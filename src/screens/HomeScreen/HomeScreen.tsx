@@ -2,9 +2,8 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
-import { ProductItem } from '@/interfaces';
-import { Menu, RowTitle } from '@/components';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { FullScreenLoader, Menu, ProductCard, RowTitle } from '@/components';
+import { useFetchProducts } from '@/hooks/useFetchProducts';
 
 const images = [
   'https://source.unsplash.com/1024x768/?nature',
@@ -15,22 +14,12 @@ const images = [
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
-
-  const product1 = {
-    img: require('@/assets/products/ice-cream-liter.jpeg'),
-    title: 'Helado 1l',
-    price: 150.0,
-    isFavorite: false,
-  } as ProductItem;
-  const product2 = {
-    img: require('@/assets/products/ice-cream-single.jpeg'),
-    title: 'Helado sencillo',
-    price: 60.5,
-    isFavorite: true,
-  } as ProductItem;
+  const { loader, setLoader, products, setProducts, pullProducts } =
+    useFetchProducts();
 
   return (
     <SafeAreaView testID="home-screen">
+      {loader ? <FullScreenLoader /> : null}
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
         <SliderBox images={images} />
 
@@ -41,10 +30,9 @@ export const HomeScreen = () => {
         <RowTitle title={t('TopSellers')} />
 
         <View style={[styles.container]}>
-          <ProductCard product={product1} />
-          <ProductCard product={product2} />
-          <ProductCard product={product1} />
-          <ProductCard product={product2} />
+          {products.map(product => {
+            return <ProductCard product={product} />;
+          })}
         </View>
       </ScrollView>
     </SafeAreaView>

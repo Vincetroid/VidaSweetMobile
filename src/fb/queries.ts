@@ -6,7 +6,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import { AddressItem, OrderItem, UserItem } from '@/interfaces';
+import { AddressItem, OrderItem, ProductItem, UserItem } from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
@@ -67,9 +67,9 @@ const editAddress = async (address: AddressItem, addressId: string) => {
 const getAddresses = async () => {
   const addressesCollection = collection(db, 'addresses');
   const addressesDocsSnapshot = await getDocs(addressesCollection);
-  const addresses = addressesDocsSnapshot.docs.map(doc => {
-    const data = doc.data();
-    const docId = doc.id;
+  const addresses = addressesDocsSnapshot.docs.map(document => {
+    const data = document.data();
+    const docId = document.id;
     return { docId, ...data };
   });
   return addresses as Array<AddressItem>;
@@ -102,9 +102,21 @@ const setProductOrder = async () => {
   console.log('setProductOrder');
 };
 
+const getProducts = async () => {
+  const productsCollection = collection(db, 'products');
+  const productsDocsSnapshot = await getDocs(productsCollection);
+  const products = productsDocsSnapshot.docs.map(document => {
+    const data = document.data();
+    const docId = document.id;
+    return { docId, ...data };
+  });
+  return products as Array<ProductItem>;
+};
+
 export {
   editAddress,
   getAddresses,
+  getProducts,
   setAddress,
   setOrder,
   setProductOrder,
