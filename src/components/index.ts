@@ -13,6 +13,7 @@ import { Menu } from './Menu';
 import { MenuElement } from './MenuElement';
 import { ProductCard } from './ProductCard';
 import { ProductRow } from './ProductRow';
+import { Products } from './Products';
 import { RowTitle } from './RowTitle';
 import { ShoppingCartButton } from './ShoppingCartButton';
 import { Splash } from './Splash';
@@ -34,6 +35,7 @@ export {
   MenuElement,
   ProductCard,
   ProductRow,
+  Products,
   RowTitle,
   ShoppingCartButton,
   Splash,
