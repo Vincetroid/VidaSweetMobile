@@ -126,7 +126,6 @@ export const AddressScreen = ({ route }) => {
       try {
         console.log('before set addres');
         const docId = await setAddress(addressObj);
-        //TAMBIEN TE QUEDASTE AQUI
         console.log('docId: ', docId); // Si resultó, ya tienes el addressId Para usarlo en orders
         dispatch(
           addCurrentSelectedAddress({ ...addressObj, docId: docId || '' }),

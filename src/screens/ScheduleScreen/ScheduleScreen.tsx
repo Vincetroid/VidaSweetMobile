@@ -53,7 +53,7 @@ export const ScheduleScreen = () => {
 
   const onChangeDate = (date: string) => {
     const lan = i18next.language;
-    //TE QUEDASTE AQUI porque es mejor manejar mas tarde la fecha en formato ingles para hacer la siguiente operacion:
+    //porque es mejor manejar mas tarde la fecha en formato ingles para hacer la siguiente operacion:
     // new Date('03/07/2024 10:00')
     // Thu Mar 07 2024 10:00:00 GMT-0600 (hora estándar central)
     const latinOrEnglishDateFormatString = lan.includes('es')

@@ -1,23 +1,14 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Products } from '@/components';
+import { ScrollView } from 'react-native';
+import { Products, SearchBar } from '@/components';
 
 export const IceCreamScreen = () => {
   return (
-    <SafeAreaView style={styles.bg}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
+    <>
+      <SearchBar />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Products />
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  bg: {
-    // backgroundColor: 'red',
-  },
-  bg2: {
-    // backgroundColor: 'green',
-  },
-});

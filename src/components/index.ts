@@ -9,12 +9,14 @@ import { CartProducts } from './CartProducts';
 import { ChatWrapper } from './ChatWrapper';
 import { Divider } from './Divider';
 import { FullScreenLoader } from './FullScreenLoader';
+import { Loader } from './Loader';
 import { Menu } from './Menu';
 import { MenuElement } from './MenuElement';
 import { ProductCard } from './ProductCard';
 import { ProductRow } from './ProductRow';
 import { Products } from './Products';
 import { RowTitle } from './RowTitle';
+import { SearchBar } from './SearchBar';
 import { ShoppingCartButton } from './ShoppingCartButton';
 import { Splash } from './Splash';
 import { TemplateSplitedViewScrollAndButtonFixedAtTheBottom } from './TemplateSplitedViewScrollAndButtonFixedAtTheBottom';
@@ -31,12 +33,14 @@ export {
   ChatWrapper,
   Divider,
   FullScreenLoader,
+  Loader,
   Menu,
   MenuElement,
   ProductCard,
   ProductRow,
   Products,
   RowTitle,
+  SearchBar,
   ShoppingCartButton,
   Splash,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
