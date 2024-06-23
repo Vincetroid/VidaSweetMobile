@@ -113,10 +113,22 @@ const getProducts = async () => {
   return products as Array<ProductItem>;
 };
 
+const getSpecificProducts = async (searchTerm: string) => {
+  const productsCollection = collection(db, 'products');
+  const productsDocsSnapshot = await getDocs(productsCollection);
+  const products = productsDocsSnapshot.docs.map(document => {
+    const data = document.data();
+    const docId = document.id;
+    return { docId, ...data };
+  });
+  return products as Array<ProductItem>;
+};
+
 export {
   editAddress,
   getAddresses,
   getProducts,
+  getSpecificProducts,
   setAddress,
   setOrder,
   setProductOrder,

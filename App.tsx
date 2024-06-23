@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { LogBox } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { themeStyles } from '@/global-styles';
@@ -8,6 +9,7 @@ import { AuthenticatedUser } from './src/components';
 import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import './i18n.config';
+LogBox.ignoreAllLogs();
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);

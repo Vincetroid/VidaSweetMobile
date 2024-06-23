@@ -1,35 +1,52 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Colors, FontSizes, themeStyles } from '@/global-styles';
+import { ProductItem } from '@/interfaces';
 import { faCircleXmark, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button } from '../Button';
+import { styles } from './SearchBar.styles';
 
-type SearchBarComponentProps = {};
+type SearchBarComponentProps = {
+  products: ProductItem[];
+  productsForSearch: ProductItem[];
+  setProductsForSearch: React.Dispatch<React.SetStateAction<ProductItem[]>>;
+};
 
 const ICON_BTN_SIZE = 16;
 
-export const SearchBar: React.FunctionComponent<
-  SearchBarComponentProps
-> = () => {
+export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
+  products,
+  setProductsForSearch,
+}) => {
   const { t } = useTranslation();
-  const [search, setSearch] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   const updateSearch = (searchTerm: string) => {
-    setSearch(searchTerm);
+    setSearchText(searchTerm);
+
+    const productsFiltered = products.filter(product => {
+      if (product.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return product;
+      }
+    });
+
+    if (!searchTerm) {
+      setProductsForSearch(products);
+    }
+
+    setProductsForSearch(productsFiltered);
   };
 
   const onAddSearch = (searchTerm: string) => {};
 
   const onPressCancelIcon = () => {
     clearInput();
-    // setLoading(!loading);
   };
 
   const clearInput = () => {
-    setSearch('');
+    setSearchText('');
   };
 
   return (
@@ -42,7 +59,7 @@ export const SearchBar: React.FunctionComponent<
       <TextInput
         style={styles.input}
         onChangeText={updateSearch}
-        value={search}
+        value={searchText}
         placeholder={t('SearchPlaceholder')}
         maxLength={100}
         onBlur={() => {}}
@@ -62,49 +79,3 @@ export const SearchBar: React.FunctionComponent<
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  searchContainer: {
-    backgroundColor: themeStyles.background,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 50,
-    margin: 12,
-    padding: 10,
-    paddingLeft: 35,
-    paddingRight: 35,
-    flex: 1,
-    backgroundColor: Colors.grayLightBg,
-    fontSize: FontSizes.x_medium,
-    borderWidth: 0,
-    borderRadius: 10,
-    color: themeStyles.text,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  searchIcon: {
-    position: 'absolute',
-    zIndex: 1,
-    left: 22,
-    color: themeStyles.secondary,
-  },
-  cancelIcon: {
-    color: themeStyles.secondary,
-  },
-  cancelPressable: {
-    marginBottom: 16,
-    zIndex: 10,
-  },
-  cancelPressableLoading: {
-    zIndex: 10,
-    position: 'absolute',
-    right: 23,
-    width: ICON_BTN_SIZE,
-    height: ICON_BTN_SIZE,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

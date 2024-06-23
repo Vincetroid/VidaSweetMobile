@@ -2,13 +2,16 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { FontSizes } from '@/global-styles';
+import { ProductItem } from '@/interfaces';
 import { FullScreenLoader, ProductCard, RowTitle } from '@/components';
-import { useFetchProducts } from '@/hooks/useFetchProducts';
 
-export const Products = () => {
+interface ProductsProps {
+  loader: boolean;
+  products: ProductItem[];
+}
+
+export const Products = ({ loader, products }: ProductsProps) => {
   const { t } = useTranslation();
-  const { loader, setLoader, products, setProducts, pullProducts } =
-    useFetchProducts();
 
   return (
     <SafeAreaView testID="home-screen">
