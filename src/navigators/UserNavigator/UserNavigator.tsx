@@ -82,7 +82,11 @@ export function UserNavigator() {
 
 const TabsUserNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        tabBarHideOnKeyboard: true,
+      }}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}
