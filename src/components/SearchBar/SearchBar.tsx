@@ -41,6 +41,7 @@ export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
 
   const clearInput = () => {
     setSearchText('');
+    updateSearch('');
   };
 
   const onPressCancelIcon = () => {
