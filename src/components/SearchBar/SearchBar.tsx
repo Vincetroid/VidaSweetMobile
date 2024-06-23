@@ -39,14 +39,16 @@ export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
     setProductsForSearch(productsFiltered);
   };
 
-  const onAddSearch = (searchTerm: string) => {};
+  const clearInput = () => {
+    setSearchText('');
+  };
 
   const onPressCancelIcon = () => {
     clearInput();
   };
 
-  const clearInput = () => {
-    setSearchText('');
+  const onBlurTextInput = () => {
+    clearInput();
   };
 
   return (
@@ -62,7 +64,7 @@ export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
         value={searchText}
         placeholder={t('SearchPlaceholder')}
         maxLength={100}
-        onBlur={() => {}}
+        onBlur={onBlurTextInput}
         onChange={() => {}}
         onFocus={() => {}}
       />
