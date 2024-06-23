@@ -101,7 +101,7 @@ const TabsUserNavigator = () => {
           tabBarIcon: () => <FontAwesomeIcon icon={faIceCream} size={24} />,
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Cakery"
         component={CakeryScreen}
         options={{
@@ -109,7 +109,7 @@ const TabsUserNavigator = () => {
           headerShown: false,
           tabBarIcon: () => <FontAwesomeIcon icon={faCakeCandles} size={24} />,
         }}
-      />
+      /> */}
       <UserStack.Screen
         name="Settings"
         component={SettingsScreen}
