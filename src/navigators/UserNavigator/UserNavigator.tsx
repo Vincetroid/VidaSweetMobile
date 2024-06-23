@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FontSizes } from '@/global-styles';
 import {
   AddressScreen,
-  CakeryScreen,
+  // CakeryScreen,
   DeliveryAddressScreen,
   HomeNavigationOptions,
   HomeScreen,
@@ -16,7 +16,7 @@ import {
   ShoppingCartScreen,
 } from '@/screens';
 import {
-  faCakeCandles,
+  // faCakeCandles,
   faGear,
   faHome,
   faIceCream,
