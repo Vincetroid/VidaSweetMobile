@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 
 export interface ProductItem {
   docId: string;
-  img: number;
+  img: string;
   title: string;
   price: number;
   stock: number;

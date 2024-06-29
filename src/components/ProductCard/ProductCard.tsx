@@ -16,6 +16,8 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { img, title, price, isFavorite = false } = product;
+  // console.log('img');
+  // console.log(img);
   const { currentImage } = useFetchProductImages(img);
 
   const cardGap = 30;

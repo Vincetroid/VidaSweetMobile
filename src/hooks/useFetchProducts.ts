@@ -29,6 +29,8 @@ export const useFetchProducts = () => {
   const pullProducts = async () => {
     try {
       const productsList = await getProducts();
+      // console.log('productsList');
+      // console.log(productsList);
       setProducts(productsList);
       setProductsForSearch(productsList);
     } catch (error) {

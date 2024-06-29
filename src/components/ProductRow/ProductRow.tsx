@@ -4,13 +4,17 @@ import { ProductItem } from '@/interfaces';
 import { AddRemoveProduct } from '@/components/AddRemoveProduct';
 import { AddRemoveToFavorites } from '@/components/AddRemoveToFavorites';
 import { useAppSelector } from '@/hooks';
+import { useFetchProductImages } from '@/hooks/useFetchProductImages';
 import { formatCurrency } from '@/utils';
 import { styles } from './ProductRow.styles';
 
 export const ProductRow = ({ product }: { product: ProductItem }) => {
-  // const { id, img, title, price, isFavorite = false } = product;
   const { img, title, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
+
+  console.log('product:');
+  console.log(product);
+  const { currentImage } = useFetchProductImages(img);
 
   const getProductPrice = (docId: string) => {
     if (cartProducts[docId] && cartProducts[docId].subtotal) {
@@ -27,7 +31,13 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
         wrapperStyle={styles.heartWrapperStyle}
       />
       <View style={styles.leftZone}>
-        <Image style={styles.img} source={img} resizeMode="contain" />
+        <Image
+          style={styles.img}
+          source={{
+            uri: currentImage,
+          }}
+          resizeMode="contain"
+        />
       </View>
       <View style={styles.centerZone}>
         <Text style={styles.productTitle}>{title}</Text>

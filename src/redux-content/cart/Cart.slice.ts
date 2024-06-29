@@ -27,13 +27,23 @@ const cartSlice = createSlice({
         state.cartProducts = {
           ...state.cartProducts,
           [action.payload.docId]: {
+            docId: action.payload.docId,
             price: action.payload.price,
             quantity: 1,
             subtotal: action.payload.price,
+            img: action.payload.img,
+            title: action.payload.title,
+            stock: action.payload.stock,
           },
         };
+        state.cartProductsSubtotal += state.cartProducts[productId].price;
+        state.cartProductsIva += state.cartProducts[productId].price * 0.16;
         state.cartProductsCounter++;
       } else if (state.cartProducts[productId].quantity < 20) {
+        state.cartProducts[productId].docId = action.payload.docId;
+        state.cartProducts[productId].img = action.payload.img;
+        state.cartProducts[productId].title = action.payload.title;
+        state.cartProducts[productId].stock = action.payload.stock;
         state.cartProducts[productId].quantity++;
         state.cartProducts[productId].subtotal =
           state.cartProducts[productId].quantity * action.payload.price;
