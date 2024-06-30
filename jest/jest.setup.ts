@@ -1,3 +1,9 @@
+jest.mock('react-native-simple-toast', () => ({
+  SHORT: jest.fn(),
+  LONG: jest.fn(),
+  BOTTOM: jest.fn(),
+}));
+
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 
 jest.mock('@fortawesome/react-native-fontawesome', () => ({

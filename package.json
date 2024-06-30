@@ -7,8 +7,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
