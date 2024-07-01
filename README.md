@@ -59,12 +59,12 @@ stripe listen --forward-to localhost:4242/webhook
 
 [More info](https://github.com/stripe/stripe-react-native?tab=readme-ov-file)
 
-## Step 5: Run a local server somewhere in your computer pointing to 3000 port
+## Step 5: Run the backend Node project to launch a server pointing to port 4242
 
-If it's on ruby run (make sure you have ruby installed first)
+At this point the command is
 
 ```bash
-ruby tcp_server.rb
+node server.js
 ```
 
 At the end should be running on 127.0.0.1:3000
