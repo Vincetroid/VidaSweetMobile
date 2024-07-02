@@ -2,16 +2,16 @@ import React from 'react';
 import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Colors, FontSizes } from '@/global-styles';
-import { ProductItem } from '@/interfaces';
+import { faCcStripe } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { CartProducts, Divider, ProductCard, RowTitle } from '@/components';
 import { useAppSelector } from '@/hooks';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { formatCurrency } from '@/utils';
-import { MercadoPagoIcon } from '@/assets/icons';
 import { styles } from './Cart.styles';
 
 export const Cart = () => {
-  const ICON_SIZE = 28;
+  const ICON_SIZE = 32;
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
@@ -66,15 +66,14 @@ export const Cart = () => {
         )} MXN`}
       />
       <RowTitle
-        title={t('SecurePaymentsWithText', { vendor: 'Mercado Pago' })}
+        title={t('SecurePaymentsWithText', { vendor: 'Stripe' })}
         centered
         styleTextTitle={styles.securePaymentTitle}
       />
-      <MercadoPagoIcon
-        width={ICON_SIZE}
-        height={ICON_SIZE}
-        style={styles.icon}
-      />
+
+      <View style={{ flex: 1, alignItems: 'center', marginTop: 6 }}>
+        <FontAwesomeIcon icon={faCcStripe} size={ICON_SIZE} />
+      </View>
 
       <RowTitle
         title={t('YouForgotSomethingMsg')}
