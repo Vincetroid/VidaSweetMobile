@@ -5,6 +5,7 @@ import { Colors, FontSizes } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { CartProducts, Divider, ProductCard, RowTitle } from '@/components';
 import { useAppSelector } from '@/hooks';
+import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { formatCurrency } from '@/utils';
 import { MercadoPagoIcon } from '@/assets/icons';
 import { styles } from './Cart.styles';
@@ -14,24 +15,7 @@ export const Cart = () => {
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
-
-  console.log('typeof cartProductsSubtotal');
-  console.log(typeof cartProductsSubtotal);
-
-  const product1 = {
-    docId: '49302897-4fd7-42cb-914c-629f358672b3',
-    img: require('@/assets/products/ice-cream-liter.jpeg'),
-    title: 'Helado 1l',
-    price: 150.0,
-    isFavorite: false,
-  } as ProductItem;
-  const product2 = {
-    docId: 'd90e703e-7cb9-4a28-86c5-c2921d170a55',
-    img: 'ice-cream-single.jpeg',
-    title: 'Helado sencillo',
-    price: 60.5,
-    isFavorite: true,
-  } as ProductItem;
+  const { products } = useFetchProducts();
 
   return (
     <>
@@ -98,10 +82,9 @@ export const Cart = () => {
         styleSecondaryTextTitle={styles.youForgotSomethingSecondaryTitle}
       />
       <View style={[styles.productCardsContainer]}>
-        <ProductCard product={product1} />
-        <ProductCard product={product2} />
-        <ProductCard product={product1} />
-        <ProductCard product={product2} />
+        {products.map(product => {
+          return <ProductCard product={product} />;
+        })}
       </View>
     </>
   );
