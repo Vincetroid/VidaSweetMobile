@@ -2,8 +2,10 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import { AddressItem } from '@/interfaces';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { addCurrentAddressId } from '@/redux-content';
 import {
   AddressRow,
   Button,
@@ -11,12 +13,13 @@ import {
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { useFetchAddresses } from '@/hooks';
+import { useAppDispatch, useFetchAddresses } from '@/hooks';
 import { styles } from './DeliveryAddressScreen.styles';
 
 export const DeliveryAddressScreen = () => {
   const ICON_BTN_SIZE = 18;
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const navigation = useNavigation();
   const { loader, setLoader, addresses, setAddresses, pullAddresses } =
     useFetchAddresses();
@@ -27,6 +30,38 @@ export const DeliveryAddressScreen = () => {
 
   const onAddAddress = () => {
     navigation.navigate('Address');
+  };
+
+  // const onPressAddressRectangle = async (
+  //   addressId: string,
+  //   addressIsCurrent: boolean,
+  // ) => {
+  const onPressAddressRectangle = async (address: AddressItem) => {
+    // console.log('onPressAddres: ', address);
+    // console.log('Address id: ', addressId);
+    // console.log('addressIsCurrent: ', addressIsCurrent);
+    // const newData = [...data];
+
+    //TODO: Esto más bien deberia estar en redux no? para que no se complique tanto en hacerse copias, etc
+    setAddresses(prevAddresses => {
+      return prevAddresses.map((prevAddress: AddressItem) => {
+        // console.log(address, prevAddress);
+        console.log(address.docId, prevAddress.docId);
+
+        if (address.docId === prevAddress.docId) {
+          return {
+            ...prevAddress,
+            isCurrent: true,
+          };
+        }
+        return {
+          ...prevAddress,
+          isCurrent: false,
+        };
+      });
+    });
+
+    dispatch(addCurrentAddressId(address.docId)); // AQUI HACE FALTA LA FULL ADDRESS PARA LA CONFIRMACION DE COMPRA
   };
 
   return (
@@ -42,9 +77,8 @@ export const DeliveryAddressScreen = () => {
           {addresses.map(address => {
             return (
               <AddressRow
+                onPressAddressRectangle={onPressAddressRectangle}
                 address={address}
-                setAddresses={setAddresses}
-                key={address.docId}
                 setLoader={setLoader}
                 pullAddresses={pullAddresses}
               />
