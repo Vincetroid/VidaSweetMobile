@@ -76,6 +76,12 @@ const cartSlice = createSlice({
     removeGlobalProductCounter(state) {
       state.cartProductsCounter--;
     },
+    resetCart(state) {
+      state.cartProducts = {};
+      state.cartProductsCounter = 0;
+      state.cartProductsSubtotal = 0;
+      state.cartProductsIva = 0;
+    },
   },
 });
 
@@ -86,5 +92,6 @@ export const {
   removeProduct,
   addGlobalProductCounter,
   removeGlobalProductCounter,
+  resetCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

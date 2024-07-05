@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { setOrder, setProductOrder } from '@/fb/queries';
 import { Colors, themeStyles } from '@/global-styles';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
+import { resetCart } from '@/redux-content/cart/Cart.slice';
 import {
   Button,
   Cart,
@@ -13,7 +14,7 @@ import {
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import handleErrors from '@/utils/handleErrors';
 import { API_URL } from '../../../Constants';
 import { styles } from './PrePurchaseSummaryScreen.styles';
@@ -21,6 +22,7 @@ import { styles } from './PrePurchaseSummaryScreen.styles';
 export const PrePurchaseSummaryScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
   const { currentAddressId } = useAppSelector(state => state.address);
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
@@ -33,7 +35,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     initialisePaymentSheet();
     console.log('initialise payment');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cartProductsSubtotal]);
 
   const initialisePaymentSheet = async () => {
     const { paymentIntent } = await fetchPaymentSheetParams();
@@ -117,8 +119,10 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     if (error) {
       handleErrors(error.code);
     } else {
+      dispatch(resetCart());
       Alert.alert(t('Success'), t('SuccessfulPaymentMsg'));
       setIsPaymentReady(false);
+      navigation.navigate('MainRoot');
     }
   };
 

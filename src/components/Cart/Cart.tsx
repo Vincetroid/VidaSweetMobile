@@ -16,6 +16,7 @@ export const Cart = () => {
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
   const { products } = useFetchProducts();
+  const totalAmount = cartProductsSubtotal + cartProductsIva;
 
   return (
     <>
@@ -61,9 +62,7 @@ export const Cart = () => {
         title={t('Total')}
         styleTextTitle={styles.totalTitle}
         styleSecondaryTextTitle={styles.totalSecondaryTitle}
-        secondaryText={`${formatCurrency(
-          cartProductsSubtotal + cartProductsIva,
-        )} MXN`}
+        secondaryText={`${formatCurrency(totalAmount)} MXN`}
       />
       <RowTitle
         title={t('SecurePaymentsWithText', { vendor: 'Stripe' })}

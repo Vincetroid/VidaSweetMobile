@@ -29,7 +29,8 @@ const handleErrors = (errorCode: string) => {
       Alert.alert(ErrorMessages.invalidLoginCredentials);
       break;
     case ErrorCodes.stripeCanceled:
-      Alert.alert(ErrorMessages.stripeCanceled);
+      // TODO: No provee una buena experiencia de usuario, ver si quitar
+      // Alert.alert(ErrorMessages.stripeCanceled);
       break;
     default:
       Alert.alert(`${ErrorMessages.unknownError} ${errorCode}`);
