@@ -12,10 +12,9 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   shadowEffect: {
-    shadowColor: '#ff0000',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.6,
-    shadowRadius: 10,
+    borderColor: themeStyles.success,
+    borderWidth: 1,
+    borderRadius: 10,
   },
   leftZone: {
     flex: 0.1,
