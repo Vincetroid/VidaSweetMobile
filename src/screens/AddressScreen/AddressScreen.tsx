@@ -146,6 +146,7 @@ export const AddressScreen = ({ route }) => {
     setCountryPhoneCode(countryDialCode as string);
   };
 
+  // TODO: textInputColor ya no sé que hace
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
