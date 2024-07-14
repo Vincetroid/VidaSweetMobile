@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { FontFamilies } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   safeAreaView: {
@@ -12,8 +13,14 @@ export const styles = StyleSheet.create({
     marginTop: 30,
   },
   emptyCartMsg: {
-    fontFamily: 'Lato Medium',
-    marginTop: 24,
+    fontFamily: FontFamilies.latoItalic,
     textAlign: 'center',
+    marginVertical: 24,
+  },
+  container: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    margin: 16,
   },
 });

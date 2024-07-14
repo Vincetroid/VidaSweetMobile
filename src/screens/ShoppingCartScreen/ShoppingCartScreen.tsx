@@ -5,11 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   Button,
-  Menu,
+  ProductCard,
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
 import { useAppSelector } from '@/hooks';
+import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { Cart } from '../../components/Cart/Cart';
 import { styles } from './ShoppingCartScreen.styles';
 
@@ -17,8 +18,7 @@ export const ShoppingCartScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const { cartProductsCounter } = useAppSelector(state => state.cart);
-
-  const productsLength = true;
+  const { products } = useFetchProducts();
 
   const onPressContinue = () => {
     if (cartProductsCounter <= 0) {
@@ -29,7 +29,7 @@ export const ShoppingCartScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
-      {productsLength ? (
+      {cartProductsCounter ? (
         <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
           <Cart />
           <Button title={t('Continue')} onPress={onPressContinue} />
@@ -38,11 +38,15 @@ export const ShoppingCartScreen = () => {
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           {/* <ScrollView contentContainerStyle={[gStyles.gralContainer]}> */}
           <View style={styles.emptyCardImage}>
-            <FontAwesomeIcon icon="shopping-cart" size={160} />
+            <FontAwesomeIcon icon="shopping-cart" size={80} />
           </View>
           <RowTitle title={t('EmptyCartTitle')} centered />
           <Text style={styles.emptyCartMsg}>{t('EmptyCartMessage')}</Text>
-          <Menu />
+          <View style={[styles.container]}>
+            {products.map(product => {
+              return <ProductCard product={product} />;
+            })}
+          </View>
         </ScrollView>
       )}
     </SafeAreaView>

@@ -6,10 +6,10 @@ import { FullScreenLoader, Menu, ProductCard, RowTitle } from '@/components';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 
 const images = [
-  'https://source.unsplash.com/1024x768/?nature',
-  'https://source.unsplash.com/1024x768/?water',
-  'https://source.unsplash.com/1024x768/?girl',
-  'https://source.unsplash.com/1024x768/?tree',
+  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/cookies.jpeg?alt=media&token=3b9e5380-6ad7-42a2-b48f-923ed599ed21',
+  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/fresa.jpg?alt=media&token=ff5a9ab4-b7fc-4958-a019-d8ecfb64212d',
+  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/limon.jpeg?alt=media&token=82277e18-ac14-4488-821e-b34f4254b51d',
+  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/mamey.jpeg?alt=media&token=dbdc8e46-30bd-4871-8c85-c396140c2654',
 ];
 
 export const HomeScreen = () => {
@@ -25,8 +25,6 @@ export const HomeScreen = () => {
 
         <RowTitle title={t('Menu')} centered />
 
-        <Menu />
-
         <RowTitle title={t('TopSellers')} />
 
         <View style={[styles.container]}>
@@ -34,6 +32,8 @@ export const HomeScreen = () => {
             return <ProductCard product={product} />;
           })}
         </View>
+
+        <Menu />
       </ScrollView>
     </SafeAreaView>
   );
