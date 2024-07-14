@@ -9,18 +9,20 @@ export const styles = StyleSheet.create({
     right: 3,
   },
   addBtn: {
-    marginTop: 10,
-    backgroundColor: themeStyles.secondary,
+    marginTop: 8,
+    backgroundColor: Colors.lightPink,
     paddingHorizontal: 8,
-    paddingVertical: 5,
+    paddingVertical: 6,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    borderRadius: 15,
   },
   addText: {
-    marginLeft: 10,
+    marginLeft: 6,
     color: themeStyles.primary,
+    fontSize: FontSizes.medium,
   },
   productTitle: {
     textAlign: 'center',
@@ -46,10 +48,20 @@ export const styles = StyleSheet.create({
     height: 'auto',
     aspectRatio: 1,
   },
+  imgModal: {
+    width: '100%',
+    height: 'auto',
+    aspectRatio: 1,
+  },
   heartIconSelected: {
     color: themeStyles.secondary,
   },
   heartIconNotSelected: {
     color: Colors.grayLight,
+  },
+  modalPressable: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
   shadowEffect: {
-    borderColor: themeStyles.success,
+    borderColor: themeStyles.secondary,
     borderWidth: 1,
     borderRadius: 10,
   },
