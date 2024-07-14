@@ -10,7 +10,7 @@ export const FontFamilies = {
   latoHeavy: 'Lato Heavy',
   latoItalic: 'Lato Italic',
   latoLightItalic: 'Lato Light Italic',
-  latoLight: 'Lato Ligth',
+  latoLight: 'Lato Light',
   latoMediumItalic: 'Lato Medium Italic',
   latoMedium: 'Lato Medium',
   latoRegular: 'Lato Regular',

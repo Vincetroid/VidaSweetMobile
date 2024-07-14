@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Colors, FontSizes } from '@/global-styles';
 import { faCcStripe } from '@fortawesome/free-brands-svg-icons';
@@ -26,7 +26,14 @@ export const Cart = () => {
         styleSecondaryTextTitle={styles.cartSummarySecondaryTitle}
         secondaryText={t('NArticles', { quantity: cartProductsCounter })}
       />
-      <CartProducts />
+      {cartProductsCounter > 0 ? (
+        <CartProducts />
+      ) : (
+        <View>
+          <Text style={styles.cartEmpty}>{t('EmptyCartTitle')}</Text>
+        </View>
+      )}
+
       {/* <RowTitle
         title={t('CartSummary')}
         styleTextTitle={styles.cartSummaryTitle}

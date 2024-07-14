@@ -1,6 +1,7 @@
 {
   "Add": "Add",
   "AddAnAddress": "Add an address",
+  "AddAtLeastOneProduct": "No products added. Add at least one product.",
   "AddressTagOrName": "Address Name (Home, Office, Etc)",
   "AreYouAMember": "¿Are you already a member?",
   "Cakes": "Cakes",
@@ -26,7 +27,7 @@
   "InvalidLoginCredentials": "Invalid login credentials. Please check email and/or password",
   "Menu": "Menu",
   "MissingPassword": "No password provided. Please type a password.",
-  "Municipality": "Municipality or Alcadia",
+  "Municipality": "Municipality or Alcaldia",
   "Names": "first Name",
   "NArticles": "{{quantity}} items",
   "NetworkRequestFailed": "Error, please check your internnet connection and try again",

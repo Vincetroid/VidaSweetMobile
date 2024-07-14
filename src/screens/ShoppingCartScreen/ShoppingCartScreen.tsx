@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Alert, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -9,16 +9,21 @@ import {
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
+import { useAppSelector } from '@/hooks';
 import { Cart } from '../../components/Cart/Cart';
 import { styles } from './ShoppingCartScreen.styles';
 
 export const ShoppingCartScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { cartProductsCounter } = useAppSelector(state => state.cart);
 
   const productsLength = true;
 
   const onPressContinue = () => {
+    if (cartProductsCounter <= 0) {
+      return Alert.alert(t('AddAtLeastOneProduct'));
+    }
     navigation.navigate('DeliveryAddress');
   };
 

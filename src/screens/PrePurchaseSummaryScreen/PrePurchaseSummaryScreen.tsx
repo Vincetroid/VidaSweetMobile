@@ -127,6 +127,9 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   };
 
   const onPressContinue = async () => {
+    if (cartProductsCounter <= 0) {
+      return Alert.alert(t('AddAtLeastOneProduct'));
+    }
     //Primero ver que la compra sea exitosa
     await makeStripePayment();
     //Segundo, asignar la orden

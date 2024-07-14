@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors, FontFamilies, FontSizes } from '@/global-styles';
+import { Colors, FontFamilies, FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   btn: {
@@ -82,5 +82,13 @@ export const styles = StyleSheet.create({
   icon: {
     color: '#25D366',
     alignSelf: 'center',
+  },
+  cartEmpty: {
+    marginVertical: 20,
+    alignSelf: 'center',
+    color: themeStyles.black,
+    fontSize: FontSizes.big,
+    marginLeft: 10,
+    fontFamily: FontFamilies.latoItalic,
   },
 });
