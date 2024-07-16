@@ -64,4 +64,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  cancelImageModalIcon: {
+    position: 'absolute',
+    top: 20,
+    right: 12,
+  },
 });

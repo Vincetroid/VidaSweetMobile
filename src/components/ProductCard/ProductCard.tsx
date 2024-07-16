@@ -13,6 +13,12 @@ import Modal from 'react-native-modal';
 import Toast from 'react-native-simple-toast';
 import { Colors } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
+import {
+  faCancel,
+  faClose,
+  faCross,
+  faHeart,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { addProduct } from '@/redux-content';
 import { useAppDispatch } from '@/hooks';
@@ -29,20 +35,23 @@ const images = [
 ];
 
 const ImageModal = ({ children, isImageVisible, setIsImageVisible }) => {
-  const onBackDropPress = () => {
-    console.log('on back drop press');
+  const onCloseImageModal = () => {
     setIsImageVisible(!isImageVisible);
   };
 
   return (
-    <Modal
-      isVisible={isImageVisible}
-      onBackdropPress={onBackDropPress}
-      onBackButtonPress={onBackDropPress}>
-      <Pressable onPress={onBackDropPress} style={styles.modalPressable}>
-        {children}
-        {/* <SliderBox images={images} /> */}
-      </Pressable>
+    <Modal isVisible={isImageVisible}>
+      <>
+        <TouchableOpacity
+          style={styles.cancelImageModalIcon}
+          onPress={onCloseImageModal}>
+          <FontAwesomeIcon icon={faClose} size={24} style={styles.icon} />
+        </TouchableOpacity>
+        <Pressable onPress={onCloseImageModal} style={styles.modalPressable}>
+          {children}
+          {/* <SliderBox images={images} /> */}
+        </Pressable>
+      </>
     </Modal>
   );
 };
