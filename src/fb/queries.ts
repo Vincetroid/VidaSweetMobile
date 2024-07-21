@@ -6,7 +6,13 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import { AddressItem, OrderItem, ProductItem, UserItem } from '@/interfaces';
+import {
+  AddressItem,
+  OrderItem,
+  ProductCart,
+  ProductItem,
+  UserItem,
+} from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
@@ -76,7 +82,7 @@ const getAddresses = async () => {
 };
 
 // const setOrder = async (order: OrderItem) => {
-const setOrder = async (addressId: string) => {
+const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
   // const setOrder = async () => {
   console.log('setOrder: ', addressId);
   // const auth = getAuth();
@@ -92,14 +98,38 @@ const setOrder = async (addressId: string) => {
       userUID,
       addressId,
     });
-    console.log('Document written with ID: ', docRef.id);
+    console.log('Document setOrder written with ID: ', docRef.id);
+
+    const orderId = docRef.id;
+
+    return orderId;
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 };
 
-const setProductOrder = async () => {
+const setProductOrder = async (
+  cartProduct: ProductCart,
+  orderId: string | undefined,
+) => {
   console.log('setProductOrder');
+
+  const { quantity, subtotal } = cartProduct;
+
+  const product_order = {
+    orderId,
+    quantity,
+    subtotal,
+  };
+
+  try {
+    const docRef = await addDoc(collection(db, 'product_orders'), {
+      ...product_order,
+    });
+    console.log('Document ProductOrder written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
 };
 
 const getProducts = async () => {

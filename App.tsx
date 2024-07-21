@@ -30,6 +30,7 @@ const App = () => {
   }, []);
 
   function onAuthStateChanged(theUser) {
+    // TODO: Checar si se asigna cada vez porque no estaba registrado antes b@hotmail.com
     setUser(theUser);
     if (initializing) {
       setInitializing(false);

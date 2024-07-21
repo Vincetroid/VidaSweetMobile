@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { setOrder, setProductOrder } from '@/fb/queries';
 import { Colors, themeStyles } from '@/global-styles';
+import { ProductCart } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import { resetCart } from '@/redux-content/cart/Cart.slice';
 import {
@@ -24,8 +25,12 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const { currentAddressId } = useAppSelector(state => state.address);
-  const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
-    useAppSelector(state => state.cart);
+  const {
+    cartProductsCounter,
+    cartProductsSubtotal,
+    cartProductsIva,
+    cartProducts,
+  } = useAppSelector(state => state.cart);
   const { deliveryDate, deliveryTime, deliveryDateTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const [isPaymentReady, setIsPaymentReady] = useState<boolean>(false);
@@ -118,11 +123,13 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
 
     if (error) {
       handleErrors(error.code);
+      return false;
     } else {
       dispatch(resetCart());
       Alert.alert(t('Success'), t('SuccessfulPaymentMsg'));
       setIsPaymentReady(false);
       navigation.navigate('MainRoot');
+      return true;
     }
   };
 
@@ -131,11 +138,33 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
       return Alert.alert(t('AddAtLeastOneProduct'));
     }
     //Primero ver que la compra sea exitosa
-    await makeStripePayment();
+    const resultPaymentIntent = await makeStripePayment();
     //Segundo, asignar la orden
-    await setOrder(currentAddressId);
-    //Tercero, asignar el product_order porque ya se tiene la orden previamente de setOrder
-    await setProductOrder(); // Aqui ver como mandar el sabor, cantidad, el subtotal...
+    const orderId = await setOrder(currentAddressId, cartProducts);
+    console.log('orderId');
+    console.log(orderId);
+    //Tercero, asignar el product_order porque ya se tiene la orden previamente de //setOrder
+    console.log('cartProducts');
+    console.log(cartProducts);
+    if (resultPaymentIntent) {
+      await setProductOrders(orderId);
+    }
+    // await setProductOrder(quant); // Aqui ver como mandar el sabor, cantidad, el subtotal...
+  };
+
+  const setProductOrders = async (orderId: string | undefined) => {
+    let products = Object.keys(cartProducts);
+
+    products.map(cartProductId => {
+      const cartProduct = cartProducts[cartProductId];
+      setProductOrder(cartProduct, orderId);
+    });
+
+    // cartProducts.forEach(async (cartProduct: ProductCart) => {
+    //   console.log('iterating over cartProducts');
+    //   // await setProductOrder(cartProduct, orderId);
+    //   await setProductOrder();
+    // });
   };
 
   const fullAddress =
