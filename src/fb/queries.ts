@@ -21,10 +21,6 @@ const setUser = async (
   surnames: string,
   uid: string | undefined,
 ) => {
-  console.log('auth');
-  console.log(auth);
-  // const userUID = auth.currentUser?.uid; //Este es undefined
-
   const user = {
     names,
     surnames,
@@ -38,7 +34,7 @@ const setUser = async (
 
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
-    console.error('Error adding document: ', e);
+    console.error('Error registering a new user: ', e);
   }
 };
 

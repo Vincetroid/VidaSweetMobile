@@ -1,16 +1,19 @@
 import { Validator } from 'fluentvalidation-ts';
+import i18n from 'i18next';
 import { UserItem } from '@/interfaces';
 
 export class UserValidator extends Validator<UserItem> {
   constructor() {
     super();
 
-    this.ruleFor('userName').notEmpty().withMessage('Please enter your name');
+    this.ruleFor('names').notEmpty().withMessage(i18n.t('EnterYourName'));
 
-    this.ruleFor('email').notEmpty().withMessage('Please enter your email');
+    this.ruleFor('surnames').notEmpty().withMessage(i18n.t('EnterSurnames'));
+
+    this.ruleFor('email').notEmpty().withMessage(i18n.t('EnterYourEmail'));
 
     this.ruleFor('password')
       .notEmpty()
-      .withMessage('Please enter a valid password');
+      .withMessage(i18n.t('EnterValidPassword'));
   }
 }

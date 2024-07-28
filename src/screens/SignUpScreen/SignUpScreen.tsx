@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-simple-toast';
 // import handleErrors from '../../utils/handleErrors';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { setUser } from '@/fb/queries';
+import { themeStyles } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignUpScreen.styles';
@@ -23,38 +26,54 @@ export const SignUpScreen = () => {
 
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
+  const requestValidator = new UserValidator();
+  // const validator = requestValidator.validate({
+  //   userName: 'Vince',
+  //   email: 'unaContraseña',
+  //   password: 'unPassword',
+  // });
+
+  const validator = requestValidator.validate({
+    names,
+    surnames,
+    email,
+    password,
+  });
+
+  console.log('validator');
+  console.log(validator);
+
   const onSignUpPress = () => {
-    setLoader(true);
-    // const auth = getAuth();
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then(async () => {
-    //     await createUserWithRestOfData();
+    if (isEmpty(validator)) {
+      setLoader(true);
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(async () => {
+          await createUserWithRestOfData(auth().currentUser?.uid);
 
-    //     await resetForm();
+          await resetForm();
 
-    //     Alert.alert(t('RegistrationCompleted'));
-    //   })
-    //   .catch(error => {
-    //     const errorCode = error.code;
-    //     handleErrors(errorCode);
-    //     setLoader(false);
-    //   });
-    // console.log('auth().currentUser?.uid');
-    // console.log(auth().currentUser?.uid);
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async () => {
-        await createUserWithRestOfData(auth().currentUser?.uid);
-
-        await resetForm();
-
-        Alert.alert(t('RegistrationCompleted'));
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        handleErrors(errorCode);
-        setLoader(false);
-      });
+          Alert.alert(t('RegistrationCompleted'));
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          handleErrors(errorCode);
+          setLoader(false);
+        });
+    } else {
+      Toast.showWithGravityAndOffset(
+        Object.values(validator)[0] || '',
+        Toast.LONG,
+        Toast.BOTTOM,
+        0,
+        -50,
+        {
+          backgroundColor: themeStyles.error,
+          textColor: themeStyles.white,
+          tapToDismissEnabled: true,
+        },
+      );
+    }
   };
 
   const createUserWithRestOfData = async (uid: string | undefined) => {
@@ -69,21 +88,6 @@ export const SignUpScreen = () => {
     setSurnames('');
     setPassword('');
   };
-
-  const requestValidator = new UserValidator();
-  // const validator = requestValidator.validate({
-  //   userName: 'Vince',
-  //   email: 'unaContraseña',
-  //   password: 'unPassword',
-  // });
-
-  const validator = requestValidator.validate({
-    email,
-    password,
-  });
-
-  console.log('validator');
-  console.log(validator);
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>

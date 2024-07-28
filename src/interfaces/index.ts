@@ -20,6 +20,8 @@ export interface MenuElementItem {
 }
 
 export interface UserItem {
+  names: string;
+  surnames: string;
   email: string;
   password: string;
 }

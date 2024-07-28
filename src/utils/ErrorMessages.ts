@@ -14,7 +14,7 @@ interface ErrorMessagesInterface {
 }
 
 const ErrorMessages: ErrorMessagesInterface = Object.freeze({
-  duplicatedEmail: i18n.t('duplicatedEmail'),
+  duplicatedEmail: i18n.t('DuplicatedEmail'),
   invalidEmail: i18n.t('InvalidEmail'),
   networkRequestFailed: i18n.t('NetworkRequestFailed'),
   unknownError: i18n.t('UnknownError'),

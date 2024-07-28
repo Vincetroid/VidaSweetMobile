@@ -16,11 +16,10 @@ const styles = StyleSheet.create({
   textInput: {
     textAlign: 'center',
     paddingTop: 10,
-    paddingBottom: 4,
+    paddingBottom: 8,
     borderBottomColor: themeStyles.black,
-    margin: 10,
     borderBottomWidth: 1,
-    borderColor: themeStyles.background,
+    marginBottom: 10,
   },
   signUpBtn: {
     marginTop: 26,
