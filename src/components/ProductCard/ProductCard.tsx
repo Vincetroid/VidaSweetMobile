@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
 import Modal from 'react-native-modal';
 import Toast from 'react-native-simple-toast';
-import { Colors } from '@/global-styles';
+import { Colors, themeStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import {
   faCancel,
@@ -25,6 +25,7 @@ import { useAppDispatch } from '@/hooks';
 import { useFetchProductImages } from '@/hooks/useFetchProductImages';
 import { formatCurrency } from '@/utils';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites';
+import { Loader } from '../Loader';
 import { styles } from './ProductCard.styles';
 
 const images = [
@@ -61,9 +62,7 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
   const dispatch = useAppDispatch();
   const [isImageVisible, setIsImageVisible] = useState<boolean>(false);
   const { img, title, price, isFavorite = false } = product;
-  // console.log('img');
-  // console.log(img);
-  const { currentImage } = useFetchProductImages(img);
+  const { currentImage, loader } = useFetchProductImages(img);
 
   const cardGap = 30;
   const cardWidth = (Dimensions.get('window').width - cardGap * 3) / 2;
@@ -98,13 +97,17 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
       <TouchableOpacity
         style={styles.imgContainer}
         onPress={() => setIsImageVisible(!isImageVisible)}>
-        <Image
-          style={styles.img}
-          source={{
-            uri: currentImage,
-          }}
-          resizeMode="contain"
-        />
+        {!loader ? (
+          <Image
+            style={styles.img}
+            source={{
+              uri: currentImage,
+            }}
+            resizeMode="contain"
+          />
+        ) : (
+          <Loader size="small" color={themeStyles.disabled} />
+        )}
       </TouchableOpacity>
       <Text style={styles.productTitle}>{title}</Text>
       <Text style={styles.productPrice}>{formatCurrency(price)}</Text>
@@ -115,13 +118,17 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
       <ImageModal
         isImageVisible={isImageVisible}
         setIsImageVisible={setIsImageVisible}>
-        <Image
-          style={styles.imgModal}
-          source={{
-            uri: currentImage,
-          }}
-          resizeMode="contain"
-        />
+        {!loader ? (
+          <Image
+            style={styles.imgModal}
+            source={{
+              uri: currentImage,
+            }}
+            resizeMode="contain"
+          />
+        ) : (
+          <Loader size="small" color={themeStyles.tertiary} />
+        )}
       </ImageModal>
     </View>
   );

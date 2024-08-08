@@ -5,17 +5,13 @@ import { themeStyles } from '@/global-styles';
 interface LoaderItem {
   size?: number | 'small' | 'large' | undefined;
   customStyle?: ViewStyle;
+  color: string;
 }
 
 export const Loader: FunctionComponent<LoaderItem> = ({
   size = 'small',
   customStyle = {},
+  color = themeStyles.tertiary,
 }) => {
-  return (
-    <ActivityIndicator
-      color={themeStyles.tertiary}
-      size={size}
-      style={customStyle}
-    />
-  );
+  return <ActivityIndicator color={color} size={size} style={customStyle} />;
 };

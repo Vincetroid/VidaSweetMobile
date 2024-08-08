@@ -9,17 +9,17 @@ export const useFetchProductImages = (img: number) => {
   const init = async (image: number) => {
     const productImage = await getProductImage(image.toString());
     setCurrentImage(productImage);
+    setLoader(false);
   };
 
   useEffect(() => {
     setLoader(true);
     try {
       init(img);
-      setLoader(false);
     } catch (error) {
       handleErrors(error.code);
     }
-  }, []);
+  }, [img]);
 
   return {
     currentImage,
