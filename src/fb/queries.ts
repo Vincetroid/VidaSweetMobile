@@ -3,7 +3,9 @@ import {
   collection,
   doc,
   getDocs,
+  query,
   updateDoc,
+  where,
 } from 'firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {
@@ -67,13 +69,17 @@ const editAddress = async (address: AddressItem, addressId: string) => {
 };
 
 const getAddresses = async () => {
+  const userUID = auth().currentUser?.uid;
+
   const addressesCollection = collection(db, 'addresses');
-  const addressesDocsSnapshot = await getDocs(addressesCollection);
+  const filtered = query(addressesCollection, where('userUID', '==', userUID));
+  const addressesDocsSnapshot = await getDocs(filtered);
   const addresses = addressesDocsSnapshot.docs.map(document => {
     const data = document.data();
     const docId = document.id;
     return { docId, ...data };
   });
+
   return addresses as Array<AddressItem>;
 };
 
