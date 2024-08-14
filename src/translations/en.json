@@ -24,6 +24,7 @@
   "EnterValidPassword": "Please enter a valid password",
   "Error": "Error",
   "ExteriorNumber": "Exterior Number",
+  "FirestorePermissionDenied": "The communication with some parts of the application aren't working, please try later.",
   "IceCreams": "Ice Creams",
   "IceCream": "Ice Cream",
   "InteriorNumber": "Interior Number",

@@ -25,6 +25,7 @@
   "EnterValidPassword": "Por favor introduce una contraseña válida",
   "Error": "Error",
   "ExteriorNumber": "Número Exterior",
+  "FirestorePermissionDenied": "La comunicación con el servidor está fallando, por favor intenta un poco más tarde.",
   "IceCreams": "Helados",
   "IceCream": "Helados",
   "InteriorNumber": "Número Interior",

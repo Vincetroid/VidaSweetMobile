@@ -28,6 +28,9 @@ const handleErrors = (errorCode: string) => {
     case ErrorCodes.invalidLoginCredentials:
       Alert.alert(ErrorMessages.invalidLoginCredentials);
       break;
+    case ErrorCodes.firestorePermissionDenied:
+      Alert.alert(ErrorMessages.firestorePermissionDenied);
+      break;
     case ErrorCodes.stripeCanceled:
       // TODO: No provee una buena experiencia de usuario, ver si quitar
       // Alert.alert(ErrorMessages.stripeCanceled);
