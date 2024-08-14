@@ -16,6 +16,13 @@ const App = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
 
+  function onAuthStateChanged(theUser) {
+    setUser(theUser);
+    if (initializing) {
+      setInitializing(false);
+    }
+  }
+
   useEffect(() => {
     addFontAwesomeIcons();
 
@@ -28,13 +35,6 @@ const App = () => {
     return subscriber; // unsubscribe on unmount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  function onAuthStateChanged(theUser) {
-    setUser(theUser);
-    if (initializing) {
-      setInitializing(false);
-    }
-  }
 
   if (initializing) {
     return null;

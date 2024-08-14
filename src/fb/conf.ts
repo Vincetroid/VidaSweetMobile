@@ -1,7 +1,5 @@
-// import { getAnalytics } from 'firebase/analytics';
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { initializeFirestore } from 'firebase/firestore';
+import { initializeApp } from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
 import {
   FIREBASE_API_KEY,
@@ -23,17 +21,8 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
 
-// Este es el que funcionaba antes en la app de Notas pero ahorita no sé que esta pasando asi que usaré el que esta
-// abajo, es decir, el de getFireStore
-// const db = initializeFirestore(app, {
-//   experimentalForceLongPolling: true,
-// });
-
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
+const db = firestore();
 
 export { app, db, functions };

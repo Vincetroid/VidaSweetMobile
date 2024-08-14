@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Text, TextInput, View } from 'react-native';
+import { collection, getDocs, query } from 'firebase/firestore';
 import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import { db } from '@/fb/conf';
+import { getAddresses } from '@/fb/queries';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignInScreen.styles';
@@ -22,11 +25,11 @@ export const SignInScreen = () => {
 
     try {
       await auth().signInWithEmailAndPassword(email, password);
+
       setLoader(false);
       setEmail('');
       setPassword('');
     } catch (error) {
-      console.log('error');
       const errorCode = error.code;
       handleErrors(errorCode);
       setLoader(false);

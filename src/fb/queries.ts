@@ -1,3 +1,4 @@
+import auth from '@react-native-firebase/auth';
 import {
   addDoc,
   collection,
@@ -6,8 +7,7 @@ import {
   query,
   updateDoc,
   where,
-} from 'firebase/firestore';
-import auth from '@react-native-firebase/auth';
+} from '@react-native-firebase/firestore';
 import {
   AddressItem,
   OrderItem,

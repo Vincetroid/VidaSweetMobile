@@ -12,8 +12,6 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
   const { img, title, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
-  console.log('product:');
-  console.log(product);
   const { currentImage } = useFetchProductImages(img);
 
   const getProductPrice = (docId: string) => {
