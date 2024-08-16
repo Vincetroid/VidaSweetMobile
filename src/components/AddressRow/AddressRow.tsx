@@ -37,7 +37,6 @@ export const AddressRow = ({
 
   useEffect(() => {
     if (address.isCurrent) {
-      console.log('assignin2');
       dispatch(addCurrentAddressId(address.docId));
     }
   }, []);

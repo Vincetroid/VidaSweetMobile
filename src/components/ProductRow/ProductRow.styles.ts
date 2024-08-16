@@ -22,6 +22,11 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
   },
+  rightZoneQuantity: {
+    flex: 0.3,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
   addBtn: {
     marginTop: 10,
     backgroundColor: themeStyles.secondary,
@@ -50,6 +55,14 @@ export const styles = StyleSheet.create({
     paddingRight: 4,
     paddingBottom: 4,
     color: themeStyles.secondary,
+  },
+  productQuantity: {
+    textAlign: 'center',
+    fontFamily: 'Lato Medium',
+    fontSize: FontSizes.x_medium,
+    paddingRight: 4,
+    paddingBottom: 4,
+    color: themeStyles.text,
   },
   icon: {
     color: themeStyles.primary,

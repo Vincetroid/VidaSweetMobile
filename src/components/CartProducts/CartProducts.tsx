@@ -2,7 +2,11 @@ import React from 'react';
 import { ProductRow } from '@/components';
 import { useAppSelector } from '@/hooks';
 
-export const CartProducts = () => {
+interface CartProductsProps {
+  disabled?: boolean;
+}
+
+export const CartProducts = ({ disabled }: CartProductsProps) => {
   const { cartProducts } = useAppSelector(state => state.cart);
 
   let products = Object.keys(cartProducts);
@@ -12,7 +16,7 @@ export const CartProducts = () => {
       {products.map(cartProductId => {
         const cartProduct = cartProducts[cartProductId];
         if (cartProduct.quantity > 0) {
-          return <ProductRow product={cartProduct} />;
+          return <ProductRow product={cartProduct} disabled={disabled} />;
         }
       })}
     </>

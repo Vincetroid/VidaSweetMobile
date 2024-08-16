@@ -7,7 +7,6 @@ import { setOrder, setProductOrder } from '@/fb/queries';
 import { Colors, themeStyles } from '@/global-styles';
 import { ProductCart } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
-import { resetCart } from '@/redux-content/cart/Cart.slice';
 import {
   Button,
   Cart,
@@ -38,7 +37,6 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
 
   useEffect(() => {
     initialisePaymentSheet();
-    console.log('initialise payment');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartProductsSubtotal]);
 
@@ -90,13 +88,13 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   };
 
   const fetchPaymentSheetParams = async () => {
-    console.log('fetchPaymentSheetParams');
+    // console.log('fetchPaymentSheetParams');
     const userEmail = auth().currentUser?.email;
-    console.log('userEmail');
-    console.log(userEmail);
+    // console.log('userEmail');
+    // console.log(userEmail);
 
     const total = (cartProductsSubtotal + cartProductsIva) * 100;
-    console.log('total: ', total);
+    // console.log('total: ', total);
     const theBody = {
       email: userEmail,
       totalAmount: total,
@@ -123,15 +121,25 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
 
     if (error) {
       handleErrors(error.code);
+      console.log('ERROR');
+      // retryStripePayment();
       return false;
     } else {
-      dispatch(resetCart());
-      Alert.alert(t('Success'), t('SuccessfulPaymentMsg'));
+      Alert.alert(
+        t('ThankYou', { name: 'Vicente' }),
+        t('SuccessfulPaymentMsg'),
+      );
       setIsPaymentReady(false);
-      navigation.navigate('MainRoot');
+      navigation.navigate('PurchaseSummary');
       return true;
     }
   };
+
+  // const retryStripePayment = async () => {
+  //   console.log('retryStripePayment');
+  //   await presentPaymentSheet();
+  //   return true;
+  // };
 
   const onPressContinue = async () => {
     if (cartProductsCounter <= 0) {
@@ -144,8 +152,8 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     console.log('orderId');
     console.log(orderId);
     //Tercero, asignar el product_order porque ya se tiene la orden previamente de //setOrder
-    console.log('cartProducts');
-    console.log(cartProducts);
+    // console.log('cartProducts');
+    // console.log(cartProducts);
     if (resultPaymentIntent) {
       await setProductOrders(orderId);
     }

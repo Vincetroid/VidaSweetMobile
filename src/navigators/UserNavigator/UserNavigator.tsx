@@ -15,6 +15,7 @@ import {
   SettingsScreen,
   ShoppingCartScreen,
 } from '@/screens';
+import { PurchaseSummaryScreen } from '@/screens/PurchaseSummaryScreen';
 import {
   // faCakeCandles,
   faGear,
@@ -27,6 +28,7 @@ import { CommonNavigationOptions } from './CommonNavigationOptions';
 const Tab = createBottomTabNavigator();
 const UserStack = createNativeStackNavigator();
 
+// TODO: Change UserNavigator by a better name like HomeMainNavigator
 export function UserNavigator() {
   const { t } = useTranslation();
 
@@ -74,6 +76,20 @@ export function UserNavigator() {
             fontSize: FontSizes.x_big,
             fontFamily: 'Bartleen Script', // This font causes on Android to be a bit upper on header
           },
+        }}
+      />
+      <UserStack.Screen
+        name="PurchaseSummary"
+        component={PurchaseSummaryScreen}
+        options={{
+          title: t('OrderReceived'),
+          headerTitleStyle: {
+            fontSize: FontSizes.x_big,
+            fontFamily: 'Bartleen Script', // This font causes on Android to be a bit upper on header
+          },
+          headerBackVisible: false, // This
+          headerLeft: undefined, // And this together eliminates de headerLeft
+          headerRight: () => null,
         }}
       />
     </UserStack.Navigator>

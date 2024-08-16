@@ -8,7 +8,12 @@ import { useFetchProductImages } from '@/hooks/useFetchProductImages';
 import { formatCurrency } from '@/utils';
 import { styles } from './ProductRow.styles';
 
-export const ProductRow = ({ product }: { product: ProductItem }) => {
+interface ProductRowProps {
+  product: ProductItem;
+  disabled: boolean | undefined;
+}
+
+export const ProductRow = ({ product, disabled = false }: ProductRowProps) => {
   const { img, title, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
@@ -21,13 +26,22 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
     return 0;
   };
 
+  const getProductQuantity = (docId: string) => {
+    if (cartProducts[docId] && cartProducts[docId].quantity) {
+      return cartProducts[docId].quantity;
+    }
+    return 0;
+  };
+
   return (
     <View style={styles.wrapper}>
-      <AddRemoveToFavorites
-        isFavorite={isFavorite}
-        size={18}
-        wrapperStyle={styles.heartWrapperStyle}
-      />
+      {!disabled ? (
+        <AddRemoveToFavorites
+          isFavorite={isFavorite}
+          size={18}
+          wrapperStyle={styles.heartWrapperStyle}
+        />
+      ) : null}
       <View style={styles.leftZone}>
         <Image
           style={styles.img}
@@ -39,13 +53,21 @@ export const ProductRow = ({ product }: { product: ProductItem }) => {
       </View>
       <View style={styles.centerZone}>
         <Text style={styles.productTitle}>{title}</Text>
-        <AddRemoveProduct product={product} />
+        {!disabled ? <AddRemoveProduct product={product} /> : null}
       </View>
-      <View style={styles.rightZone}>
-        <Text style={styles.productPrice}>
-          {getProductPrice(product.docId)}
-        </Text>
-      </View>
+      {!disabled ? (
+        <View style={styles.rightZone}>
+          <Text style={styles.productPrice}>
+            {getProductPrice(product.docId)}
+          </Text>
+        </View>
+      ) : (
+        <View style={styles.rightZoneQuantity}>
+          <Text style={styles.productQuantity}>
+            {getProductQuantity(product.docId)}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

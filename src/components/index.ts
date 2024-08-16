@@ -6,6 +6,7 @@ import { BackButton } from './BackButton';
 import { Button } from './Button';
 import { Cart } from './Cart';
 import { CartProducts } from './CartProducts';
+import { CartPurchased } from './CartPurchased';
 import { ChatWrapper } from './ChatWrapper';
 import { Divider } from './Divider';
 import { FullScreenLoader } from './FullScreenLoader';
@@ -30,6 +31,7 @@ export {
   Button,
   Cart,
   CartProducts,
+  CartPurchased,
   ChatWrapper,
   Divider,
   FullScreenLoader,

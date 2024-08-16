@@ -86,7 +86,7 @@ const getAddresses = async () => {
 // const setOrder = async (order: OrderItem) => {
 const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
   // const setOrder = async () => {
-  console.log('setOrder: ', addressId);
+  // console.log('setOrder: ', addressId);
   // const auth = getAuth();
   const userUID = auth().currentUser?.uid;
 
@@ -100,7 +100,7 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
       userUID,
       addressId,
     });
-    console.log('Document setOrder written with ID: ', docRef.id);
+    // console.log('Document setOrder written with ID: ', docRef.id);
 
     const orderId = docRef.id;
 
