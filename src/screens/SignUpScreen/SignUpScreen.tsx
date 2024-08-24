@@ -40,9 +40,6 @@ export const SignUpScreen = () => {
     password,
   });
 
-  console.log('validator');
-  console.log(validator);
-
   const onSignUpPress = () => {
     if (isEmpty(validator)) {
       setLoader(true);

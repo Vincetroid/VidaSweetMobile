@@ -66,3 +66,17 @@ export interface AddressItem {
   // createTimestamp?: Timestamp;
   // updateTimestamp?: Timestamp;
 }
+
+export interface AddressValidatorItem {
+  addressName: string;
+  street: string;
+  exteriorNumber: string;
+  interiorNumber?: string;
+  colonia: string;
+  municipality: string;
+  state: string;
+  zipCode: string;
+  countryPhoneCode: string;
+  phoneNumber: string;
+  specialIndications: string;
+}

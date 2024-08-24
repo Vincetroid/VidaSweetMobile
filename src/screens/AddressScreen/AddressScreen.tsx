@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { Platform, SafeAreaView, TextInput, View } from 'react-native';
 import { serverTimestamp } from 'firebase/firestore';
+import { isEmpty } from 'lodash';
 // const functions = require('firebase-functions');
 // const functions = require('firebase-functions/v1');
 // import { firebase } from 'firebase-functions/v1';
 import { useTranslation } from 'react-i18next';
 import RNPhoneCodeSelect from 'react-native-phone-code-select';
+import Toast from 'react-native-simple-toast';
 // import functions, { firebase } from '@react-native-firebase/functions';
 // import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigation } from '@react-navigation/native';
 import { editAddress, setAddress } from '@/fb/queries';
+import { themeStyles } from '@/global-styles';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
 import { addCurrentSelectedAddress } from '@/redux-content';
 import {
@@ -20,6 +23,7 @@ import {
 import { useAppDispatch } from '@/hooks';
 import handleErrors from '@/utils/handleErrors';
 import { styles } from './AddressScreen.styles';
+import { AddressValidator } from './AddressScreen.validator';
 
 export const AddressScreen = ({ route }) => {
   const { t } = useTranslation();
@@ -62,84 +66,115 @@ export const AddressScreen = ({ route }) => {
   const [countryCodesModalVisible, setCountryCodesModalVisible] =
     useState<boolean>(false);
 
+  const requestValidator = new AddressValidator();
+
+  const validator = requestValidator.validate({
+    addressName,
+    street,
+    exteriorNumber,
+    interiorNumber,
+    colonia,
+    municipality,
+    state,
+    zipCode,
+    countryPhoneCode,
+    phoneNumber,
+    specialIndications,
+  });
+
   const textInputColor = { color: loader ? 'grey' : 'black' };
 
   const keyboardType = Platform.OS === 'android' ? 'numeric' : 'number-pad';
 
   const onSaveAddress = async () => {
-    setLoader(true);
+    if (isEmpty(validator)) {
+      setLoader(true);
 
-    if (route?.params && route?.params?.isEdit) {
-      const addressNumber = interiorNumber
-        ? `#${exteriorNumber} Int ${interiorNumber}`
-        : `#${exteriorNumber}`;
+      if (route?.params && route?.params?.isEdit) {
+        const addressNumber = interiorNumber
+          ? `#${exteriorNumber} Int ${interiorNumber}`
+          : `#${exteriorNumber}`;
 
-      const addressObj = {
-        addressName,
-        street,
-        exteriorNumber,
-        interiorNumber,
-        zipCode,
-        colonia,
-        municipality,
-        state,
-        countryPhoneCode,
-        phoneNumber,
-        specialIndications,
-        isCurrent: false,
-        fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-        // updateTimestamp: serverTimestamp(),
-        updateTimestamp: new Date().toString(),
-      } as AddressItem;
+        const addressObj = {
+          addressName,
+          street,
+          exteriorNumber,
+          interiorNumber,
+          zipCode,
+          colonia,
+          municipality,
+          state,
+          countryPhoneCode,
+          phoneNumber,
+          specialIndications,
+          isCurrent: false,
+          fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+          // updateTimestamp: serverTimestamp(),
+          updateTimestamp: new Date().toString(),
+        } as AddressItem;
 
-      try {
-        await editAddress(addressObj, route?.params?.docId);
-        setLoader(false);
-      } catch (error) {
-        const errorCode = error.code;
-        handleErrors(errorCode);
-        setLoader(false);
+        try {
+          await editAddress(addressObj, route?.params?.docId);
+          setLoader(false);
+        } catch (error) {
+          const errorCode = error.code;
+          handleErrors(errorCode);
+          setLoader(false);
+        }
+      } else {
+        const addressNumber = interiorNumber
+          ? `#${exteriorNumber} Int ${interiorNumber}`
+          : `#${exteriorNumber}`;
+
+        const addressObj = {
+          addressName,
+          street,
+          exteriorNumber,
+          interiorNumber,
+          zipCode,
+          colonia,
+          municipality,
+          state,
+          countryPhoneCode,
+          phoneNumber,
+          specialIndications,
+          isCurrent: false,
+          fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+          // createTimestamp: serverTimestamp(),
+          createTimestamp: new Date().toString(),
+        } as AddressItem;
+
+        try {
+          console.log('before set addres');
+          const docId = await setAddress(addressObj);
+          console.log('docId: ', docId); // Si resultó, ya tienes el addressId Para usarlo en orders
+          dispatch(
+            addCurrentSelectedAddress({ ...addressObj, docId: docId || '' }),
+          );
+          console.log('about to dispatch');
+          setLoader(false);
+        } catch (error) {
+          const errorCode = error.code;
+          handleErrors(errorCode);
+          setLoader(false);
+        }
       }
+
+      navigation.navigate('DeliveryAddress');
     } else {
-      const addressNumber = interiorNumber
-        ? `#${exteriorNumber} Int ${interiorNumber}`
-        : `#${exteriorNumber}`;
-
-      const addressObj = {
-        addressName,
-        street,
-        exteriorNumber,
-        interiorNumber,
-        zipCode,
-        colonia,
-        municipality,
-        state,
-        countryPhoneCode,
-        phoneNumber,
-        specialIndications,
-        isCurrent: false,
-        fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-        // createTimestamp: serverTimestamp(),
-        createTimestamp: new Date().toString(),
-      } as AddressItem;
-
-      try {
-        console.log('before set addres');
-        const docId = await setAddress(addressObj);
-        console.log('docId: ', docId); // Si resultó, ya tienes el addressId Para usarlo en orders
-        dispatch(
-          addCurrentSelectedAddress({ ...addressObj, docId: docId || '' }),
-        );
-        console.log('about to dispatch');
-        setLoader(false);
-      } catch (error) {
-        const errorCode = error.code;
-        handleErrors(errorCode);
-        setLoader(false);
-      }
+      Toast.showWithGravityAndOffset(
+        Object.values(validator)[0] || '',
+        Toast.LONG,
+        Toast.BOTTOM,
+        0,
+        -50,
+        {
+          backgroundColor: themeStyles.error,
+          textColor: themeStyles.white,
+          tapToDismissEnabled: true,
+        },
+      );
     }
-
-    navigation.navigate('DeliveryAddress');
   };
 
   const onSelectCountry = (countryDialCode: string) => {
