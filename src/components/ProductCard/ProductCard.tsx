@@ -8,17 +8,11 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { SliderBox } from 'react-native-image-slider-box';
 import Modal from 'react-native-modal';
 import Toast from 'react-native-simple-toast';
 import { Colors, themeStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
-import {
-  faCancel,
-  faClose,
-  faCross,
-  faHeart,
-} from '@fortawesome/free-solid-svg-icons';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { addProduct } from '@/redux-content';
 import { useAppDispatch } from '@/hooks';
@@ -27,13 +21,6 @@ import { formatCurrency } from '@/utils';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites';
 import { Loader } from '../Loader';
 import { styles } from './ProductCard.styles';
-
-const images = [
-  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/cookies.jpeg?alt=media&token=3b9e5380-6ad7-42a2-b48f-923ed599ed21',
-  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/fresa.jpg?alt=media&token=ff5a9ab4-b7fc-4958-a019-d8ecfb64212d',
-  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/limon.jpeg?alt=media&token=82277e18-ac14-4488-821e-b34f4254b51d',
-  'https://firebasestorage.googleapis.com/v0/b/vida-sweet.appspot.com/o/mamey.jpeg?alt=media&token=dbdc8e46-30bd-4871-8c85-c396140c2654',
-];
 
 const ImageModal = ({ children, isImageVisible, setIsImageVisible }) => {
   const onCloseImageModal = () => {

@@ -18,6 +18,21 @@ import {
 import handleErrors from '@/utils/handleErrors';
 import { db } from './conf';
 
+const getUser = async () => {
+  const userUID = auth().currentUser?.uid;
+
+  const usersCollection = collection(db, 'users');
+  const filtered = query(usersCollection, where('uid', '==', userUID));
+  const usersDocsSnapshot = await getDocs(filtered);
+  const user = usersDocsSnapshot.docs.map(document => {
+    const data = document.data();
+    const docId = document.id;
+    return { docId, ...data };
+  });
+
+  return user as Array<UserItem>;
+};
+
 const setUser = async (
   names: string,
   surnames: string,
@@ -161,6 +176,7 @@ export {
   getAddresses,
   getProducts,
   getSpecificProducts,
+  getUser,
   setAddress,
   setOrder,
   setProductOrder,
