@@ -1,6 +1,5 @@
 import { initializeApp } from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
-import functions from '@react-native-firebase/functions';
 import {
   FIREBASE_API_KEY,
   FIREBASE_APP_ID,
@@ -25,4 +24,4 @@ const app = initializeApp(firebaseConfig);
 
 const db = firestore();
 
-export { app, db, functions };
+export { app, db };

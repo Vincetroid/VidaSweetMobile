@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { deleteDoc, doc } from 'firebase/firestore';
-import { useDispatch } from 'react-redux';
+import { deleteDoc, doc } from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '@/fb/conf';
 import { themeStyles } from '@/global-styles';
@@ -63,7 +62,7 @@ export const AddressRow = ({
     <TouchableOpacity
       // style={[styles.wrapper, true ? styles.shadowEffect : null]}
       style={[styles.wrapper, address.isCurrent ? styles.shadowEffect : null]}
-      // style={[styles.wrapper]}
+      // style={styles.wrapper}
       // onPress={() => onPressAddressRectangle(address.docId, address.isCurrent)}>
       onPress={() =>
         // onPressAddressRectangle(address.docId, address.isCurrent)
