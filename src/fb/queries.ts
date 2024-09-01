@@ -84,6 +84,7 @@ const editAddress = async (address: AddressItem, addressId: string) => {
 };
 
 const getAddresses = async () => {
+  console.log('getAddresses');
   const userUID = auth().currentUser?.uid;
 
   const addressesCollection = collection(db, 'addresses');

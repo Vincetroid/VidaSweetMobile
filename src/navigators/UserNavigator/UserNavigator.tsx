@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FontSizes } from '@/global-styles';
 import {
   AddressScreen,
+  CakeryScreen,
   // CakeryScreen,
   DeliveryAddressScreen,
   HomeNavigationOptions,
@@ -17,12 +18,18 @@ import {
 } from '@/screens';
 import { PurchaseSummaryScreen } from '@/screens/PurchaseSummaryScreen';
 import {
+  faBreadSlice,
+  faCake,
+  faCakeCandles,
+  faCookie,
+  faCookieBite,
   // faCakeCandles,
   faGear,
   faHome,
   faIceCream,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { CakeSliceIcon } from '@/assets/icons';
 import { CommonNavigationOptions } from './CommonNavigationOptions';
 
 const Tab = createBottomTabNavigator();
@@ -121,15 +128,24 @@ const TabsUserNavigator = () => {
           tabBarIcon: () => <FontAwesomeIcon icon={faIceCream} size={24} />,
         }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="Cakery"
         component={CakeryScreen}
         options={{
           title: 'Repostería',
           headerShown: false,
-          tabBarIcon: () => <FontAwesomeIcon icon={faCakeCandles} size={24} />,
+          tabBarIcon: () => (
+            <CakeSliceIcon
+              width={24}
+              height={24}
+              style={{
+                color: '#25D366',
+                alignSelf: 'center',
+              }}
+            />
+          ),
         }}
-      /> */}
+      />
       <UserStack.Screen
         name="Settings"
         component={SettingsScreen}
