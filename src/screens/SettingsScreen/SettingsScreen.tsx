@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { getUser } from '@/fb/queries';
 import { themeStyles } from '@/global-styles';
+import { faMessage } from '@fortawesome/free-regular-svg-icons';
 import {
   faCircleUser,
   faFileInvoice,
@@ -13,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Divider } from '@/components';
+import { ChangePasswordIcon } from '@/assets/icons';
 import { UserItem } from '../../interfaces/index';
 import styles from './SettingsScreen.styles';
 
@@ -48,7 +50,6 @@ export const SettingsScreen = () => {
   };
 
   const fetchUser = async () => {
-    console.log('getUser');
     const user = await getUser();
     setCurrentUser(user[0]);
   };
@@ -83,6 +84,28 @@ export const SettingsScreen = () => {
         <>
           <FontAwesomeIcon icon={faFileInvoice} size={ICON_BTN_SIZE} />
           <Text style={[styles.signOutTextBtn]}>{t('Invoicing')}</Text>
+        </>
+      </Button>
+      <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
+      <Button onPress={() => {}} buttonViewStyle={styles.signOutBtn}>
+        <>
+          <FontAwesomeIcon icon={faMessage} size={ICON_BTN_SIZE} />
+          <Text style={[styles.signOutTextBtn]}>{t('Suggestions')}</Text>
+        </>
+      </Button>
+      <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
+      <Button onPress={() => {}} buttonViewStyle={styles.signOutBtn}>
+        <>
+          <ChangePasswordIcon
+            width={26}
+            height={26}
+            style={{
+              color: '#000000',
+              alignSelf: 'center',
+              marginRight: -6,
+            }}
+          />
+          <Text style={[styles.signOutTextBtn]}>{t('ChangePassword')}</Text>
         </>
       </Button>
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />

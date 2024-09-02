@@ -18,18 +18,14 @@ import {
 } from '@/screens';
 import { PurchaseSummaryScreen } from '@/screens/PurchaseSummaryScreen';
 import {
-  faBreadSlice,
-  faCake,
-  faCakeCandles,
-  faCookie,
+  // faCookie,
   faCookieBite,
-  // faCakeCandles,
   faGear,
   faHome,
   faIceCream,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { CakeSliceIcon } from '@/assets/icons';
+// import { CakeSliceIcon } from '@/assets/icons';
 import { CommonNavigationOptions } from './CommonNavigationOptions';
 
 const Tab = createBottomTabNavigator();
@@ -134,16 +130,17 @@ const TabsUserNavigator = () => {
         options={{
           title: 'Repostería',
           headerShown: false,
-          tabBarIcon: () => (
-            <CakeSliceIcon
-              width={24}
-              height={24}
-              style={{
-                color: '#25D366',
-                alignSelf: 'center',
-              }}
-            />
-          ),
+          // tabBarIcon: () => (
+          //   <CakeSliceIcon
+          //     width={24}
+          //     height={24}
+          //     style={{
+          //       color: '#25D366',
+          //       alignSelf: 'center',
+          //     }}
+          //   />
+          // ),
+          tabBarIcon: () => <FontAwesomeIcon icon={faCookieBite} size={24} />,
         }}
       />
       <UserStack.Screen
