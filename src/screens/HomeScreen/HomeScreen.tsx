@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
+import { FontSizes } from '@/global-styles';
 import { FullScreenLoader, Menu, ProductCard, RowTitle } from '@/components';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 
@@ -34,6 +35,38 @@ export const HomeScreen = () => {
         </View>
 
         <Menu />
+
+        {/* <RowTitle title={t('¿No encontraste lo que buscabas?')} centered /> */}
+        <RowTitle
+          title={t('¿No encontraste lo que buscabas?')}
+          styleTextTitle={styles.label}
+          styleSecondaryTextTitle={{
+            fontFamily: 'Lato Regular',
+            fontSize: FontSizes.x_medium,
+            alignSelf: 'center',
+          }}
+          centered
+        />
+        <RowTitle
+          // title={t('¡Intenta con un pedido personalizado!')}
+          title={t('Para pedidos especiales y personalizados, da click aquí:')}
+          styleTextTitle={styles.label}
+          styleSecondaryTextTitle={{
+            fontFamily: 'Lato Regular',
+            fontSize: FontSizes.medium,
+          }}
+          // centered
+        />
+        {/* <RowTitle
+          title={t('')}
+          styleTextTitle={styles.label}
+          styleSecondaryTextTitle={{
+            fontFamily: 'Lato Regular',
+            fontSize: FontSizes.medium,
+            alignSelf: 'center',
+          }}
+          centered
+        /> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -49,5 +82,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     margin: 16,
+  },
+  label: {
+    fontFamily: 'Lato Light',
+    paddingLeft: 16,
+    fontSize: FontSizes.xx_medium,
   },
 });
