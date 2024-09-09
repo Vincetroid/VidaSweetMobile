@@ -14,7 +14,7 @@ export const SignInScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('b@hotmail.com');
+  const [email, setEmail] = useState('ea@hotmail.com');
   const [password, setPassword] = useState('12345678');
   const [loader, setLoader] = useState(false);
 
@@ -67,6 +67,13 @@ export const SignInScreen = () => {
           buttonViewStyle={styles.signInBtn}
           buttonTextStyle={styles.signInBtnText}
           isLoading={loader}
+        />
+        <Button
+          title={t('ForgotYourPassword')}
+          onPress={() => {
+            navigation.navigate('ForgotPassword' as never);
+          }}
+          buttonTextStyle={styles.forgotYourPassword}
         />
       </View>
       <View style={styles.bottomLabel}>

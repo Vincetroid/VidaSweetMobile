@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   safeAreaContainer: {
     flex: 1,
     alignSelf: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     width: '70%',
   },
   topLabel: {
@@ -44,13 +44,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: themeStyles.black,
     fontSize: FontSizes.big,
-    fontFamily: FontFamilies.latoItalic,
-  },
-  forgotYourPassword: {
-    marginTop: 6,
-    textAlign: 'center',
-    color: themeStyles.black,
-    fontSize: FontSizes.xx_medium,
     fontFamily: FontFamilies.latoItalic,
   },
 });

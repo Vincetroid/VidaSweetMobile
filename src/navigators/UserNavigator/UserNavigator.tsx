@@ -6,6 +6,7 @@ import { FontSizes } from '@/global-styles';
 import {
   AddressScreen,
   CakeryScreen,
+  ChangePasswordScreen,
   // CakeryScreen,
   DeliveryAddressScreen,
   HomeNavigationOptions,
@@ -92,6 +93,18 @@ export function UserNavigator() {
           },
           headerBackVisible: false, // This
           headerLeft: undefined, // And this together eliminates de headerLeft
+          headerRight: () => null,
+        }}
+      />
+      <UserStack.Screen
+        name="ChangePassword"
+        component={ChangePasswordScreen}
+        options={{
+          title: t('ChangePassword'),
+          headerTitleStyle: {
+            fontSize: FontSizes.x_big,
+            fontFamily: 'Bartleen Script', // This font causes on Android to be a bit upper on header
+          },
           headerRight: () => null,
         }}
       />

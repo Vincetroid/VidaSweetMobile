@@ -1,6 +1,8 @@
 import { AddressScreen } from './AddressScreen';
 import { CakeryScreen } from './CakeryScreen';
+import { ChangePasswordScreen } from './ChangePasswordScreen';
 import { DeliveryAddressScreen } from './DeliveryAddressScreen';
+import { ForgotPasswordScreen } from './ForgotPasswordScreen';
 import { HomeScreen } from './HomeScreen';
 import { HomeNavigationOptions } from './HomeScreen';
 import { IceCreamScreen } from './IceCreamScreen';
@@ -16,7 +18,9 @@ import { SplashScreen } from './SplashScreen';
 export {
   AddressScreen,
   CakeryScreen,
+  ChangePasswordScreen,
   DeliveryAddressScreen,
+  ForgotPasswordScreen,
   HomeNavigationOptions,
   HomeScreen,
   IceCreamScreen,

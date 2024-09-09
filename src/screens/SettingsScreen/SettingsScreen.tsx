@@ -49,6 +49,10 @@ export const SettingsScreen = () => {
     navigation.navigate('DeliveryAddress');
   };
 
+  const onPressChangePassword = () => {
+    navigation.navigate('ChangePassword');
+  };
+
   const fetchUser = async () => {
     const user = await getUser();
     setCurrentUser(user[0]);
@@ -94,7 +98,9 @@ export const SettingsScreen = () => {
         </>
       </Button>
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
-      <Button onPress={() => {}} buttonViewStyle={styles.signOutBtn}>
+      <Button
+        onPress={onPressChangePassword}
+        buttonViewStyle={styles.signOutBtn}>
         <>
           <ChangePasswordIcon
             width={26}

@@ -1,6 +1,12 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { InitialScreen, SignInScreen, SignUpScreen } from '@/screens';
+import {
+  ForgotPasswordScreen,
+  InitialScreen,
+  SignInScreen,
+  SignUpScreen,
+} from '@/screens';
+import { GuestNavigatorOptions } from './GuesNavigationOptions';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +27,11 @@ export const GuestNavigator = () => {
         name="SignIn"
         component={SignInScreen}
         options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={GuestNavigatorOptions}
       />
     </Stack.Navigator>
   );
