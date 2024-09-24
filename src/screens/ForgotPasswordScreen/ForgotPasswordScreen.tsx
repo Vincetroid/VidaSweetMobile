@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-simple-toast';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './ForgotPasswordScreen.styles';
@@ -20,11 +22,36 @@ export const ForgotPasswordScreen = () => {
     setLoader(true);
 
     try {
-      const mmm = await auth().sendPasswordResetEmail(email);
-      console.log('mmm');
-      console.log(mmm);
+      await auth().sendPasswordResetEmail(email || '');
+
+      // const theBody = {
+      //   email: userEmail,
+      // };
+      // body: JSON.stringify(theBody),
+
+      // TODO: Check if sendPasswordResetEmail firebase methods works super well, remove this and sendgrid
+      // const response = await fetch(`${API_URL}/send-email`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      // });
+
       setLoader(false);
       setEmail('');
+
+      Toast.showWithGravityAndOffset(
+        t('ResetPasswordEmailMsg'),
+        Toast.LONG,
+        Toast.BOTTOM,
+        0,
+        -150,
+        {
+          backgroundColor: Colors.grayLightBg,
+          textColor: Colors.boldPink,
+        },
+      );
+      navigation.navigate('SignIn');
     } catch (error) {
       console.log('ERROR');
       const errorCode = error.code;

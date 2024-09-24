@@ -20,6 +20,7 @@ const ErrorCodes: ErrorCodesInterface = Object.freeze({
   missingPassword: 'auth/missing-password',
   tooManyRequests: 'auth/too-many-requests',
   invalidLoginCredentials: 'auth/invalid-login-credentials',
+  // invalidLoginCredentials: 'auth/invalid-credentials', // TODO
   firestorePermissionDenied: 'firestore/permission-denied',
   stripeCanceled: 'Canceled',
 });
