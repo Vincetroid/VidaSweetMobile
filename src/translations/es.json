@@ -92,6 +92,8 @@
   "UnknownError": "Error desconocido. Intenta nuevamente, más tarde o contacta a soporte en Opciones - Contacto - Soporte",
   "UserName": "nombre de usuario / username",
   "UserNotFound": "Usuario no encontrado con este email, por favor revisa nuevamente",
+  "WhatsAppNotFound": "WhatsApp is not installed in this device",
+  "WhatsOpeningError": "There was an error opening WhatsApp",
   "WrongPassword": "Contraseña incorrecta, favor de revisarla",
   "YouAreNotAMember": "¿No eres miembro?",
   "YouForgotSomethingMsg": "¿Olvidaste algo?",
