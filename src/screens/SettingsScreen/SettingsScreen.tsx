@@ -66,7 +66,11 @@ export const SettingsScreen = () => {
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.profileMainContainer}>
         <View style={styles.leftZone}>
-          <FontAwesomeIcon icon={faCircleUser} size={iconCircleUserSize} />
+          <FontAwesomeIcon
+            icon={faCircleUser}
+            size={iconCircleUserSize}
+            color={themeStyles.text}
+          />
         </View>
         <View style={styles.rightZone}>
           <Text style={styles.profileName}>
@@ -79,21 +83,33 @@ export const SettingsScreen = () => {
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
       <Button onPress={onPressAddresses} buttonViewStyle={styles.signOutBtn}>
         <>
-          <FontAwesomeIcon icon={faLocationDot} size={ICON_BTN_SIZE} />
+          <FontAwesomeIcon
+            icon={faLocationDot}
+            size={ICON_BTN_SIZE}
+            color={themeStyles.text}
+          />
           <Text style={[styles.signOutTextBtn]}>{t('DeliveryAddresses')}</Text>
         </>
       </Button>
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
       <Button onPress={() => {}} buttonViewStyle={styles.signOutBtn}>
         <>
-          <FontAwesomeIcon icon={faFileInvoice} size={ICON_BTN_SIZE} />
+          <FontAwesomeIcon
+            icon={faFileInvoice}
+            size={ICON_BTN_SIZE}
+            color={themeStyles.text}
+          />
           <Text style={[styles.signOutTextBtn]}>{t('Invoicing')}</Text>
         </>
       </Button>
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
       <Button onPress={() => {}} buttonViewStyle={styles.signOutBtn}>
         <>
-          <FontAwesomeIcon icon={faMessage} size={ICON_BTN_SIZE} />
+          <FontAwesomeIcon
+            icon={faMessage}
+            size={ICON_BTN_SIZE}
+            color={themeStyles.text}
+          />
           <Text style={[styles.signOutTextBtn]}>{t('Suggestions')}</Text>
         </>
       </Button>
@@ -106,7 +122,7 @@ export const SettingsScreen = () => {
             width={26}
             height={26}
             style={{
-              color: '#000000',
+              color: themeStyles.text,
               alignSelf: 'center',
               marginRight: -6,
             }}
@@ -117,7 +133,11 @@ export const SettingsScreen = () => {
       <Divider customStyle={{ backgroundColor: themeStyles.disabled }} />
       <Button onPress={onSignOut} buttonViewStyle={styles.signOutBtn}>
         <>
-          <FontAwesomeIcon icon={faPowerOff} size={ICON_BTN_SIZE} />
+          <FontAwesomeIcon
+            icon={faPowerOff}
+            size={ICON_BTN_SIZE}
+            color={themeStyles.text}
+          />
           <Text style={[styles.signOutTextBtn]}>{t('SignOut')}</Text>
         </>
       </Button>
