@@ -6,6 +6,7 @@ import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '@/fb/conf';
 import { getAddresses } from '@/fb/queries';
+import { themeStyles } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignInScreen.styles';
@@ -18,7 +19,7 @@ export const SignInScreen = () => {
   const [password, setPassword] = useState('12345678');
   const [loader, setLoader] = useState(false);
 
-  const textInputColor = { color: loader ? 'grey' : 'black' };
+  const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
   const onSignInPress = async () => {
     setLoader(true);

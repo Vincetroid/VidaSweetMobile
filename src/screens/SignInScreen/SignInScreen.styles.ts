@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     borderBottomColor: themeStyles.black,
     margin: 10,
     borderBottomWidth: 1,
-    borderColor: themeStyles.background,
+    // color: themeStyles.text,
+    color: 'yellow',
   },
   signInBtn: {
     marginTop: 26,

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-simple-toast';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { Colors } from '@/global-styles';
+import { Colors, themeStyles } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './ForgotPasswordScreen.styles';
@@ -13,10 +13,11 @@ export const ForgotPasswordScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('vince_trance@hotmail.com');
+  const [email, setEmail] = useState('');
   const [loader, setLoader] = useState(false);
 
-  const textInputColor = { color: loader ? 'grey' : 'black' };
+  // TODO: Pass to utils b/c is used in SignIn, SignUp and here
+  const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
   const onPressChangePassword = async () => {
     setLoader(true);

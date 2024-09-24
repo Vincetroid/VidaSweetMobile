@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-simple-toast';
@@ -24,7 +23,7 @@ export const SignUpScreen = () => {
   const [password, setPassword] = useState('');
   const [loader, setLoader] = useState(false);
 
-  const textInputColor = { color: loader ? 'grey' : 'black' };
+  const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
   const requestValidator = new UserValidator();
   // const validator = requestValidator.validate({
