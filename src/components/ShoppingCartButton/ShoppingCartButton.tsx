@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { themeStyles } from '@/global-styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useAppSelector } from '@/hooks';
 import { styles } from './ShoppingCartButton.styles';
@@ -19,7 +20,11 @@ export const ShoppingCartButton = () => {
       <View style={styles.badgeProductsAddedView}>
         <Text style={styles.badgeProductsAddedText}>{cartProductsCounter}</Text>
       </View>
-      <FontAwesomeIcon icon="shopping-cart" size={ICON_SIZE} />
+      <FontAwesomeIcon
+        icon="shopping-cart"
+        size={ICON_SIZE}
+        color={themeStyles.text}
+      />
     </TouchableOpacity>
   );
 };
