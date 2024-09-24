@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { themeStyles } from '@/global-styles';
 import { ProductItem } from '@/interfaces';
 import { faCircleXmark, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -64,6 +65,7 @@ export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
         onChangeText={updateSearch}
         value={searchText}
         placeholder={t('SearchPlaceholder')}
+        placeholderTextColor={themeStyles.divider}
         maxLength={100}
         onBlur={onBlurTextInput}
         onChange={() => {}}
