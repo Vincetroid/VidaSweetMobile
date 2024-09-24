@@ -29,12 +29,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato Bold',
     fontSize: FontSizes.xx_medium,
     marginVertical: 2,
+    color: themeStyles.text,
   },
   productPrice: {
     textAlign: 'center',
     fontFamily: 'Lato Light',
     fontSize: FontSizes.x_medium,
     marginVertical: 2,
+    color: themeStyles.text,
   },
   icon: {
     color: themeStyles.primary,
