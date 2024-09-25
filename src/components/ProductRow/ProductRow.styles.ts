@@ -47,6 +47,7 @@ export const styles = StyleSheet.create({
     fontFamily: 'Lato Bold Italic',
     fontSize: FontSizes.xx_medium,
     marginVertical: 2,
+    color: themeStyles.text,
   },
   productPrice: {
     textAlign: 'center',

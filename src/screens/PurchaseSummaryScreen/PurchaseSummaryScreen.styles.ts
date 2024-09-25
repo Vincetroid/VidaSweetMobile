@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { FontSizes } from '@/global-styles';
+import { FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
   safeAreaView: {
@@ -10,11 +10,13 @@ export const styles = StyleSheet.create({
     fontFamily: 'Bartleen Script',
     fontSize: FontSizes.xx_medium,
     marginVertical: 2,
+    color: themeStyles.text,
   },
   text: {
     fontFamily: 'Lato Light',
     fontSize: FontSizes.x_medium,
     marginVertical: 2,
+    color: themeStyles.text,
   },
   bottomSpace: {
     marginBottom: 50,

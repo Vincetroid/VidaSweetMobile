@@ -15,8 +15,7 @@ const images = [
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
-  const { loader, setLoader, products, setProducts, pullProducts } =
-    useFetchProducts();
+  const { loader, products } = useFetchProducts();
 
   return (
     <SafeAreaView testID="home-screen">

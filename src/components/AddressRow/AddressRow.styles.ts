@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Lato Regular',
     fontSize: FontSizes.x_medium,
-    color: themeStyles.black,
+    color: themeStyles.searchBg,
     marginVertical: 2,
   },
   productPrice: {

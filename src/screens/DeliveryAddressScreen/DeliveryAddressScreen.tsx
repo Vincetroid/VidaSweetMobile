@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
+import { themeStyles } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -88,7 +89,11 @@ export const DeliveryAddressScreen = () => {
             onPress={onAddAddress}
             buttonViewStyle={styles.addAnAddressBtn}>
             <>
-              <FontAwesomeIcon icon={faAdd} size={ICON_BTN_SIZE} />
+              <FontAwesomeIcon
+                icon={faAdd}
+                size={ICON_BTN_SIZE}
+                color={themeStyles.text}
+              />
               <Text style={[styles.addAnAddressTextBtn]}>
                 {t('AddAnAddress')}
               </Text>

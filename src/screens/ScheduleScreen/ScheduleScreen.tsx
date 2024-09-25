@@ -7,7 +7,7 @@ import DatePicker, {
   getToday,
 } from 'react-native-modern-datepicker';
 import { useNavigation } from '@react-navigation/native';
-import { themeStyles } from '@/global-styles';
+import { themeName, themeStyles } from '@/global-styles';
 import {
   Button,
   FullScreenLoader,
@@ -143,6 +143,7 @@ export const ScheduleScreen = () => {
               onDateChange={onChangeTime}
               mode="time"
               style={styles.timePicker}
+              theme={themeName} //TODO: Return to auto when detect theme by default
             />
           </View>
           <Text style={styles.scheduleText}>{dateTimeToDisplay}</Text>

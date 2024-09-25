@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Colors, FontSizes } from '@/global-styles';
+import { Colors, FontSizes, themeStyles } from '@/global-styles';
 import { faCcStripe } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { CartProducts, Divider, ProductCard, RowTitle } from '@/components';
@@ -16,6 +16,8 @@ export const Cart = () => {
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
   const { products } = useFetchProducts();
+  console.log('products');
+  console.log(products);
   const totalAmount = cartProductsSubtotal + cartProductsIva;
 
   return (
@@ -78,7 +80,11 @@ export const Cart = () => {
       />
 
       <View style={{ flex: 1, alignItems: 'center', marginTop: 6 }}>
-        <FontAwesomeIcon icon={faCcStripe} size={ICON_SIZE} />
+        <FontAwesomeIcon
+          icon={faCcStripe}
+          size={ICON_SIZE}
+          color={themeStyles.text}
+        />
       </View>
 
       <RowTitle
@@ -87,7 +93,7 @@ export const Cart = () => {
         styleSecondaryTextTitle={styles.youForgotSomethingSecondaryTitle}
       />
       <View style={[styles.productCardsContainer]}>
-        {products.map(product => {
+        {products?.map(product => {
           return <ProductCard product={product} />;
         })}
       </View>
