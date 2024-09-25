@@ -3,6 +3,7 @@ import { SafeAreaView, Text, TextInput, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import { themeStyles } from '@/global-styles';
 import { Button } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './ChangePasswordScreen.styles';
@@ -14,7 +15,7 @@ export const ChangePasswordScreen = () => {
   const [newPassword, setNewPassword] = useState('12345678');
   const [loader, setLoader] = useState(false);
 
-  const textInputColor = { color: loader ? 'grey' : 'black' };
+  const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
   const onPressChangePassword = async () => {
     setLoader(true);
