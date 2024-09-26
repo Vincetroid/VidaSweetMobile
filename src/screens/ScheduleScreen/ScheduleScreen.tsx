@@ -2,10 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Alert, SafeAreaView, Text, View } from 'react-native';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
-import DatePicker, {
-  getFormatedDate,
-  getToday,
-} from 'react-native-modern-datepicker';
+import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
 import { useNavigation } from '@react-navigation/native';
 import { themeName, themeStyles } from '@/global-styles';
 import {
@@ -68,14 +65,28 @@ export const ScheduleScreen = () => {
       latinOrEnglishDateFormatString,
     );
 
-    // console.log('formattedDate');
-    // console.log(formattedDate);
+    const formattedDate2 = getFormatedDate(new Date(date), 'YYYY/MM/DD');
+
+    console.log('formattedDate2');
+    console.log(formattedDate2);
 
     setSelectedDate(formattedDate);
   };
 
   const onChangeTime = (timeParam: Date) => {
     setTime(timeParam);
+  };
+
+  const getMinimumDateDelivery = () => {
+    const today = new moment();
+    const future = today.clone().add(3, 'day');
+
+    const formattedDateForDatePicker = getFormatedDate(
+      new Date(future.format()),
+      'YYYY/MM/DD',
+    );
+
+    return formattedDateForDatePicker;
   };
 
   const getMaximumDateDelivery = () => {
@@ -100,9 +111,6 @@ export const ScheduleScreen = () => {
       minute: 'numeric',
       hour12: true,
     }).format(time);
-
-    console.log('formattedTime');
-    console.log(formattedTime);
 
     return formattedTime;
   }, [time]);
@@ -130,12 +138,12 @@ export const ScheduleScreen = () => {
             }}
             minuteInterval={15}
             mode="calendar"
-            minimumDate={getToday()}
+            minimumDate={getMinimumDateDelivery()}
             maximumDate={getMaximumDateDelivery()}
             onSelectedChange={onChangeDate}
             selectorStartingYear={new Date().getFullYear()}
             selectorEndingYear={2100}
-            selected={getToday()}
+            selected={getMinimumDateDelivery()}
           />
           <View style={styles.timePickerWrapper}>
             <TimePicker
