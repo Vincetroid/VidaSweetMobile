@@ -7,20 +7,31 @@ import Toast from 'react-native-simple-toast';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { setUser } from '@/fb/queries';
-import { themeStyles } from '@/global-styles';
-import { Button } from '@/components';
+import { Colors, themeStyles } from '@/global-styles';
+import {
+  faCheckCircle,
+  faCircle,
+  faCircleDot,
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Button, Divider } from '@/components';
 import handleErrors from '@/utils/handleErrors';
 import styles from './SignUpScreen.styles';
 import { UserValidator } from './SignUpScreen.validator';
+
+const ICON_BTN_SIZE = 16;
 
 export const SignUpScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [names, setNames] = useState('');
-  const [surnames, setSurnames] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [names, setNames] = useState<string>('');
+  const [surnames, setSurnames] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [visualizePassword, setVisualizePassword] = useState<boolean>(false);
   const [loader, setLoader] = useState(false);
 
   const textInputColor = { color: loader ? 'grey' : themeStyles.text };
@@ -38,6 +49,9 @@ export const SignUpScreen = () => {
     email,
     password,
   });
+
+  console.log('validator');
+  console.log(validator);
 
   const onSignUpPress = () => {
     if (isEmpty(validator)) {
@@ -85,6 +99,19 @@ export const SignUpScreen = () => {
     setPassword('');
   };
 
+  const onPressEye = async () => {
+    console.log('onPressEye');
+    setVisualizePassword(!visualizePassword);
+  };
+
+  const passwordRequirements = [
+    'Entre 8 y 20 caracteres',
+    'Al menos 1 número',
+    'Al menos 1 caracter especial',
+    'Al menos 1 letra mayúscula',
+    'Al menos 1 letra minúscula',
+  ];
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <View style={styles.topLabel}>
@@ -118,16 +145,56 @@ export const SignUpScreen = () => {
           placeholderTextColor="grey"
           autoCapitalize="none"
         />
-        <TextInput
-          value={password}
-          editable={!loader}
-          style={[styles.textInput, textInputColor]}
-          onChangeText={setPassword}
-          secureTextEntry
-          placeholder={t('Password')}
-          placeholderTextColor="grey"
-          autoCapitalize="none"
-        />
+        <View>
+          {!validator.password ? (
+            <FontAwesomeIcon
+              icon={faCheckCircle}
+              size={14}
+              style={styles.checkIcon}
+            />
+          ) : null}
+          <TextInput
+            value={password}
+            editable={!loader}
+            style={[styles.textInput, textInputColor]}
+            onChangeText={setPassword}
+            secureTextEntry={!visualizePassword}
+            placeholder={t('Password')}
+            placeholderTextColor="grey"
+            autoCapitalize="none"
+            maxLength={20}
+          />
+          <Button onPress={onPressEye} buttonViewStyle={styles.btnEyeIcon}>
+            <FontAwesomeIcon
+              icon={visualizePassword ? faEye : faEyeSlash}
+              size={ICON_BTN_SIZE}
+              style={styles.eyeIcon}
+            />
+          </Button>
+        </View>
+        <View>
+          {validator.password ? (
+            <Text style={styles.passwordRequirementTitle}>
+              La contraseña debe contener entre 8 y 20 caracteres, al menos 1
+              caracter especial, 1 número, 1 mayúscula y 1 minúscula.
+            </Text>
+          ) : null}
+          {/* {passwordRequirements.map(requirement => {
+            return (
+              <View style={styles.passwordRequirementListContainer}>
+                <FontAwesomeIcon
+                  // icon={faCheckCircle}
+                  icon={faCircleDot}
+                  size={14}
+                  style={styles.noCheck}
+                />
+                <Text style={styles.passwordRequirementList}>
+                  {requirement}
+                </Text>
+              </View>
+            );
+          })} */}
+        </View>
         <Button
           title={t('SignUp')}
           onPress={onSignUpPress}
@@ -136,6 +203,15 @@ export const SignUpScreen = () => {
           isLoading={loader}
         />
       </View>
+
+      {/* <Text style={styles.title}>{t('DeliveryAddress')}</Text> */}
+
+      {/* <Divider
+        customStyle={{
+          marginVertical: 16,
+          backgroundColor: Colors.grayLight,
+        }}
+      /> */}
       <View style={styles.bottomLabel}>
         <Button
           title={t('AreYouAMember')}
