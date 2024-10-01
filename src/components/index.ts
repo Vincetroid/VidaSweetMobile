@@ -13,6 +13,7 @@ import { FullScreenLoader } from './FullScreenLoader';
 import { Loader } from './Loader';
 import { Menu } from './Menu';
 import { MenuElement } from './MenuElement';
+import { PasswordSecurityIndicator } from './PasswordSecurityIndicator';
 import { ProductCard } from './ProductCard';
 import { ProductRow } from './ProductRow';
 import { Products } from './Products';
@@ -38,6 +39,7 @@ export {
   Loader,
   Menu,
   MenuElement,
+  PasswordSecurityIndicator,
   ProductCard,
   ProductRow,
   Products,
