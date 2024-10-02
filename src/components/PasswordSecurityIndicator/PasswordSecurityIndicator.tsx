@@ -10,6 +10,14 @@ interface PasswordSecurityIndicatorProps {
     | undefined;
 }
 
+// const passwordRequirements = [
+//   'Entre 8 y 20 caracteres',
+//   'Al menos 1 número',
+//   'Al menos 1 caracter especial',
+//   'Al menos 1 letra mayúscula',
+//   'Al menos 1 letra minúscula',
+// ];
+
 export const PasswordSecurityIndicator = ({
   showPasswordRequirement,
 }: PasswordSecurityIndicatorProps) => {
