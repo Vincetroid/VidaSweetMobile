@@ -3,7 +3,13 @@ import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
 import { FontSizes } from '@/global-styles';
-import { FullScreenLoader, Menu, ProductCard, RowTitle } from '@/components';
+import {
+  FullScreenLoader,
+  Menu,
+  OrderInProgressIndicator,
+  ProductCard,
+  RowTitle,
+} from '@/components';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 
 const images = [
@@ -19,6 +25,7 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView testID="home-screen">
+      <OrderInProgressIndicator showOrderInProgress />
       {loader ? <FullScreenLoader /> : null}
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
         <SliderBox images={images} />

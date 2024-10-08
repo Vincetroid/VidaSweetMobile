@@ -13,7 +13,9 @@ import { FullScreenLoader } from './FullScreenLoader';
 import { Loader } from './Loader';
 import { Menu } from './Menu';
 import { MenuElement } from './MenuElement';
+import { OrderInProgressIndicator } from './OrderInProgressIndicator';
 import { PasswordSecurityIndicator } from './PasswordSecurityIndicator';
+import { PasswordTextInput } from './PasswordTextInput';
 import { ProductCard } from './ProductCard';
 import { ProductRow } from './ProductRow';
 import { Products } from './Products';
@@ -39,7 +41,9 @@ export {
   Loader,
   Menu,
   MenuElement,
+  OrderInProgressIndicator,
   PasswordSecurityIndicator,
+  PasswordTextInput,
   ProductCard,
   ProductRow,
   Products,

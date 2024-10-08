@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import { Products, SearchBar } from '@/components';
+import { OrderInProgressIndicator, Products, SearchBar } from '@/components';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
 
 export const IceCreamScreen = () => {
@@ -9,6 +9,7 @@ export const IceCreamScreen = () => {
 
   return (
     <>
+      <OrderInProgressIndicator showOrderInProgress />
       <SearchBar
         products={products}
         productsForSearch={productsForSearch}
