@@ -82,7 +82,7 @@ export const AddressScreen = ({ route }) => {
     specialIndications,
   });
 
-  const textInputColor = { color: loader ? 'grey' : 'black' };
+  const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
   const keyboardType = Platform.OS === 'android' ? 'numeric' : 'number-pad';
 
