@@ -85,6 +85,7 @@ export const DeliveryAddressScreen = () => {
               />
             );
           })}
+
           <Button
             onPress={onAddAddress}
             buttonViewStyle={styles.addAnAddressBtn}>
@@ -100,7 +101,9 @@ export const DeliveryAddressScreen = () => {
             </>
           </Button>
         </>
-        <Button title={t('Continue')} onPress={onPressContinue} />
+        {addresses.length > 0 ? (
+          <Button title={t('Continue')} onPress={onPressContinue} />
+        ) : null}
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
     </SafeAreaView>
   );
