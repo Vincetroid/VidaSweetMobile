@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { ValueValidationResult } from 'fluentvalidation-ts/dist/ValueValidationResult';
-import { useTranslation } from 'react-i18next';
 import { styles } from './PasswordSecurityIndicator.styles';
 
 interface PasswordSecurityIndicatorProps {
@@ -21,14 +20,11 @@ interface PasswordSecurityIndicatorProps {
 export const PasswordSecurityIndicator = ({
   showPasswordRequirement,
 }: PasswordSecurityIndicatorProps) => {
-  const { t } = useTranslation();
-
   return (
     <View>
       {showPasswordRequirement ? (
         <Text style={styles.passwordRequirementTitle}>
-          La contraseña debe contener entre 8 y 20 caracteres, al menos 1
-          caracter especial, 1 número, 1 mayúscula y 1 minúscula.
+          {showPasswordRequirement}
         </Text>
       ) : null}
       {/* {passwordRequirements.map(requirement => {

@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     fontSize: FontSizes.medium,
     marginVertical: 4,
     color: themeStyles.text,
+    alignSelf: 'center',
   },
   // checkIcon: {
   //   color: themeStyles.success,

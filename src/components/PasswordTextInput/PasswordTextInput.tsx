@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
 import { ValueValidationResult } from 'fluentvalidation-ts/dist/ValueValidationResult';
 import { useTranslation } from 'react-i18next';
@@ -16,11 +16,10 @@ interface PasswordTextInputProps {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   loader: boolean;
-  visualizePassword: boolean;
-  setVisualizePassword: React.Dispatch<React.SetStateAction<boolean>>;
   showCheckedValidPassword:
     | ValueValidationResult<string | undefined>
     | undefined;
+  placeholder: string;
 }
 
 const ICON_BTN_SIZE = 16;
@@ -29,12 +28,13 @@ export const PasswordTextInput = ({
   password,
   setPassword,
   loader,
-  visualizePassword,
-  setVisualizePassword,
   showCheckedValidPassword,
+  placeholder,
 }: PasswordTextInputProps) => {
   const textInputColor = { color: loader ? 'grey' : themeStyles.text };
   const { t } = useTranslation();
+
+  const [visualizePassword, setVisualizePassword] = useState<boolean>(false);
 
   const onPressEye = async () => {
     console.log('onPressEye');
@@ -43,20 +43,20 @@ export const PasswordTextInput = ({
 
   return (
     <View>
-      {!showCheckedValidPassword ? (
+      {/* {!showCheckedValidPassword ? (
         <FontAwesomeIcon
           icon={faCheckCircle}
           size={14}
           style={styles.checkIcon}
         />
-      ) : null}
+      ) : null} */}
       <TextInput
         value={password}
         editable={!loader}
         style={[styles.textInput, textInputColor]}
         onChangeText={setPassword}
         secureTextEntry={!visualizePassword}
-        placeholder={t('Password')}
+        placeholder={placeholder}
         placeholderTextColor="grey"
         autoCapitalize="none"
         maxLength={20}

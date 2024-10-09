@@ -80,3 +80,9 @@ export interface AddressValidatorItem {
   phoneNumber: string;
   specialIndications: string;
 }
+
+export interface ChangePasswordItem {
+  currentPassword?: string;
+  newPassword?: string;
+  confirmNewPassword?: string;
+}

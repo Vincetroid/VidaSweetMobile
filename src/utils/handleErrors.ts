@@ -25,6 +25,8 @@ const handleErrors = (errorCode: string) => {
     case ErrorCodes.tooManyRequests:
       Alert.alert(ErrorMessages.tooManyRequests);
       break;
+    case ErrorCodes.invalidCredential:
+    case ErrorCodes.invalidCredentials:
     case ErrorCodes.invalidLoginCredentials:
       Alert.alert(ErrorMessages.invalidLoginCredentials);
       break;

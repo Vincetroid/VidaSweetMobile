@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: themeStyles.secondary,
     zIndex: 1,
     width: '100%',
-    height: 'auto',
+    height: 40,
     flexDirection: 'row',
   },
   leftSide: {

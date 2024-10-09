@@ -9,6 +9,8 @@ interface ErrorMessagesInterface {
   wrongPassword: string;
   missingPassword: string;
   tooManyRequests: string;
+  invalidCredentials: string;
+  invalidCredential: string;
   invalidLoginCredentials: string;
   firestorePermissionDenied: string;
   stripeCanceled: string;
@@ -23,6 +25,8 @@ const ErrorMessages: ErrorMessagesInterface = Object.freeze({
   wrongPassword: i18n.t('WrongPassword'),
   missingPassword: i18n.t('MissingPassword'),
   tooManyRequests: i18n.t('TooManyRequests'),
+  invalidCredentials: i18n.t('InvalidLoginCredentials'),
+  invalidCredential: i18n.t('InvalidLoginCredentials'),
   invalidLoginCredentials: i18n.t('InvalidLoginCredentials'),
   firestorePermissionDenied: i18n.t('FirestorePermissionDenied'),
   stripeCanceled: i18n.t('StripeCanceled'),
