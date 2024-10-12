@@ -82,6 +82,7 @@ export const DeliveryAddressScreen = () => {
                 address={address}
                 setLoader={setLoader}
                 pullAddresses={pullAddresses}
+                key={address.docId}
               />
             );
           })}
