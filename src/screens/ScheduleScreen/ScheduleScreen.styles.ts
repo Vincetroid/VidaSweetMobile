@@ -10,6 +10,8 @@ export const styles = StyleSheet.create({
     fontFamily: FontFamilies.latoMedium,
     fontSize: FontSizes.xx_medium,
     textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 50,
   },
   timePickerWrapper: {
     justifyContent: 'center',

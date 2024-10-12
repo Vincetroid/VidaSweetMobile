@@ -48,27 +48,20 @@ export const ScheduleScreen = () => {
     });
   };
 
+  // console.log(new Date('2023/10/11'));
+  // console.log(new Date('2023-10-11'));
+
   const onChangeDate = (date: string) => {
+    const dateToUse = date.replaceAll('/', '-'); // Ver si funciona en iOS, sino, usar new Moment
     const lan = i18next.language;
-    //porque es mejor manejar mas tarde la fecha en formato ingles para hacer la siguiente operacion:
-    // new Date('03/07/2024 10:00')
-    // Thu Mar 07 2024 10:00:00 GMT-0600 (hora estándar central)
     const latinOrEnglishDateFormatString = lan.includes('es')
       ? 'DD/MM/YYYY'
       : 'YYYY/MM/DD';
-    // console.log(
-    //   'latinOrEnglishDateFormatString: ',
-    //   latinOrEnglishDateFormatString,
-    // );
+
     const formattedDate = getFormatedDate(
-      new Date(date),
+      new Date(dateToUse),
       latinOrEnglishDateFormatString,
     );
-
-    const formattedDate2 = getFormatedDate(new Date(date), 'YYYY/MM/DD');
-
-    console.log('formattedDate2');
-    console.log(formattedDate2);
 
     setSelectedDate(formattedDate);
   };
@@ -135,6 +128,8 @@ export const ScheduleScreen = () => {
               mainColor: themeStyles.secondary,
               textSecondaryColor: themeStyles.black,
               borderColor: 'rgba(122, 146, 165, 0.2)',
+              // padding: 0,
+              // margin: 0,
             }}
             minuteInterval={15}
             mode="calendar"
@@ -146,10 +141,38 @@ export const ScheduleScreen = () => {
             selected={getMinimumDateDelivery()}
           />
           <View style={styles.timePickerWrapper}>
+            {/* <TimePicker
+              date={new Date()}
+              // onDateChange={onChangeTime}
+              mode="time"
+              style={styles.timePicker}
+              theme={themeName} //TODO: Return to auto when detect theme by default
+            /> */}
+
+            {/* <TimePicker
+              open={true}
+              date={new Date()}
+              onConfirm={date => {
+                // setOpen(false);
+                // setDate(date);
+              }}
+              onCancel={() => {
+                // setOpen(false);
+              }}
+            /> */}
+
             <TimePicker
+              open={true}
               date={time}
               onDateChange={onChangeTime}
-              mode="time"
+              // onConfirm={date => {
+              //   // setOpen(false);
+              //   // setDate(date);
+              // }}
+              // onCancel={() => {
+              //   // setOpen(false);
+              // }}
+              mode="time" // Bien podría quitarse este y el calendario para solo user DateTimePicker
               style={styles.timePicker}
               theme={themeName} //TODO: Return to auto when detect theme by default
             />
