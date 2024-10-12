@@ -50,7 +50,7 @@ export const SearchBar: React.FunctionComponent<SearchBarComponentProps> = ({
   };
 
   const onBlurTextInput = () => {
-    clearInput();
+    // clearInput();
   };
 
   return (
