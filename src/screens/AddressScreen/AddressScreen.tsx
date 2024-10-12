@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Platform, SafeAreaView, TextInput, View } from 'react-native';
-import { serverTimestamp } from 'firebase/firestore';
 import { isEmpty } from 'lodash';
 // const functions = require('firebase-functions');
 // const functions = require('firebase-functions/v1');
@@ -8,6 +7,7 @@ import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import RNPhoneCodeSelect from 'react-native-phone-code-select';
 import Toast from 'react-native-simple-toast';
+import firestore from '@react-native-firebase/firestore';
 // import functions, { firebase } from '@react-native-firebase/functions';
 // import { getFunctions, httpsCallable } from "firebase/functions";
 import { useNavigation } from '@react-navigation/native';
@@ -109,8 +109,7 @@ export const AddressScreen = ({ route }) => {
           specialIndications,
           isCurrent: false,
           fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-          // updateTimestamp: serverTimestamp(),
-          updateTimestamp: new Date().toString(),
+          updateTimestamp: firestore.FieldValue.serverTimestamp(),
         } as AddressItem;
 
         try {
@@ -140,8 +139,8 @@ export const AddressScreen = ({ route }) => {
           specialIndications,
           isCurrent: false,
           fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
-          // createTimestamp: serverTimestamp(),
-          createTimestamp: new Date().toString(),
+          createTimestamp: firestore.FieldValue.serverTimestamp(),
+          // createTimestamp: new Date(),
         } as AddressItem;
 
         try {

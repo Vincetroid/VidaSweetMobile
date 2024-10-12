@@ -8,6 +8,7 @@ import {
   updateDoc,
   where,
 } from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import {
   AddressItem,
   OrderItem,
@@ -47,6 +48,7 @@ const setUser = async (
     const docRef = await addDoc(collection(db, 'users'), {
       ...user,
       uid,
+      createTimestamp: firestore.FieldValue.serverTimestamp(),
     });
 
     console.log('Document written with ID: ', docRef.id);
@@ -107,7 +109,7 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
   const userUID = auth().currentUser?.uid;
 
   const order = {
-    deliverySchedule: new Date(),
+    deliverySchedule: firestore.FieldValue.serverTimestamp(),
   };
 
   try {
@@ -115,6 +117,8 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
       ...order,
       userUID,
       addressId,
+      // createTimestamp: new Date().toString(), // new Date(),
+      createTimestamp: firestore.FieldValue.serverTimestamp(),
     });
     // console.log('Document setOrder written with ID: ', docRef.id);
 
@@ -129,15 +133,17 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
 const setProductOrder = async (
   cartProduct: ProductCart,
   orderId: string | undefined,
+  productId: string | undefined,
 ) => {
-  console.log('setProductOrder');
-
   const { quantity, subtotal } = cartProduct;
 
   const product_order = {
+    productId,
     orderId,
     quantity,
     subtotal,
+    createTimestamp: firestore.FieldValue.serverTimestamp(),
+    // Necesito update timestamp desde el principio?
   };
 
   try {

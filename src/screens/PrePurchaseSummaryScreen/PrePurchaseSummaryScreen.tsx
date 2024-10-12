@@ -165,7 +165,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
 
     products.map(cartProductId => {
       const cartProduct = cartProducts[cartProductId];
-      setProductOrder(cartProduct, orderId);
+      setProductOrder(cartProduct, orderId, cartProductId);
     });
 
     // cartProducts.forEach(async (cartProduct: ProductCart) => {

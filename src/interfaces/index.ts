@@ -1,3 +1,4 @@
+// TODO: Import correctly
 import { Timestamp } from 'firebase/firestore';
 
 export interface ProductItem {
@@ -61,8 +62,8 @@ export interface AddressItem {
   fullAddress: string;
   // createTimestamp: Date;
   // updateTimestamp?: Date;
-  createTimestamp: string;
-  updateTimestamp?: string;
+  createTimestamp: Timestamp;
+  updateTimestamp?: Timestamp;
   // createTimestamp?: Timestamp;
   // updateTimestamp?: Timestamp;
 }
