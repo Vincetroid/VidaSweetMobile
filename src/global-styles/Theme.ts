@@ -21,6 +21,7 @@ const themes = Object.freeze({
     primary: Colors.white,
     secondary: Colors.boldPink,
     tertiary: Colors.gold,
+    quaternary: Colors.lightPink,
     text: Colors.white,
     black: Colors.white,
     white: Colors.black,

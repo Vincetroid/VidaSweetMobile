@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { setOrder, setProductOrder } from '@/fb/queries';
-import { Colors, themeStyles } from '@/global-styles';
+import { Colors, FontFamilies, themeStyles } from '@/global-styles';
 import { ProductCart } from '@/interfaces';
 import { usePaymentSheet } from '@stripe/stripe-react-native';
 import {
@@ -65,6 +65,11 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
         },
         shapes: {
           borderRadius: 25,
+        },
+        primaryButton: {
+          colors: {
+            text: themeStyles.secondary,
+          },
         },
       },
       paymentIntentClientSecret: paymentIntent,
