@@ -35,6 +35,6 @@ const themes = Object.freeze({
   },
 });
 
-export const themeName = 'dark';
+export const themeName = 'light';
 
 export const themeStyles = themes[themeName];

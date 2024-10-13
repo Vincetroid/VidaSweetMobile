@@ -23,7 +23,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const { currentAddressId } = useAppSelector(state => state.address);
+  const { currentSelectedAddress } = useAppSelector(state => state.address);
   const {
     cartProductsCounter,
     cartProductsSubtotal,
@@ -69,6 +69,13 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
         primaryButton: {
           colors: {
             text: themeStyles.secondary,
+          },
+          shapes: {
+            shadow: {
+              color: 'aqua',
+              opacity: 0.8,
+              blurRadius: 0.7,
+            },
           },
         },
       },
@@ -180,16 +187,13 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     // });
   };
 
-  const fullAddress =
-    'C 30 - #85 Int Sin numero, Colonia El Sol, Nezahualcóyotl, Mexico, 57200';
-
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <View>
           <Text style={styles.title}>{t('DeliveryAddress')}</Text>
-          <Text style={styles.text}>{fullAddress}</Text>
+          <Text style={styles.text}>{currentSelectedAddress.fullAddress}</Text>
           <Divider
             customStyle={{
               marginVertical: 16,

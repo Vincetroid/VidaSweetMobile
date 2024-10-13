@@ -10,17 +10,20 @@ export const styles = StyleSheet.create({
     minHeight: 80,
     backgroundColor: Colors.grayLightBg,
     marginBottom: 10,
-  },
-  shadowEffect: {
+    borderStyle: 'dashed',
     borderColor: themeStyles.secondary,
     borderWidth: 1,
+  },
+  shadowEffect: {
+    borderWidth: 1,
     borderRadius: 10,
+    borderStyle: 'solid',
   },
   leftZone: {
     flex: 0.1,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginTop: 20,
+    justifyContent: 'space-around',
+    // marginTop: 20,
   },
   centerZone: {
     flex: 0.8,

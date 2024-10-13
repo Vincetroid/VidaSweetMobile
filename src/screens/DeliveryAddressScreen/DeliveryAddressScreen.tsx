@@ -6,7 +6,7 @@ import { themeStyles } from '@/global-styles';
 import { AddressItem } from '@/interfaces';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { addCurrentAddressId } from '@/redux-content';
+import { addCurrentSelectedAddress } from '@/redux-content';
 import {
   AddressRow,
   Button,
@@ -22,34 +22,24 @@ export const DeliveryAddressScreen = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigation = useNavigation();
+  // const [currentAddress, setCurrentAddress] = useState<string>('');
   const { loader, setLoader, addresses, setAddresses, pullAddresses } =
     useFetchAddresses();
 
   const onPressContinue = () => {
-    navigation.navigate('Schedule');
+    navigation.navigate('Schedule', {});
   };
 
   const onAddAddress = () => {
     navigation.navigate('Address');
   };
 
-  // const onPressAddressRectangle = async (
-  //   addressId: string,
-  //   addressIsCurrent: boolean,
-  // ) => {
   const onPressAddressRectangle = async (address: AddressItem) => {
-    // console.log('onPressAddres: ', address);
-    // console.log('Address id: ', addressId);
-    // console.log('addressIsCurrent: ', addressIsCurrent);
-    // const newData = [...data];
-
     //TODO: Esto más bien deberia estar en redux no? para que no se complique tanto en hacerse copias, etc
     setAddresses(prevAddresses => {
       return prevAddresses.map((prevAddress: AddressItem) => {
-        // console.log(address, prevAddress);
-        console.log(address.docId, prevAddress.docId);
-
         if (address.docId === prevAddress.docId) {
+          // TODO: Ver lo de isCurrent, cuando asignarla y desasignarla
           return {
             ...prevAddress,
             isCurrent: true,
@@ -62,7 +52,7 @@ export const DeliveryAddressScreen = () => {
       });
     });
 
-    dispatch(addCurrentAddressId(address.docId)); // AQUI HACE FALTA LA FULL ADDRESS PARA LA CONFIRMACION DE COMPRA
+    dispatch(addCurrentSelectedAddress(address));
   };
 
   return (

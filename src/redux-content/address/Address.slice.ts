@@ -115,9 +115,6 @@ const addressSlice = createSlice({
         // },
       };
     },
-    addCurrentAddressId(state, action: PayloadAction<string>) {
-      state.currentAddressId = action.payload;
-    },
     removeAddresses(state, action: PayloadAction) {
       // const productId = action.payload.id;
       // if (state.cartProducts[productId].quantity > 0) {
@@ -133,10 +130,6 @@ const addressSlice = createSlice({
 
 //Donde tendría que poner la accion de cartProductsSubtotal
 
-export const {
-  addAddresses,
-  addCurrentSelectedAddress,
-  removeAddresses,
-  addCurrentAddressId,
-} = addressSlice.actions;
+export const { addAddresses, addCurrentSelectedAddress, removeAddresses } =
+  addressSlice.actions;
 export default addressSlice.reducer;

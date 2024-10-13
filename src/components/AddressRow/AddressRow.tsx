@@ -11,7 +11,7 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { addCurrentAddressId } from '@/redux-content';
+import { addCurrentSelectedAddress } from '@/redux-content';
 import { Button } from '@/components';
 import { useAppDispatch } from '@/hooks';
 import handleErrors from '@/utils/handleErrors';
@@ -36,7 +36,7 @@ export const AddressRow = ({
 
   useEffect(() => {
     if (address.isCurrent) {
-      dispatch(addCurrentAddressId(address.docId));
+      addCurrentSelectedAddress(address);
     }
   }, []);
 
@@ -69,6 +69,15 @@ export const AddressRow = ({
         onPressAddressRectangle(address)
       }>
       <View style={styles.leftZone}>
+        <Button onPress={onPressEdit} buttonViewStyle={styles.iconBtn}>
+          <FontAwesomeIcon
+            icon={faEdit}
+            size={16}
+            style={{
+              color: themeStyles.secondary,
+            }}
+          />
+        </Button>
         <FontAwesomeIcon
           icon={faMapMarkerAlt}
           size={18}
