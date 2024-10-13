@@ -24,7 +24,9 @@ export class AddressValidator extends Validator<AddressValidatorItem> {
     // No es obligatorio pero no quiero que introduzcan más de 20 caracteres raros en el peor de los casos, a lo mucho S/N
     this.ruleFor('interiorNumber')
       .maxLength(interiorNumberMaxLength)
-      .withMessage(i18n.t('MaxLengthMessage', { interiorNumberMaxLength }));
+      .withMessage(
+        i18n.t('MaxLengthMessage', { maxLength: interiorNumberMaxLength }),
+      );
 
     this.ruleFor('colonia').notEmpty().withMessage(i18n.t('EnterColonia'));
 
@@ -38,13 +40,15 @@ export class AddressValidator extends Validator<AddressValidatorItem> {
       .notEmpty()
       .withMessage(i18n.t('EnterZipCode'))
       .maxLength(zipCodeMaxLength)
-      .withMessage(i18n.t('MaxLengthMessage', { zipCodeMaxLength }));
+      .withMessage(i18n.t('MaxLengthMessage', { maxLength: zipCodeMaxLength })); // TODO: Estas validaciones no se ven chidas ya en funcionamiento y no funciona el parametro. Sobre todo no sabes cual campo no cumple con maxLength, asi que tendrá que ser individual por campo
 
     this.ruleFor('countryPhoneCode')
       .notEmpty()
       .withMessage(i18n.t('EnterCountryPhoneCode'))
       .maxLength(phoneNumberMaxLength)
-      .withMessage(i18n.t('MaxLengthMessage', { phoneNumberMaxLength }));
+      .withMessage(
+        i18n.t('MaxLengthMessage', { maxLength: phoneNumberMaxLength }),
+      );
 
     this.ruleFor('phoneNumber')
       .notEmpty()
@@ -52,6 +56,8 @@ export class AddressValidator extends Validator<AddressValidatorItem> {
 
     this.ruleFor('specialIndications')
       .maxLength(specialIndicationsMaxLength)
-      .withMessage(i18n.t('MaxLengthMessage', { specialIndicationsMaxLength }));
+      .withMessage(
+        i18n.t('MaxLengthMessage', { maxLength: specialIndicationsMaxLength }),
+      );
   }
 }

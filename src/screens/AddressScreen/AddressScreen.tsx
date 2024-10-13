@@ -302,7 +302,7 @@ export const AddressScreen = ({ route }) => {
             buttonText="Ok"
           />
         </>
-        <Button title={t('Save')} onPress={onSaveAddress} />
+        <Button title={t('Save')} onPress={onSaveAddress} isLoading={loader} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
     </SafeAreaView>
   );
