@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { getProducts, getSpecificProducts } from '@/fb/queries';
+import { getProductsInStock } from '@/fb/queries';
 import { ProductItem } from '@/interfaces';
 import handleErrors from '@/utils/handleErrors';
 
@@ -26,9 +26,9 @@ export const useFetchProducts = () => {
     return unsubscribe;
   }, []);
 
-  const pullProducts = async () => {
+  const pullProducts = async (productToDiscriminate?: any) => {
     try {
-      const productsList = await getProducts();
+      const productsList = await getProductsInStock(productToDiscriminate);
       // console.log('productsList');
       // console.log(productsList);
       setProducts(productsList);
@@ -39,14 +39,14 @@ export const useFetchProducts = () => {
   };
 
   // TODO: Revisar si es necesario, de pronto no porque uso productsForSearch para hacer una copia de todos los productos y de ahi filtrar localmente en esa copia sin necesidad de estar obteniendo productos especificos por la red
-  const pullSpecificProducts = async (searchTerm: string) => {
-    try {
-      const productsList = await getSpecificProducts(searchTerm);
-      setProducts(productsList);
-    } catch (error) {
-      handleErrors(error.code);
-    }
-  };
+  // const pullSpecificProducts = async (searchTerm: string) => {
+  //   try {
+  //     const productsList = await getSpecificProducts(searchTerm);
+  //     setProducts(productsList);
+  //   } catch (error) {
+  //     handleErrors(error.code);
+  //   }
+  // };
 
   return {
     products,
@@ -56,6 +56,6 @@ export const useFetchProducts = () => {
     loader,
     setLoader,
     pullProducts,
-    pullSpecificProducts,
+    // pullSpecificProducts,
   };
 };

@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { addProduct } from '@/redux-content';
 import { useAppDispatch } from '@/hooks';
 import { useFetchProductImages } from '@/hooks/useFetchProductImages';
+import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { formatCurrency } from '@/utils';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites';
 import { Loader } from '../Loader';
@@ -47,6 +48,7 @@ const ImageModal = ({ children, isImageVisible, setIsImageVisible }) => {
 export const ProductCard = ({ product }: { product: ProductItem }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { pullProducts } = useFetchProducts();
   const [isImageVisible, setIsImageVisible] = useState<boolean>(false);
   const { img, title, price, isFavorite = false } = product;
   const { currentImage, loader } = useFetchProductImages(img);
@@ -54,8 +56,15 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
   const cardGap = 30;
   const cardWidth = (Dimensions.get('window').width - cardGap * 3) / 2;
 
-  const onAddProduct = () => {
+  const onAddProduct = async () => {
     dispatch(addProduct(product));
+
+    //TODO: Cuando se llegue al punto de necesitar el inventario en entregas continuas con repartidores, esto será necesario
+    // const newStock = await updateStock('decrement', product.docId);
+    // if (newStock <= 0) {
+    //   console.log('pulling');
+    //   await pullProducts(product);
+    // }
 
     Toast.showWithGravityAndOffset(
       t('ProductAddedToCart'),

@@ -16,8 +16,6 @@ export const Cart = () => {
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
   const { products } = useFetchProducts();
-  console.log('products');
-  console.log(products);
   const totalAmount = cartProductsSubtotal + cartProductsIva;
 
   return (

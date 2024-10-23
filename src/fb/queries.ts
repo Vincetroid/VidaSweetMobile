@@ -85,6 +85,21 @@ const editAddress = async (address: AddressItem, addressId: string) => {
   }
 };
 
+const updateProductStock = async (productName: number, newStock: number) => {
+  const stockRef = doc(db, 'stock', productName);
+
+  const stockObj = {
+    liters: newStock,
+  };
+
+  try {
+    await updateDoc(stockRef, stockObj);
+  } catch (error) {
+    console.log('Error');
+    handleErrors(error.code);
+  }
+};
+
 const getAddresses = async () => {
   console.log('getAddresses');
   const userUID = auth().currentUser?.uid;
@@ -156,7 +171,39 @@ const setProductOrder = async (
   }
 };
 
-const getProducts = async () => {
+const getProductsInStock = async (productToDiscriminate?: any) => {
+  // if (!productToDiscriminate) {
+  //   // TODO: Modificar el query para no traer todo de una y filtrar en dispositivo
+  //   const stockCollection = collection(db, 'stock');
+  //   const stockFiltered = query(stockCollection, where('liters', '<=', 0));
+  //   const stockDocsSnapshot = await getDocs(stockFiltered);
+  //   const stockProducts = stockDocsSnapshot.docs.map(document => {
+  //     const data = document.data();
+  //     const docId = document.id;
+  //     console.log('data');
+  //     console.log(data);
+  //     return docId;
+  //   });
+  //   console.log('stockProducts');
+  //   console.log(stockProducts);
+
+  //   //   Obtener de tabla stock con registros de liters en 0
+  //   // el id de esa tabla
+  //   // Buscar en products, todos los registros con stock === algun elemento del arreglo que hiciera match
+  //   const productsCollection = collection(db, 'products');
+  //   const filtered = query(
+  //     productsCollection,
+  //     where('stock', 'not-in', stockProducts),
+  //   );
+  //   const productsDocsSnapshot = await getDocs(filtered);
+  //   const products = productsDocsSnapshot.docs.map(document => {
+  //     const data = document.data();
+  //     const docId = document.id;
+  //     return { docId, ...data };
+  //   });
+  //   return products as Array<ProductItem>;
+  // }
+
   const productsCollection = collection(db, 'products');
   const productsDocsSnapshot = await getDocs(productsCollection);
   const products = productsDocsSnapshot.docs.map(document => {
@@ -167,25 +214,36 @@ const getProducts = async () => {
   return products as Array<ProductItem>;
 };
 
-const getSpecificProducts = async (searchTerm: string) => {
-  const productsCollection = collection(db, 'products');
-  const productsDocsSnapshot = await getDocs(productsCollection);
-  const products = productsDocsSnapshot.docs.map(document => {
-    const data = document.data();
-    const docId = document.id;
-    return { docId, ...data };
-  });
-  return products as Array<ProductItem>;
+const getProduct = async (productId: string) => {
+  const productRef = collection(db, 'products').doc(productId);
+  const productSnapshot = await productRef.get();
+  if (productSnapshot.exists) {
+    return productSnapshot.data();
+  } else {
+    return null;
+  }
+};
+
+const getProductStock = async (productStockId: string) => {
+  const productStockRef = collection(db, 'stock').doc(productStockId);
+  const snapshot = await productStockRef.get();
+  if (snapshot.exists) {
+    return snapshot.data();
+  } else {
+    return null;
+  }
 };
 
 export {
   editAddress,
   getAddresses,
-  getProducts,
-  getSpecificProducts,
+  getProduct,
+  getProductsInStock,
+  getProductStock,
   getUser,
   setAddress,
   setOrder,
   setProductOrder,
   setUser,
+  updateProductStock,
 };
