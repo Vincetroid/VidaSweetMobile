@@ -2,8 +2,17 @@ import { StyleSheet } from 'react-native';
 import { FontSizes, themeStyles } from '@/global-styles';
 
 export const styles = StyleSheet.create({
+  ordersContainer: {
+    backgroundColor: themeStyles.quaternary,
+    zIndex: 1,
+    width: '100%',
+    height: 40,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
-    backgroundColor: themeStyles.secondary,
+    backgroundColor: themeStyles.quaternary,
     zIndex: 1,
     width: '100%',
     height: 40,
@@ -30,6 +39,13 @@ export const styles = StyleSheet.create({
     // marginVertical: 1,
     color: themeStyles.text,
   },
+  ordersLabel: {
+    fontFamily: 'Lato Bold',
+    // fontFamily: 'Bartleen Script',
+    fontSize: FontSizes.xx_medium,
+    // marginVertical: 1,
+    color: themeStyles.text,
+  },
   eta: {
     fontFamily: 'Lato Light',
     fontSize: FontSizes.medium,
@@ -38,5 +54,9 @@ export const styles = StyleSheet.create({
   },
   icon: {
     color: themeStyles.primary,
+  },
+  closeIcon: {
+    position: 'absolute',
+    right: 10,
   },
 });

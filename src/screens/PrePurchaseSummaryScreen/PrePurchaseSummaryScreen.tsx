@@ -57,10 +57,10 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
           componentBackground: themeStyles.black,
           componentDivider: themeStyles.divider,
           primaryText: themeStyles.text,
-          secondaryText: themeStyles.secondary,
-          componentText: themeStyles.disabled, // Choose country component
+          secondaryText: themeStyles.tertiary,
+          componentText: themeStyles.secondary, // Choose country component
           icon: themeStyles.quaternary,
-          placeholderText: themeStyles.disabled,
+          placeholderText: themeStyles.searchBg,
           componentBorder: themeStyles.tertiary,
         },
         shapes: {
@@ -159,8 +159,10 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     }
     //Primero ver que la compra sea exitosa
     const resultPaymentIntent = await makeStripePayment();
+    console.log('resultPaymentIntent');
+    console.log(resultPaymentIntent);
     //Segundo, asignar la orden
-    const orderId = await setOrder(currentAddressId, cartProducts);
+    const orderId = await setOrder(currentSelectedAddress.docId, cartProducts);
     console.log('orderId');
     console.log(orderId);
     //Tercero, asignar el product_order porque ya se tiene la orden previamente de //setOrder
