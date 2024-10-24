@@ -144,6 +144,7 @@ export const SignUpScreen = () => {
         <View style={styles.radioGroupView}>
           <View style={styles.radioOptionView}>
             <Text style={styles.radioText}>female</Text>
+            {/* TODO: Hacer Radio Button component, sería en TouchableOpacity */}
             <TouchableOpacity
               onPress={() => onPressRadioOption('female')}
               style={styles.radioButton}>
