@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Alert, SafeAreaView, Text, TextInput, View } from 'react-native';
+import {
+  Alert,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { isEmpty } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import Toast from 'react-native-simple-toast';
@@ -8,6 +15,8 @@ import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { setUser } from '@/fb/queries';
 import { themeStyles } from '@/global-styles';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, PasswordSecurityIndicator } from '@/components';
 import { PasswordTextInput } from '@/components/PasswordTextInput';
 import handleErrors from '@/utils/handleErrors';
@@ -24,6 +33,7 @@ export const SignUpScreen = () => {
   const [password, setPassword] = useState<string>('');
   const [visualizePassword, setVisualizePassword] = useState<boolean>(false);
   const [loader, setLoader] = useState(false);
+  const [radioOption, setRadioOption] = useState('');
 
   const textInputColor = { color: loader ? 'grey' : themeStyles.text };
 
@@ -43,6 +53,11 @@ export const SignUpScreen = () => {
 
   console.log('validator');
   console.log(validator);
+
+  const onPressRadioOption = (value: string) => {
+    console.log('onPressRadioOption');
+    setRadioOption(value);
+  };
 
   const onSignUpPress = () => {
     if (isEmpty(validator)) {
@@ -123,6 +138,40 @@ export const SignUpScreen = () => {
           placeholderTextColor="grey"
           autoCapitalize="none"
         />
+        <View style={styles.genderView}>
+          <Text style={styles.genderText}>gender</Text>
+        </View>
+        <View style={styles.radioGroupView}>
+          <View style={styles.radioOptionView}>
+            <Text style={styles.radioText}>female</Text>
+            <TouchableOpacity
+              onPress={() => onPressRadioOption('female')}
+              style={styles.radioButton}>
+              {radioOption === 'female' ? (
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  size={10}
+                  color={themeStyles.black}
+                />
+              ) : null}
+            </TouchableOpacity>
+          </View>
+          <View style={styles.radioOptionView}>
+            <Text style={styles.radioText}>male</Text>
+            <TouchableOpacity
+              onPress={() => onPressRadioOption('male')}
+              style={styles.radioButton}>
+              {/* <></> */}
+              {radioOption === 'male' ? (
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  size={10}
+                  color={themeStyles.black}
+                />
+              ) : null}
+            </TouchableOpacity>
+          </View>
+        </View>
         <PasswordTextInput
           password={password}
           setPassword={setPassword}

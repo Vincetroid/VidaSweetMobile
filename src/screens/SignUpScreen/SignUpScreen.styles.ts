@@ -50,6 +50,48 @@ const styles = StyleSheet.create({
     fontSize: FontSizes.big,
     fontFamily: FontFamilies.latoItalic,
   },
+  genderView: {
+    // backgroundColor: 'aqua',
+    // height: 30,
+    marginTop: 12,
+  },
+  genderText: {
+    color: 'grey',
+    textAlign: 'center',
+  },
+  radioGroupView: {
+    // backgroundColor: 'aqua',
+    flexDirection: 'row',
+    marginVertical: 10,
+  },
+  radioOptionView: {
+    // backgroundColor: 'yellow',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+  },
+  radioButton: {
+    width: 16,
+    height: 16,
+    backgroundColor: themeStyles.background,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: themeStyles.black,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  radioButtonSelected: {
+    width: 16,
+    height: 16,
+    backgroundColor: themeStyles.background,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: themeStyles.black,
+  },
+  radioText: {
+    color: 'grey',
+  },
 });
 
 export default styles;
