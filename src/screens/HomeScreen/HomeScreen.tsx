@@ -25,7 +25,7 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView testID="home-screen">
-      <OrderInProgressIndicator showOrderInProgress />
+      <OrderInProgressIndicator />
       {loader ? <FullScreenLoader /> : null}
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
         <SliderBox images={images} />

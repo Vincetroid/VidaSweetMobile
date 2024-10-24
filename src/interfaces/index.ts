@@ -31,6 +31,7 @@ export interface OrderItem {
   orderId: string;
   userId: string;
   address_id: string;
+  status: string;
   createTimestamp: Timestamp;
   updateTimestamp?: Timestamp;
   deliverySchedule: Date; // Por ahora así en Date, puede que sea otro de acuerdo a ScheduleScreen. Cabe mencionar que quizá los tiempos y horarios se puedan pasar a una tabla diferente pero me gusta por aqui ahora. Suena hermoso el hecho de que en tu orden viene le fecha de entrega.

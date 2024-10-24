@@ -101,7 +101,6 @@ const updateProductStock = async (productName: number, newStock: number) => {
 };
 
 const getAddresses = async () => {
-  console.log('getAddresses');
   const userUID = auth().currentUser?.uid;
 
   const addressesCollection = collection(db, 'addresses');
@@ -132,6 +131,7 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
       ...order,
       userUID,
       addressId,
+      status: 'pending',
       // createTimestamp: new Date().toString(), // new Date(),
       createTimestamp: firestore.FieldValue.serverTimestamp(),
     });
@@ -143,6 +143,25 @@ const setOrder = async (addressId: string, cartProducts: ProductCart[]) => {
   } catch (e) {
     console.error('Error adding document: ', e);
   }
+};
+
+const getOrdersInProgress = async () => {
+  const userUID = auth().currentUser?.uid;
+
+  const ordersCollection = collection(db, 'orders');
+  const filtered = query(
+    ordersCollection,
+    where('userUID', '==', userUID),
+    where('status', '==', 'pending'),
+  );
+  const ordersDocsSnapshot = await getDocs(filtered);
+  const orders = ordersDocsSnapshot.docs.map(document => {
+    const data = document.data();
+    const docId = document.id;
+    return { docId, ...data };
+  });
+
+  return orders as Array<OrderItem>;
 };
 
 const setProductOrder = async (
@@ -237,6 +256,7 @@ const getProductStock = async (productStockId: string) => {
 export {
   editAddress,
   getAddresses,
+  getOrdersInProgress,
   getProduct,
   getProductsInStock,
   getProductStock,
