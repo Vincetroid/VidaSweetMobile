@@ -11,7 +11,7 @@ import {
   FullScreenLoader,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { useAppDispatch } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { styles } from './PurchaseSummaryScreen.styles';
 
 export const PurchaseSummaryScreen = () => {
@@ -20,14 +20,12 @@ export const PurchaseSummaryScreen = () => {
   const dispatch = useAppDispatch();
   // const { deliveryDate, deliveryTime, deliveryDateTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
+  const { currentSelectedAddress } = useAppSelector(state => state.address);
 
   const onPressContinue = async () => {
     dispatch(resetCart());
     navigation.navigate('MainRoot');
   };
-
-  const fullAddress =
-    'C 30 - #85 Int Sin numero, Colonia El Sol, Nezahualcóyotl, Mexico, 57200';
 
   return (
     <SafeAreaView style={styles.safeAreaView}>
@@ -52,7 +50,7 @@ export const PurchaseSummaryScreen = () => {
           />
           <Text style={styles.title}>{t('DeliveryAddress')}</Text>
           {/* Poner aqui a lo mejor un cuadrito para reubicar marcador */}
-          <Text style={styles.text}>{fullAddress}</Text>
+          <Text style={styles.text}>{currentSelectedAddress.fullAddress}</Text>
           <Divider
             customStyle={{
               marginVertical: 16,
