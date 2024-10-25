@@ -30,7 +30,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     cartProductsIva,
     cartProducts,
   } = useAppSelector(state => state.cart);
-  const { deliveryDate, deliveryTime, deliveryDateTime } = route?.params;
+  const { deliveryDateTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const [isPaymentReady, setIsPaymentReady] = useState<boolean>(false);
   const { initPaymentSheet, presentPaymentSheet, loading } = usePaymentSheet();
@@ -142,7 +142,9 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
         t('SuccessfulPaymentMsg'),
       );
       setIsPaymentReady(false);
-      navigation.navigate('PurchaseSummary');
+      navigation.navigate('PurchaseSummary', {
+        deliveryDateTime: deliveryDateTime,
+      });
       return true;
     }
   };

@@ -14,11 +14,11 @@ import {
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { styles } from './PurchaseSummaryScreen.styles';
 
-export const PurchaseSummaryScreen = () => {
+export const PurchaseSummaryScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  // const { deliveryDate, deliveryTime, deliveryDateTime } = route?.params;
+  const { deliveryDateTime } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const { currentSelectedAddress } = useAppSelector(state => state.address);
 
@@ -34,7 +34,7 @@ export const PurchaseSummaryScreen = () => {
         <View style={styles.bottomSpace}>
           {/* Detalles de la entrega */}
           <Text style={styles.title}>{t('DeliveryDateTime')}</Text>
-          <Text style={styles.text}>Determining</Text>
+          <Text style={styles.text}>{deliveryDateTime}</Text>
           <Divider
             customStyle={{
               marginVertical: 16,
