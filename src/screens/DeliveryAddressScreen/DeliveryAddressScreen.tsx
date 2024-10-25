@@ -14,7 +14,7 @@ import {
   RowTitle,
   TemplateSplitedViewScrollAndButtonFixedAtTheBottom,
 } from '@/components';
-import { useAppDispatch, useFetchAddresses } from '@/hooks';
+import { useAppDispatch, useAppSelector, useFetchAddresses } from '@/hooks';
 import { styles } from './DeliveryAddressScreen.styles';
 
 export const DeliveryAddressScreen = () => {
@@ -25,6 +25,7 @@ export const DeliveryAddressScreen = () => {
   // const [currentAddress, setCurrentAddress] = useState<string>('');
   const { loader, setLoader, addresses, setAddresses, pullAddresses } =
     useFetchAddresses();
+  const { currentSelectedAddress } = useAppSelector(state => state.address);
 
   const onPressContinue = () => {
     navigation.navigate('Schedule', {});
@@ -92,7 +93,7 @@ export const DeliveryAddressScreen = () => {
             </>
           </Button>
         </>
-        {addresses.length > 0 ? (
+        {addresses.length > 0 && currentSelectedAddress.docId ? (
           <Button title={t('Continue')} onPress={onPressContinue} />
         ) : null}
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
