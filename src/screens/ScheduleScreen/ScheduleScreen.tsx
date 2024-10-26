@@ -48,9 +48,6 @@ export const ScheduleScreen = () => {
     });
   };
 
-  // console.log(new Date('2023/10/11'));
-  // console.log(new Date('2023-10-11'));
-
   const onChangeDate = (date: string) => {
     const dateToUse = date.replaceAll('/', '-'); // Ver si funciona en iOS, sino, usar new Moment
     const lan = i18next.language;
@@ -58,10 +55,8 @@ export const ScheduleScreen = () => {
       ? 'DD/MM/YYYY'
       : 'YYYY/MM/DD';
 
-    const formattedDate = getFormatedDate(
-      new Date(dateToUse),
-      latinOrEnglishDateFormatString,
-    );
+    const momentDate = moment(dateToUse);
+    const formattedDate = momentDate.format(latinOrEnglishDateFormatString);
 
     setSelectedDate(formattedDate);
   };
