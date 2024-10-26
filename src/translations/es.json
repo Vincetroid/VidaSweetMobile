@@ -57,6 +57,7 @@
   "NeedHelpWithYourOrderContactUs": "¿Necesitas ayuda con tu orden? Contáctanos",
   "NetworkRequestFailed": "Error, por favor revisa tu conexión a internet e intenta de nuevo",
   "NewPassword": "nueva contraseña",
+  "OrderId": "Id de tu Orden",
   "OrderReceived": "Orden recibida",
   "Password": "contraseña",
   "PhoneNumber": "Número de Télefono (Cel / Local)",

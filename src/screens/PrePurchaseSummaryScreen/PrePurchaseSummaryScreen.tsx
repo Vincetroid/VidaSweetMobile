@@ -136,17 +136,8 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
       console.log('ERROR');
       // retryStripePayment();
       return false;
-    } else {
-      Alert.alert(
-        t('ThankYou', { name: 'Vicente' }),
-        t('SuccessfulPaymentMsg'),
-      );
-      setIsPaymentReady(false);
-      navigation.navigate('PurchaseSummary', {
-        deliveryDateTime: deliveryDateTime,
-      });
-      return true;
     }
+    return true;
   };
 
   // const retryStripePayment = async () => {
@@ -159,21 +150,20 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     if (cartProductsCounter <= 0) {
       return Alert.alert(t('AddAtLeastOneProduct'));
     }
-    //Primero ver que la compra sea exitosa
     const resultPaymentIntent = await makeStripePayment();
-    console.log('resultPaymentIntent');
-    console.log(resultPaymentIntent);
-    //Segundo, asignar la orden
+
     const orderId = await setOrder(currentSelectedAddress.docId, cartProducts);
-    console.log('orderId');
-    console.log(orderId);
-    //Tercero, asignar el product_order porque ya se tiene la orden previamente de //setOrder
-    // console.log('cartProducts');
-    // console.log(cartProducts);
+
+    Alert.alert(t('ThankYou', { name: 'Vicente' }), t('SuccessfulPaymentMsg'));
+    setIsPaymentReady(false);
+    navigation.navigate('PurchaseSummary', {
+      deliveryDateTime: deliveryDateTime,
+      orderId,
+    });
+
     if (resultPaymentIntent) {
       await setProductOrders(orderId);
     }
-    // await setProductOrder(quant); // Aqui ver como mandar el sabor, cantidad, el subtotal...
   };
 
   const setProductOrders = async (orderId: string | undefined) => {

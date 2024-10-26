@@ -18,7 +18,7 @@ export const PurchaseSummaryScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const { deliveryDateTime } = route?.params;
+  const { deliveryDateTime, orderId } = route?.params;
   const [loader, setLoader] = useState<boolean>(false);
   const { currentSelectedAddress } = useAppSelector(state => state.address);
 
@@ -33,6 +33,14 @@ export const PurchaseSummaryScreen = ({ route }) => {
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom>
         <View style={styles.bottomSpace}>
           {/* Detalles de la entrega */}
+          <Text style={styles.title}>{t('OrderId')}</Text>
+          <Text style={styles.text}>{orderId}</Text>
+          <Divider
+            customStyle={{
+              marginVertical: 16,
+              backgroundColor: Colors.grayLight,
+            }}
+          />
           <Text style={styles.title}>{t('DeliveryDateTime')}</Text>
           <Text style={styles.text}>{deliveryDateTime}</Text>
           <Divider
