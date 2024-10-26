@@ -14,6 +14,11 @@ import { styles } from './ScheduleScreen.styles';
 const moment = require('moment');
 import TimePicker from 'react-native-date-picker';
 
+const maximumTime = new Date();
+maximumTime.setHours(17, 0, 0);
+const minimumTime = new Date();
+minimumTime.setHours(12, 0, 0);
+
 export const ScheduleScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -135,41 +140,17 @@ export const ScheduleScreen = () => {
             selectorEndingYear={2100}
             selected={getMinimumDateDelivery()}
           />
+          <Text style={styles.text}>{t('TimeDeliverRange')}</Text>
           <View style={styles.timePickerWrapper}>
-            {/* <TimePicker
-              date={new Date()}
-              // onDateChange={onChangeTime}
-              mode="time"
-              style={styles.timePicker}
-              theme={themeName} //TODO: Return to auto when detect theme by default
-            /> */}
-
-            {/* <TimePicker
-              open={true}
-              date={new Date()}
-              onConfirm={date => {
-                // setOpen(false);
-                // setDate(date);
-              }}
-              onCancel={() => {
-                // setOpen(false);
-              }}
-            /> */}
-
             <TimePicker
               open={true}
               date={time}
               onDateChange={onChangeTime}
-              // onConfirm={date => {
-              //   // setOpen(false);
-              //   // setDate(date);
-              // }}
-              // onCancel={() => {
-              //   // setOpen(false);
-              // }}
               mode="time" // Bien podría quitarse este y el calendario para solo user DateTimePicker
               style={styles.timePicker}
               theme={themeName} //TODO: Return to auto when detect theme by default
+              minimumDate={minimumTime}
+              maximumDate={maximumTime}
             />
           </View>
           <Text style={styles.scheduleText}>{dateTimeToDisplay}</Text>

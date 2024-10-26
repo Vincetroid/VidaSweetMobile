@@ -75,13 +75,13 @@ export const OrderInProgressIndicator = () => {
               </Text>
             </View>
           </View>
-          <View style={styles.rightSide}>
+          {/* <View style={styles.rightSide}>
             <FontAwesomeIcon
               icon={faChevronRight}
               size={16}
               style={styles.icon}
             />
-          </View>
+          </View> */}
         </View>
       </>
     );
@@ -108,13 +108,13 @@ export const OrderInProgressIndicator = () => {
                 </Text>
               </View>
             </View>
-            <View style={styles.rightSide}>
+            {/* <View style={styles.rightSide}>
               <FontAwesomeIcon
                 icon={faChevronRight}
                 size={16}
                 style={styles.icon}
               />
-            </View>
+            </View> */}
           </View>
         ))}
       </>

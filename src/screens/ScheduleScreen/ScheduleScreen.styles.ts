@@ -22,4 +22,12 @@ export const styles = StyleSheet.create({
     padding: 0,
     height: 100,
   },
+  text: {
+    fontFamily: 'Lato Light',
+    fontSize: FontSizes.x_medium,
+    marginVertical: 2,
+    color: themeStyles.text,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
 });
