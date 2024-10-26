@@ -151,6 +151,7 @@ export const ScheduleScreen = () => {
               theme={themeName} //TODO: Return to auto when detect theme by default
               minimumDate={minimumTime}
               maximumDate={maximumTime}
+              minuteInterval={30}
             />
           </View>
           <Text style={styles.scheduleText}>{dateTimeToDisplay}</Text>
