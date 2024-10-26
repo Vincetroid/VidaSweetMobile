@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { PulseLoader } from 'react-native-indicator';
 import { useNavigation } from '@react-navigation/native';
 import { getOrdersInProgress } from '@/fb/queries';
@@ -16,6 +16,7 @@ export const OrderInProgressIndicator = () => {
   const [ordersInProgress, setOrdersInProgress] = useState<
     Array<OrderItem> | []
   >([]);
+  const [show, setShow] = useState<boolean>(true);
 
   const fetchOrders = async () => {
     try {
@@ -35,14 +36,22 @@ export const OrderInProgressIndicator = () => {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', async () => {
+      setShow(true);
+    });
+
+    return unsubscribe;
+  }, []);
+
   const topComponentOrderInProgress = (
     <View style={styles.ordersContainer}>
       <Text style={styles.ordersLabel}>
         Órdenes en progreso {ordersInProgress.length}
       </Text>
-      <View style={styles.closeIcon}>
+      <TouchableOpacity style={styles.closeIcon} onPress={() => setShow(false)}>
         <FontAwesomeIcon icon={faClose} size={20} style={styles.icon} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 
@@ -112,5 +121,5 @@ export const OrderInProgressIndicator = () => {
     );
   }
 
-  return componentToShow;
+  return show ? componentToShow : null;
 };
