@@ -36,7 +36,7 @@ export const AddressRow = ({
 
   useEffect(() => {
     if (address.isCurrent) {
-      addCurrentSelectedAddress(address);
+      dispatch(addCurrentSelectedAddress(address));
     }
   }, []);
 

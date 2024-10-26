@@ -5,9 +5,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { useAppDispatch } from '@/hooks';
 
 export interface AddressSliceState {
-  addresses: AddressItem[];
+  // addresses: AddressItem[];
   currentSelectedAddress: AddressItem; // ESTE TRATAR DE QUITARLO
-  currentAddressId: string;
 }
 
 // const initialTimestamp = new Timestamp(new Date().getMilliseconds(), 0); // no se sabe si está bien esto pero getTime saca error
@@ -35,9 +34,8 @@ const addressObj = {
 };
 
 const initialState = {
-  addresses: [],
+  // addresses: [],
   currentSelectedAddress: addressObj,
-  currentAddressId: '',
 } as AddressSliceState;
 
 const addressSlice = createSlice({

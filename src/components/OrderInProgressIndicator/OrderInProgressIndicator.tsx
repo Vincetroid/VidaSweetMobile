@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { PulseLoader } from 'react-native-indicator';
+import { useNavigation } from '@react-navigation/native';
 import { getOrdersInProgress } from '@/fb/queries';
 import { themeStyles } from '@/global-styles';
 import { OrderItem } from '@/interfaces';
@@ -11,6 +12,7 @@ import handleErrors from '@/utils/handleErrors';
 import { styles } from './OrderInProgressIndicator.styles';
 
 export const OrderInProgressIndicator = () => {
+  const navigation = useNavigation();
   const [ordersInProgress, setOrdersInProgress] = useState<
     Array<OrderItem> | []
   >([]);
@@ -26,7 +28,11 @@ export const OrderInProgressIndicator = () => {
   };
 
   useEffect(() => {
-    fetchOrders();
+    const unsubscribe = navigation.addListener('focus', async () => {
+      fetchOrders();
+    });
+
+    return unsubscribe;
   }, []);
 
   const topComponentOrderInProgress = (
