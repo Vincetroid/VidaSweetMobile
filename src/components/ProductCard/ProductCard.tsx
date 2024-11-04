@@ -18,7 +18,7 @@ import { addProduct } from '@/redux-content';
 import { useAppDispatch } from '@/hooks';
 import { useFetchProductImages } from '@/hooks/useFetchProductImages';
 import { useFetchProducts } from '@/hooks/useFetchProducts';
-import { formatCurrency } from '@/utils';
+import { formatCurrency, getProductTitleByLanguage } from '@/utils';
 import { AddRemoveToFavorites } from '../AddRemoveToFavorites';
 import { Loader } from '../Loader';
 import { styles } from './ProductCard.styles';
@@ -50,7 +50,7 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
   const dispatch = useAppDispatch();
   const { pullProducts } = useFetchProducts();
   const [isImageVisible, setIsImageVisible] = useState<boolean>(false);
-  const { img, title, price, isFavorite = false } = product;
+  const { img, title, titleEng, price, isFavorite = false } = product;
   const { currentImage, loader } = useFetchProductImages(img);
 
   const cardGap = 30;
@@ -105,7 +105,9 @@ export const ProductCard = ({ product }: { product: ProductItem }) => {
           <Loader size="small" color={themeStyles.disabled} />
         )}
       </TouchableOpacity>
-      <Text style={styles.productTitle}>{title}</Text>
+      <Text style={styles.productTitle}>
+        {getProductTitleByLanguage(title, titleEng)}
+      </Text>
       <Text style={styles.productPrice}>{formatCurrency(price)}</Text>
       <TouchableOpacity style={styles.addBtn} onPress={onAddProduct}>
         <FontAwesomeIcon icon="cart-shopping" size={16} style={styles.icon} />

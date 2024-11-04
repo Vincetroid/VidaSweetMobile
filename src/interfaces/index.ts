@@ -5,6 +5,7 @@ export interface ProductItem {
   docId: string;
   img: string;
   title: string;
+  titleEng: string;
   price: number;
   stock: number;
   isFavorite?: boolean; // esta a lo mejor se va a otra tabla

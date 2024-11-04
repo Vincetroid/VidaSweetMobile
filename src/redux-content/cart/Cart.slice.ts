@@ -33,6 +33,7 @@ const cartSlice = createSlice({
             subtotal: action.payload.price,
             img: action.payload.img,
             title: action.payload.title,
+            titleEng: action.payload.titleEng,
             stock: action.payload.stock,
           },
         };
@@ -43,6 +44,7 @@ const cartSlice = createSlice({
         state.cartProducts[productId].docId = action.payload.docId;
         state.cartProducts[productId].img = action.payload.img;
         state.cartProducts[productId].title = action.payload.title;
+        state.cartProducts[productId].titleEng = action.payload.titleEng;
         state.cartProducts[productId].stock = action.payload.stock;
         state.cartProducts[productId].quantity++;
         state.cartProducts[productId].subtotal =

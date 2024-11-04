@@ -5,7 +5,7 @@ import { AddRemoveProduct } from '@/components/AddRemoveProduct';
 import { AddRemoveToFavorites } from '@/components/AddRemoveToFavorites';
 import { useAppSelector } from '@/hooks';
 import { useFetchProductImages } from '@/hooks/useFetchProductImages';
-import { formatCurrency } from '@/utils';
+import { formatCurrency, getProductTitleByLanguage } from '@/utils';
 import { styles } from './ProductRow.styles';
 
 interface ProductRowProps {
@@ -14,7 +14,7 @@ interface ProductRowProps {
 }
 
 export const ProductRow = ({ product, disabled = false }: ProductRowProps) => {
-  const { img, title, isFavorite = false } = product;
+  const { img, title, titleEng, isFavorite = false } = product;
   const { cartProducts } = useAppSelector(state => state.cart);
 
   const { currentImage } = useFetchProductImages(img);
@@ -52,7 +52,9 @@ export const ProductRow = ({ product, disabled = false }: ProductRowProps) => {
         />
       </View>
       <View style={styles.centerZone}>
-        <Text style={styles.productTitle}>{title}</Text>
+        <Text style={styles.productTitle}>
+          {getProductTitleByLanguage(title, titleEng)}
+        </Text>
         {!disabled ? <AddRemoveProduct product={product} /> : null}
       </View>
       {!disabled ? (
