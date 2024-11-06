@@ -253,6 +253,16 @@ const getProductStock = async (productStockId: string) => {
   }
 };
 
+const setZipCodes = async () => {
+  try {
+    // const docRef = await addDoc(collection(db, 'orders'), {
+    // });
+    // console.log('Document setZipCode written with ID: ', docRef.id);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
+
 export {
   editAddress,
   getAddresses,
@@ -265,5 +275,6 @@ export {
   setOrder,
   setProductOrder,
   setUser,
+  setZipCodes,
   updateProductStock,
 };

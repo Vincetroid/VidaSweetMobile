@@ -181,6 +181,24 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     // });
   };
 
+  const calculateShippingCost = async (distanceMeters: number) => {
+    let shippingCost = 0;
+
+    if (distanceMeters <= 3400) {
+      shippingCost = 29.5;
+    } else if (distanceMeters > 3400 && distanceMeters <= 5600) {
+      shippingCost = distanceMeters / 132;
+    } else if (distanceMeters > 5600 && distanceMeters <= 10000) {
+      shippingCost = distanceMeters / 143;
+    } else {
+      shippingCost = distanceMeters / 154;
+    }
+
+    // 14535 * x = 150
+
+    return shippingCost;
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
@@ -203,7 +221,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
             }}
           />
           {/* <Text style={styles.title}>{t('ProductsToBuy')}</Text> */}
-          <Cart />
+          <Cart shippingCost={200} />
         </View>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>

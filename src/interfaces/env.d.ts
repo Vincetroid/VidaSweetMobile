@@ -8,4 +8,5 @@ declare module '@env' {
   export const FIREBASE_MEASUREMENT_ID: string;
   export const STRIPE_PUBLISHABLE_KEY: string;
   export const STRIPE_WEBHOOK_SECRET: string;
+  export const GOOGLE_API_KEY: string;
 }

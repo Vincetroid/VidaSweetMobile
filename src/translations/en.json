@@ -72,6 +72,7 @@
   "SecurePaymentsWithText": "Secure Purchases by {{vendor}}",
   "SelectAddress": "Select an address",
   "SendPasswordResetEmail": "Send password reset email",
+  "ShippingCost": "Shipping cost",
   "SignIn": "Sign in",
   "SignOut": "Sign out",
   "SignedOutSuccessfully": "Signed out successfully",

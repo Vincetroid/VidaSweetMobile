@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { editAddress, setAddress } from '@/fb/queries';
 import { themeStyles } from '@/global-styles';
 import { AddressItem, CountryPhoneCodeItem } from '@/interfaces';
+import { GOOGLE_API_KEY } from '@env';
 import { addCurrentSelectedAddress } from '@/redux-content';
 import {
   Button,
@@ -29,38 +30,38 @@ export const AddressScreen = ({ route }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const streetParam = route.params ? route.params.street : '';
+  const streetParam = route.params ? route.params.street : '1';
 
   const [addressName, setAddressName] = useState<string>(
-    route.params ? route.params.addressName : '',
+    route.params ? route.params.addressName : '1',
   );
   const [street, setStreet] = useState<string>(streetParam);
   const [exteriorNumber, setExteriorNumber] = useState<string>(
-    route.params ? route.params.exteriorNumber : '',
+    route.params ? route.params.exteriorNumber : '1',
   );
   const [interiorNumber, setInteriorNumber] = useState<string>(
-    route.params ? route.params.interiorNumber : '',
+    route.params ? route.params.interiorNumber : '1',
   );
   const [colonia, setColonia] = useState<string>(
-    route.params ? route.params.colonia : '',
+    route.params ? route.params.colonia : '1',
   );
   const [municipality, setMunicipality] = useState<string>(
-    route.params ? route.params.municipality : '',
+    route.params ? route.params.municipality : '1',
   );
   const [state, setState] = useState<string>(
-    route.params ? route.params.state : '',
+    route.params ? route.params.state : '1',
   );
   const [zipCode, setZipCode] = useState<string>(
-    route.params ? route.params.zipCode : '',
+    route.params ? route.params.zipCode : '1',
   );
   const [phoneNumber, setPhoneNumber] = useState<string>(
-    route.params ? route.params.phoneNumber : '',
+    route.params ? route.params.phoneNumber : '1',
   );
   const [specialIndications, setSpecialIndications] = useState<string>(
-    route.params ? route.params.specialIndications : '',
+    route.params ? route.params.specialIndications : '1',
   );
   const [countryPhoneCode, setCountryPhoneCode] = useState<string>(
-    route.params ? route.params.countryPhoneCode : '',
+    route.params ? route.params.countryPhoneCode : '1',
   );
   const [loader, setLoader] = useState<boolean>(false);
   const [countryCodesModalVisible, setCountryCodesModalVisible] =
@@ -86,15 +87,86 @@ export const AddressScreen = ({ route }) => {
 
   const keyboardType = Platform.OS === 'android' ? 'numeric' : 'number-pad';
 
+  const addressNumber = interiorNumber
+    ? `${exteriorNumber}-Int ${interiorNumber}`
+    : `${exteriorNumber}`;
+
+  const fullAddress = `C ${street} - ${addressNumber}, ${colonia}, ${municipality}, ${state}, ${zipCode}`;
+
+  const getLocationFromTextInputs = async () => {
+    const geoCodeEndpointResponse = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${fullAddress}&key=${GOOGLE_API_KEY}`,
+    );
+
+    const data = await geoCodeEndpointResponse.json();
+    const location = data.results[0].geometry.location;
+
+    return location;
+  };
+
+  const measureDistance = async (
+    destinationLatitude: number,
+    destinationLongitude: number,
+  ) => {
+    const originLatitude = 19.4305364;
+    const originLongitude = -99.0350212;
+
+    const endpoint = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${originLatitude},${originLongitude}&destinations=${destinationLatitude},${destinationLongitude}&key=${GOOGLE_API_KEY}`;
+
+    const response = await fetch(endpoint);
+
+    const data = await response.json();
+
+    if (data.rows.length > 0) {
+      const distance = data.rows[0].elements[0].distance.value;
+      return distance;
+    } else {
+      // TODO: Cambiar esto
+      throw new Error('No se encontraron coordenadas para el código postal.');
+    }
+  };
+
+  const clearForm = () => {
+    setLoader(false);
+    setAddressName('');
+    setStreet('');
+    setExteriorNumber('');
+    setInteriorNumber('');
+    setColonia('');
+    setMunicipality('');
+    setState('');
+    setZipCode('');
+    setPhoneNumber('');
+    setSpecialIndications('');
+    setCountryPhoneCode('');
+    setCountryCodesModalVisible(false);
+  };
+
   const onSaveAddress = async () => {
     if (isEmpty(validator)) {
       setLoader(true);
 
-      if (route?.params && route?.params?.isEdit) {
-        const addressNumber = interiorNumber
-          ? `#${exteriorNumber} Int ${interiorNumber}`
-          : `#${exteriorNumber}`;
+      const location = await getLocationFromTextInputs();
 
+      const distance = await measureDistance(location.lat, location.lng);
+      if (distance > 35000) {
+        Toast.showWithGravityAndOffset(
+          'Lo sentimos, parece que te encuentras lejos de nosotros por favor intenta agregar una dirección más céntrica',
+          Toast.LONG,
+          Toast.BOTTOM,
+          0,
+          -50,
+          {
+            backgroundColor: themeStyles.error,
+            textColor: themeStyles.white,
+            tapToDismissEnabled: true,
+          },
+        );
+        clearForm();
+        return;
+      }
+
+      if (route?.params && route?.params?.isEdit) {
         const addressObj = {
           addressName,
           street,
@@ -108,7 +180,7 @@ export const AddressScreen = ({ route }) => {
           phoneNumber,
           specialIndications,
           isCurrent: false,
-          fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+          fullAddress: fullAddress,
           updateTimestamp: firestore.FieldValue.serverTimestamp(),
         } as AddressItem;
 
@@ -122,8 +194,8 @@ export const AddressScreen = ({ route }) => {
         }
       } else {
         const addressNumber = interiorNumber
-          ? `#${exteriorNumber} Int ${interiorNumber}`
-          : `#${exteriorNumber}`;
+          ? `${exteriorNumber}-Int ${interiorNumber}`
+          : `${exteriorNumber}`;
 
         const addressObj = {
           addressName,
@@ -138,19 +210,17 @@ export const AddressScreen = ({ route }) => {
           phoneNumber,
           specialIndications,
           isCurrent: false,
-          fullAddress: `C ${street} - ${addressNumber}, Colonia ${colonia}, ${municipality}, ${state}, ${zipCode}`,
+          fullAddress: fullAddress,
           createTimestamp: firestore.FieldValue.serverTimestamp(),
           // createTimestamp: new Date(),
         } as AddressItem;
 
         try {
-          console.log('before set addres');
           const docId = await setAddress(addressObj);
           console.log('docId: ', docId); // Si resultó, ya tienes el addressId Para usarlo en orders
           dispatch(
             addCurrentSelectedAddress({ ...addressObj, docId: docId || '' }),
           );
-          console.log('about to dispatch');
           setLoader(false);
         } catch (error) {
           const errorCode = error.code;
@@ -221,6 +291,16 @@ export const AddressScreen = ({ route }) => {
             keyboardType={keyboardType}
           />
           <TextInput
+            value={zipCode}
+            editable={!loader}
+            style={[styles.textInput, textInputColor]}
+            onChangeText={setZipCode}
+            placeholder={t('ZipCode')}
+            placeholderTextColor="grey"
+            keyboardType={keyboardType}
+            maxLength={5}
+          />
+          <TextInput
             value={colonia}
             editable={!loader}
             style={[styles.textInput, textInputColor]}
@@ -244,15 +324,6 @@ export const AddressScreen = ({ route }) => {
             style={[styles.textInput, textInputColor]}
             onChangeText={setState}
             placeholder={t('State')}
-            placeholderTextColor="grey"
-            keyboardType={keyboardType}
-          />
-          <TextInput
-            value={zipCode}
-            editable={!loader}
-            style={[styles.textInput, textInputColor]}
-            onChangeText={setZipCode}
-            placeholder={t('ZipCode')}
             placeholderTextColor="grey"
             keyboardType={keyboardType}
           />

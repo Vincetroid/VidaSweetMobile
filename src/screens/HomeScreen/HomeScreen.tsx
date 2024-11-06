@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { SliderBox } from 'react-native-image-slider-box';
 import { FontSizes } from '@/global-styles';
 import {
+  Button,
   FullScreenLoader,
   Menu,
   OrderInProgressIndicator,
@@ -28,6 +29,7 @@ export const HomeScreen = () => {
       <OrderInProgressIndicator />
       {loader ? <FullScreenLoader /> : null}
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.bg2}>
+        {/* <Button onPress={() => setZipCodes()} /> */}
         <SliderBox images={images} />
 
         <RowTitle title={t('Menu')} centered />

@@ -73,6 +73,7 @@
   "SecurePaymentsWithText": "Compras protegidas con {{vendor}}",
   "SelectAddress": "Selecciona una dirección",
   "SendPasswordResetEmail": "Enviar email de reinicio de contraseña",
+  "ShippingCost": "Costo de envío",
   "SignIn": "Inicia sesión",
   "SignOut": "Cerrar sesión",
   "SignedOutSuccessfully": "Cerraste sesión correctamente",

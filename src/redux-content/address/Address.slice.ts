@@ -66,7 +66,6 @@ const addressSlice = createSlice({
       // const addressId = action.payload.id as any;
 
       //TE QUEDASTE AQUI, YA ES LLAAMADO
-      console.log('addCurrentSelectedAddress');
       // console.log('action.payload.id');
       // console.log(action.payload.docId);
 

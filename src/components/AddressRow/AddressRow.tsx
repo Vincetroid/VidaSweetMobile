@@ -58,6 +58,7 @@ export const AddressRow = ({
     navigation.navigate('Address', address);
   };
 
+  console.log(fullAddress);
   return (
     <TouchableOpacity
       // style={[styles.wrapper, true ? styles.shadowEffect : null]}
