@@ -10,6 +10,7 @@ import { GuestNavigator } from './src/navigators/GuestNavigator/GuestNavigator';
 import { SplashScreen } from './src/screens/SplashScreen/SplashScreen';
 import './i18n.config';
 LogBox.ignoreAllLogs();
+console.warn = () => {};
 
 const App = () => {
   const [loadingApp, setLoadingApp] = useState(true);

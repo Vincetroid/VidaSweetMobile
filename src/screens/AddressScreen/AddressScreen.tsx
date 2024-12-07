@@ -182,6 +182,7 @@ export const AddressScreen = ({ route }) => {
           isCurrent: false,
           fullAddress: fullAddress,
           updateTimestamp: firestore.FieldValue.serverTimestamp(),
+          distanceToAddress: distance || 0,
         } as AddressItem;
 
         try {
@@ -193,10 +194,6 @@ export const AddressScreen = ({ route }) => {
           setLoader(false);
         }
       } else {
-        const addressNumber = interiorNumber
-          ? `${exteriorNumber}-Int ${interiorNumber}`
-          : `${exteriorNumber}`;
-
         const addressObj = {
           addressName,
           street,
@@ -213,6 +210,7 @@ export const AddressScreen = ({ route }) => {
           fullAddress: fullAddress,
           createTimestamp: firestore.FieldValue.serverTimestamp(),
           // createTimestamp: new Date(),
+          distanceToAddress: distance || 0,
         } as AddressItem;
 
         try {

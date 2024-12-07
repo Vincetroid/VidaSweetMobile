@@ -68,6 +68,7 @@ export interface AddressItem {
   updateTimestamp?: Timestamp;
   // createTimestamp?: Timestamp;
   // updateTimestamp?: Timestamp;
+  distanceToAddress?: number;
 }
 
 export interface AddressValidatorItem {

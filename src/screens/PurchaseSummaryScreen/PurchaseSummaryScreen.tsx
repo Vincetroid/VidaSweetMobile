@@ -27,6 +27,28 @@ export const PurchaseSummaryScreen = ({ route }) => {
     navigation.navigate('MainRoot');
   };
 
+  const calculateShippingCost = (distanceMeters: number) => {
+    let shippingCost = 0;
+
+    if (distanceMeters <= 3400) {
+      shippingCost = 29.5;
+    } else if (distanceMeters > 3400 && distanceMeters <= 5600) {
+      shippingCost = distanceMeters / 132;
+    } else if (distanceMeters > 5600 && distanceMeters <= 10000) {
+      shippingCost = distanceMeters / 143;
+    } else {
+      shippingCost = distanceMeters / 154;
+    }
+
+    // 14535 * x = 150
+
+    return shippingCost;
+  };
+
+  const shipCost = calculateShippingCost(
+    currentSelectedAddress?.distanceToAddress || 0,
+  );
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       {loader ? <FullScreenLoader /> : null}
@@ -49,7 +71,7 @@ export const PurchaseSummaryScreen = ({ route }) => {
               backgroundColor: Colors.grayLight,
             }}
           />
-          <CartPurchased />
+          <CartPurchased shippingCost={shipCost} />
           <Divider
             customStyle={{
               marginVertical: 16,

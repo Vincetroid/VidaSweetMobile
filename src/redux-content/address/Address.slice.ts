@@ -31,6 +31,7 @@ const addressObj = {
   // updateTimestamp: serverTimestamp(),
   createTimestamp: new Date().toString(),
   updateTimestamp: new Date().toString(),
+  distanceToAddress: 0,
 };
 
 const initialState = {
@@ -85,6 +86,7 @@ const addressSlice = createSlice({
         isCurrent,
         isEdit,
         fullAddress,
+        distanceToAddress,
       } = action.payload;
 
       state.currentSelectedAddress = {
@@ -109,6 +111,7 @@ const addressSlice = createSlice({
         // updateTimestamp: serverTimestamp(),
         createTimestamp: new Date().toString(),
         updateTimestamp: new Date().toString(),
+        distanceToAddress,
         // },
       };
     },

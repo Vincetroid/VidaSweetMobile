@@ -10,13 +10,13 @@ import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { formatCurrency } from '@/utils';
 import { styles } from './Cart.styles';
 
-export const Cart = ({ shippingCost }) => {
+export const Cart = ({ shippingCost = 0 }) => {
   const ICON_SIZE = 32;
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
   const { products } = useFetchProducts();
-  const totalAmount = cartProductsSubtotal + cartProductsIva;
+  const totalAmount = cartProductsSubtotal + cartProductsIva + shippingCost;
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, SafeAreaView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import auth from '@react-native-firebase/auth';
@@ -99,35 +99,6 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     }
   };
 
-  const fetchPaymentSheetParams = async () => {
-    // console.log('fetchPaymentSheetParams');
-    const userEmail = auth().currentUser?.email;
-    // console.log('userEmail');
-    // console.log(userEmail);
-
-    const total = (cartProductsSubtotal + cartProductsIva) * 100;
-    // console.log('total: ', total);
-    const theBody = {
-      email: userEmail,
-      totalAmount: total,
-    };
-
-    const response = await fetch(`${API_URL}/payment-sheet`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(theBody),
-    });
-    const { paymentIntent, ephemeralKey, customer } = await response.json();
-
-    return {
-      paymentIntent,
-      ephemeralKey,
-      customer,
-    };
-  };
-
   const makeStripePayment = async () => {
     const { error } = await presentPaymentSheet();
 
@@ -147,6 +118,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
   // };
 
   const onPressContinue = async () => {
+    console.log('onPressContinue');
     if (cartProductsCounter <= 0) {
       return Alert.alert(t('AddAtLeastOneProduct'));
     }
@@ -181,7 +153,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     // });
   };
 
-  const calculateShippingCost = async (distanceMeters: number) => {
+  const calculateShippingCost = (distanceMeters: number) => {
     let shippingCost = 0;
 
     if (distanceMeters <= 3400) {
@@ -197,6 +169,34 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
     // 14535 * x = 150
 
     return shippingCost;
+  };
+
+  const shipCost = calculateShippingCost(
+    currentSelectedAddress?.distanceToAddress || 0,
+  );
+
+  const fetchPaymentSheetParams = async () => {
+    const userEmail = auth().currentUser?.email;
+    const total = (cartProductsSubtotal + cartProductsIva + shipCost) * 100;
+    const theBody = {
+      email: userEmail,
+      totalAmount: total,
+    };
+
+    const response = await fetch(`${API_URL}/payment-sheet`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(theBody),
+    });
+    const { paymentIntent, ephemeralKey, customer } = await response.json();
+
+    return {
+      paymentIntent,
+      ephemeralKey,
+      customer,
+    };
   };
 
   return (
@@ -220,8 +220,7 @@ export const PrePurchaseSummaryScreen = ({ route }) => {
               backgroundColor: Colors.grayLight,
             }}
           />
-          {/* <Text style={styles.title}>{t('ProductsToBuy')}</Text> */}
-          <Cart shippingCost={200} />
+          <Cart shippingCost={shipCost} />
         </View>
         <Button title={t('Continue')} onPress={onPressContinue} />
       </TemplateSplitedViewScrollAndButtonFixedAtTheBottom>

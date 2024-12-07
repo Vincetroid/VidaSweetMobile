@@ -8,12 +8,12 @@ import { useFetchProducts } from '@/hooks/useFetchProducts';
 import { formatCurrency } from '@/utils';
 import { styles } from './CartPurchased.styles';
 
-export const CartPurchased = () => {
+export const CartPurchased = ({ shippingCost = 0 }) => {
   const { cartProductsCounter, cartProductsSubtotal, cartProductsIva } =
     useAppSelector(state => state.cart);
   const { t } = useTranslation();
   const { products } = useFetchProducts();
-  const totalAmount = cartProductsSubtotal + cartProductsIva;
+  const totalAmount = cartProductsSubtotal + cartProductsIva + shippingCost;
 
   return (
     <>
@@ -46,6 +46,14 @@ export const CartPurchased = () => {
         styleSecondaryTextTitle={styles.ivaSecondaryTitle}
         secondaryText={`${formatCurrency(cartProductsIva)} MXN`}
       />
+      {shippingCost ? (
+        <RowTitle
+          title={t('ShippingCost')}
+          styleTextTitle={styles.ivaTitle}
+          styleSecondaryTextTitle={styles.ivaSecondaryTitle}
+          secondaryText={`${formatCurrency(shippingCost)} MXN`}
+        />
+      ) : null}
       <View style={{ paddingLeft: 16 }}>
         <Divider
           customStyle={{ marginTop: 16, backgroundColor: Colors.gold }}
