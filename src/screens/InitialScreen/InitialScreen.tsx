@@ -14,7 +14,7 @@ export const InitialScreen = () => {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
+    <SafeAreaView style={styles.safeAreaView} accessible={true}>
       <TemplateSplitedViewScrollAndButtonFixedAtTheBottom
         fixedTopViewStyles={styles.topViewStyle}
         fixedBottomViewStyles={styles.bottomViewStyle}>
