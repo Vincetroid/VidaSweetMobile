@@ -38,12 +38,15 @@ export const SignInScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.safeAreaContainer}>
-      <View style={styles.topLabel}>
-        <Text style={styles.topLabelText}>{t('SignIn')}</Text>
+    <SafeAreaView style={styles.safeAreaContainer} accessible={true}>
+      <View style={styles.topLabel} accessible={true}>
+        <Text style={styles.topLabelText} accessible={true}>
+          {t('SignIn')}
+        </Text>
       </View>
-      <View>
+      <View accessible={true}>
         <TextInput
+          accessible={true}
           value={email}
           editable={!loader}
           style={[styles.textInput, textInputColor]}
@@ -53,6 +56,7 @@ export const SignInScreen = () => {
           autoCapitalize="none"
         />
         <TextInput
+          accessible={true}
           secureTextEntry
           value={password}
           editable={!loader}
@@ -63,6 +67,7 @@ export const SignInScreen = () => {
           autoCapitalize="none"
         />
         <Button
+          accessible={true}
           title={t('SignIn')}
           onPress={onSignInPress}
           buttonViewStyle={styles.signInBtn}
@@ -70,6 +75,7 @@ export const SignInScreen = () => {
           isLoading={loader}
         />
         <Button
+          accessible={true}
           title={t('ForgotYourPassword')}
           onPress={() => {
             navigation.navigate('ForgotPassword' as never);
