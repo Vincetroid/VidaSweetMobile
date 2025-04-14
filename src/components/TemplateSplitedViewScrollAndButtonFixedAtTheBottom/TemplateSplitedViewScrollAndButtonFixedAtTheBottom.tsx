@@ -16,10 +16,12 @@ export const TemplateSplitedViewScrollAndButtonFixedAtTheBottom = ({
   return (
     <>
       <ScrollView
-        contentContainerStyle={[styles.gralMargin, fixedTopViewStyles]}>
+        contentContainerStyle={[styles.gralMargin, fixedTopViewStyles]}
+        accessible={true}>
         {children[0]}
       </ScrollView>
       <View
+        accessible={true}
         style={
           fixedBottomViewStyles
             ? fixedBottomViewStyles
