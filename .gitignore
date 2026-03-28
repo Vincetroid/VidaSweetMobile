@@ -73,3 +73,5 @@ yarn-error.log
 .env
 
 functions/node_modules/
+
+android/app/google-services.json
